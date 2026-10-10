@@ -1474,3 +1474,9 @@ main h1 { animation: display-unveil 850ms cubic-bezier(.16,1,.3,1) both; }
   .panel-art { inset: 50% 16px auto auto; width: 64px; height: 80px; opacity: 1; object-fit: contain; transform: translateY(-50%); background: #0a0a0b; }
   .panel-menu nav a:hover .panel-art, .panel-menu nav a:focus-visible .panel-art { opacity: 1; transform: translateY(-50%); }
 }
+
+.shell-events { padding: 16px 6vw 0; border-bottom: 1px solid var(--line); }
+.shell-events .ticker-scope { margin: 0 0 6px; font-size: 16px; color: var(--muted); }
+.shell-events .event-ticker { margin: 0; border: 0; padding: 10px 0 16px; }
+.shell-events .event-ticker-empty { margin: 0; padding: 8px 0 16px; }
+@media (max-width: 850px) { .shell-events { padding-left: 24px; padding-right: 24px; } }

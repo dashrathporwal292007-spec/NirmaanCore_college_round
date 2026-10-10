@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, useContext, type ReactNode } from "react";
 
+import { ShellTicker } from "@/components/shell-ticker";
 import { ErrorState } from "@/components/shared";
 const tabs = [
   ["Agent", "/"],
@@ -277,6 +278,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
           </label>
         </div>
       </dialog>
+      {path !== "/live" && <ShellTicker revision={refresh} />}
       <main className="workspace" id="main" key={path}>
         {error && <ErrorState message={error} />}
         {children}
