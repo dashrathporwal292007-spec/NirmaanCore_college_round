@@ -829,3 +829,10 @@ textarea {
 .webinar-actions label {
   margin: 20px 0;
 }
+.analytics-ledger > div {
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+}
+.analytics-ledger h2 {
+  margin-top: 8px;
+}
