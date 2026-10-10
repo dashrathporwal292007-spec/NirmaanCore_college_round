@@ -32,7 +32,7 @@ export function WebinarsList() {
   }, [offset, revision]);
   return (
     <>
-      <h1>Webinars</h1>
+      <h1>Bring people<br /><em>together.</em></h1>
       <p>
         <SimulatedMark /> · Hosting and delivery are simulated. Registrations
         are stored in the real CRM.
