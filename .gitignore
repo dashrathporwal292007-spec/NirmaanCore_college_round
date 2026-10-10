@@ -45,3 +45,5 @@ next-env.d.ts
 /outputs/
 
 .env.local
+
+/.cache/
