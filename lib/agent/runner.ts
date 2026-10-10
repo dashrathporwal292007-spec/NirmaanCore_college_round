@@ -1,3 +1,4 @@
+import { lockAdaptive } from '../rules/evaluate'
 // lib/agent/runner.ts
 import { createHash, randomUUID } from 'crypto'
 import type { PoolClient } from 'pg'
@@ -50,14 +51,14 @@ function buildDiff(stepEffects: { tool: string; effects: Effect[] }[]): Diff {
 
 /** Hash of what the plan WOULD do. Names and ids are excluded; counts and actions are included. */
 function hashPlan(plan: Plan, diff: Diff) { const stable = (v: any): any => Array.isArray(v) ? v.map(stable) : v && typeof v === 'object' ? Object.fromEntries(Object.keys(v).sort().map(k => [k, stable(v[k])])) : v  // jsonb loses key order, so hash a sorted-key form
-  const shape = { steps: plan.steps, lines: diff.lines.map(l => [l.tool, l.action, l.count, l.recipients ?? 0, l.skipped ?? 0, l.fingerprint ?? '']) }
+  const shape = { steps: plan.steps, lines: diff.lines.map(l => [l.tool, l.action, l.count, l.recipients ?? 0, l.skipped ?? 0, l.fingerprint ?? '', l.moneyInr ?? 0, l.publicVisible ?? false]) }
   return createHash('sha256').update(JSON.stringify(stable(shape))).digest('hex')
 }
 
 /** Run the whole plan inside a transaction that is ALWAYS rolled back. */
 export async function dryRun(plan: Plan, actor: Actor, runId: string = randomUUID()) {
   validatePlan(plan, actor.role)
-  const { stepEffects } = await withRollback(db => executePlan(db, plan, actor, runId, true))
+  const { stepEffects } = await withRollback(async db => { await lockAdaptive(db); return executePlan(db, plan, actor, runId, true) })
   const diff = buildDiff(stepEffects)
   return { diff, risk: computeRisk(plan, diff), planHash: hashPlan(plan, diff) }
 }
@@ -141,6 +142,7 @@ export async function commit(runId: string, requester: Actor) {
       if (locked.user_id !== requester.id) throw new Error('Only the requester can execute this run')
       const current = (await db.query(`select id, role from users where id = $1`, [requester.id])).rows[0] as Actor
       if (!current) throw new Error('Requester not found')
+      await lockAdaptive(db)
       // Prototype-wide write locks keep re-preview and commit on the same business state.
       await db.query('LOCK TABLE contacts, pages, webinars, campaigns, registrations, subscriptions, plans IN SHARE ROW EXCLUSIVE MODE')
       await db.query('SAVEPOINT approval_preview')
@@ -187,6 +189,7 @@ export async function rewind(runId: string, actor: Actor) {
   await withTx(async db => {
     const locked = (await db.query(`select status from agent_runs where id = $1 for update`, [runId])).rows[0]
     if (locked?.status !== 'completed') throw new Error('Only completed runs can be rewound')
+    await lockAdaptive(db)
     const ctx: Ctx = { db, user: actor, runId, dry: false, now: new Date() }
     const steps = (await db.query(`select * from run_steps where run_id = $1 order by seq desc`, [runId])).rows
     for (const s of steps) {

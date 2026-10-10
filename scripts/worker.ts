@@ -4,7 +4,7 @@ import { withTx } from '../lib/db'
 import { evaluateOutbox, recordDecision, lockAdaptive } from '../lib/rules/evaluate'
 
 export async function tick() {
-  await withTx(async db => {
+  return withTx(async db => {
     await lockAdaptive(db)
     // Lock the due rows. A rewind or an automation cancel on the same row waits for us, then sees 'sent'.
     const due = (await db.query(
@@ -33,6 +33,7 @@ export async function tick() {
        where status = 'scheduled'
          and not exists (select 1 from outbox o where o.campaign_id = campaigns.id and o.status = 'queued')`)
     if (sent || blocked) console.log(`dispatched ${sent} simulated emails, blocked ${blocked}`)
+    return { simulated: true as const, sent, blocked }
   })
 }
 if (process.argv[1] && resolve(process.argv[1]) === resolve('scripts/worker.ts')) {

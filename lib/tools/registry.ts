@@ -6,8 +6,9 @@ import { createWebinar } from './create_webinar'
 import { draftCampaign, scheduleCampaign } from './campaigns'
 import { createPage, publishPage } from './pages'
 import { offerSubscription } from './offer_subscription'
+import { activateSubscriptionTool } from './activate_subscription'
 import { draftFollowup } from './draft_followup'
 
 export const registry: Record<string, Tool> = Object.fromEntries(
   [queryContacts, tagContacts, createWebinar, draftCampaign, scheduleCampaign,
-   createPage, publishPage, offerSubscription, draftFollowup].map(t => [t.name, t]))
+   createPage, publishPage, offerSubscription, draftFollowup, activateSubscriptionTool].map(t => [t.name, t]))

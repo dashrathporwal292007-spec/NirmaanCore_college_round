@@ -55,6 +55,8 @@ export async function activateSubscription(db: PoolClient, contactId: string, pl
     await recordDecision(db, contactId, null, 'withdrawn', {
       ruleId: 'PROMO_REQUIRES_NOT_SUBSCRIBED', reason: 'Drafted offer withdrawn because the contact subscribed', evidence: { subscription_id: sub.id, pending_action_id: p.id } })
   await reevaluateQueued(db, contactId)
+  return { simulated: true as const, subscription_id: sub.id as string, invoice_id: inv.rows[0]?.id as string | undefined ?? null,
+    invoice_created: !!inv.rowCount, amount_inr: inv.rowCount ? Number(plan.price_inr) : 0 }
 }
 
 /** "End webinar": attendees get a drafted offer, no-shows a different drafted follow-up. Nothing is sent. */

@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import type { Tool } from '../agent/types'
+import { fingerprint } from '../fingerprint'
 import { logEvents } from '../agent/log'
 
 const schema = z.object({ plan_name: z.string().min(1), contact_ids: z.array(z.string().uuid()).max(500) })
@@ -16,7 +17,7 @@ export const offerSubscription: Tool<z.infer<typeof schema>> = {
        on conflict (contact_id, plan_id) do nothing returning id, contact_id`, [a.contact_ids, plan.id])
     await logEvents(ctx, r.rows.map(x => x.contact_id), 'subscription_offered', { plan: a.plan_name })
     return { result: { subscription_ids: r.rows.map(x => x.id) },
-      effects: [{ entity: 'subscription', action: `offered ${a.plan_name} (no charge)`, count: r.rows.length, moneyInr: 0 }],
+      effects: [{ entity: 'subscription', action: `offered ${a.plan_name} (no charge)`, count: r.rows.length, moneyInr: 0, fingerprint: fingerprint(r.rows.map(x => x.contact_id), a.plan_name, 'offered, no charge') }],
       compensation: { subscription_ids: r.rows.map(x => x.id) } }
   },
   async compensate(c, ctx) {
