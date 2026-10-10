@@ -8,7 +8,7 @@ The site alternates cream (#F4F1EA) and near-black (#0A0A0B); the requested Nexu
 
 - Display: Elza Condensed, weight 800. Desktop showreel heading 86.4px / 82.08px, tracking −2.16px; large definition 230.4px / 198.144px, tracking −6.912px. Mobile equivalents 38.4px / 36.48px and 64px / 55.04px.
 - Serif: IvyPresto Display. Desktop question 100.8px / 102.816px, tracking −1.512px; project introduction 79.2px / 80.784px, weight 300. Mobile question 38.4px / 39.168px.
-- Desktop text section padding 144px 86.4px. Project index 153px 86.4px 63px. Territories section 162px 86.4px 144px. Most structural separation comes from spacing and thin rules, rather than card containers.
+- Desktop text section padding 144px 86.4px. Project-name wall 153px 86.4px 63px. Territories section 162px 86.4px 144px. Most structural separation comes from spacing and thin rules, rather than card containers.
 - Nexus uses OFL fonts already installed and self-hosted through next/font/local: Big Shoulders Display, Instrument Serif italic, Public Sans and JetBrains Mono. No reference font, image, logo, monogram, motif or copy is used.
 
 ## Interactions
@@ -23,4 +23,8 @@ Nexus adopts a restrained 600ms ease-out reveal, an accessible full-screen menu,
 
 The study captures a particular live-site state. Responsive scenes and scroll-dependent animations change what is visible; the raw JSON preserves the measured elements. No claim is made that every animation on the reference has been catalogued.
 
-Additional verification: captured the opened menu after scrolling, and the actual ProjectsWall numbered index and hovered Services row, with the cookie banner dismissed. The desktop overlay expands into vertical navigation territories with image reveals; Nexus deliberately uses text-only navigation and preserves its own black palette.
+Additional verification: captured the opened menu after scrolling, the numbered case-project navigation and the hovered Services row. The moving project-name wall is distinct from the numbered case navigation. The desktop overlay expands into vertical navigation territories with image reveals; Nexus deliberately uses text-only navigation and preserves its own black palette.
+
+A second desktop sampling measured actual horizontal transform movement over approximately 1.2 seconds: project tracks ≈57px/s left, 52px/s right and 60px/s left; the hovered territory title ≈175px/s left and services ≈30px/s right. These values depend on viewport and track content, and are approximate. Full samples are in `screenshots/reference/marquee-speeds.json`.
+
+The opening consumes initial wheel input to transition between scenes; real wheel input was needed to reach the numbered case navigation reliably. Its desktop 01–08 rail is hidden at 390px, so the mobile comparison captures the responsive project section instead. Nexus uses ordinary page scrolling throughout.

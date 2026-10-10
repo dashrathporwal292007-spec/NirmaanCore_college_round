@@ -1,56 +1,35 @@
-# Routed prototype verification
+# Nexus editorial frontend verification
 
-All screens use the real JSON endpoints and the existing demo-cookie authentication. The backend additions were isolated in commit 79ea6f7 before frontend routing. Attendance services/routes, adaptive services, seed and reset code were not changed. No old smoke assertion was changed.
+## Screens
 
-| Screen                      | Status and files                                            | Verification                                                                                                                                       |
-| --------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Shared routing and controls | Built: app/(workspace)/layout.tsx, components/workspace.tsx | Real route links, tick outcome, owner/viewer controls and focused planner-source tooltip                                                           |
-| Agent /                     | Built: components/agent.tsx                                 | 37 distinct contacts / 74 messages, short hold cancellation, Space-key approval, real plan/approve and clarification reply                         |
-| Public /register/[slug]     | Built: components/registration.tsx                          | Public iframe registration, success, duplicate, native required-field validation; no app chrome                                                    |
-| Live /live                  | Built: components/live.tsx                                  | Registration produces the real REMINDER_REQUIRES_UNREGISTERED decision, reason, evidence and cancelled reminder; three stages resolve              |
-| Contacts /contacts          | Built: components/contacts.tsx                              | Search by email verified to one real contact; keyboard link navigation; mobile fields show tags and consent                                        |
-| Contact /contacts/[id]      | Built: components/timeline.tsx                              | Real imported and automatic events on a vertical spine; rule IDs, reasons, evidence and run links                                                  |
-| Rule inspector              | Built: components/rule-inspector.tsx, lib/rule-catalogue.ts | Enter opens, Tab stays inside, Escape closes and restores focus; catalogue checked against evaluator/adaptive/rewind code                          |
-| Webinars /webinars          | Built: components/webinars.tsx                              | Stored status, linked page state and actual registrant counts                                                                                      |
-| Webinar /webinars/[id]      | Built: components/webinar-detail.tsx                        | Publication preview through a second approved plan; registration, close, stale fingerprint refusal and fresh approval, opt-out, simulated checkout |
-| Runs /runs                  | Built: components/runs.tsx                                  | Real history; numbered by creation order, with stored UUID retained on detail                                                                      |
-| Run /runs/[id]              | Built: components/run-detail.tsx and components/agent.tsx   | Steps/results, approval/audit records, cancel rewind confirmation, confirmed whole-run rewind, API cannot-recall notes                             |
-| Outbox /outbox              | Built: components/outbox.tsx                                | Cancelled filter verified; stored statuses, bodies and rules; no invented blocked status                                                           |
-| Analytics /analytics        | Built: components/analytics.tsx                             | Computed contacts, delivery states, invoices, recurring amounts and usage; estimates labelled; no decorative charts                                |
+| Screen | Built | Verification | Limits |
+| --- | --- | --- | --- |
+| Agent `/` | Yes | Real plan, 37 distinct people / 74 messages, short-hold cancellation, keyboard hold approval, receipt, real source indicator; screenshots at all three sizes | HIGH different-owner UI path not exercised in browser; enforced and covered by existing HTTP smoke |
+| Public `/register/[slug]` | Yes | Real registration, duplicate, native validation and success; no workspace chrome; all three sizes | No physical phone or screen-reader test |
+| Live `/live` | Yes | Real iframe registration, polling, stored cancellation rule/reason/evidence, completed three-stage trace; all three sizes | Automated Chromium keeps background tabs visible, so native hidden-tab pause could not be exercised |
+| Contacts `/contacts` | Yes | Real clean 50-contact seed, list and consent/tag states; all three sizes | Larger-than-seed pagination/search combinations not exhaustively tested |
+| Contact `/contacts/[id]` | Yes | Real imported history, new automatic decision, reason/evidence and link to Rules; all three sizes | Every event type is not represented in the seed demo |
+| Rules `/rules` | Yes | Five confirmed adaptive rules, direct hash opens/focuses explanation, mouse/keyboard/touch activation, manual-action explanations; all three sizes | Unknown IDs are flagged rather than assigned invented behavior |
+| Webinars `/webinars` | Yes | Real list and link into detail; all three sizes | Large pagination not exercised |
+| Webinar `/webinars/[id]` | Yes | Publication through plan/approval, simulated registration/opt-out/checkout, close, pending draft, stale fingerprint rejection, fresh approval; all three sizes | Attendance action deliberately omitted; unapproved draft cancellation deliberately omitted |
+| Runs `/runs` | Yes | Real creation-order numbering, statuses and instruction summaries; all three sizes | Numbering is a display index, not a new persisted backend field |
+| Run `/runs/[id]` | Yes | Real effects, approval, confirmed whole-run rewind, API irreversible notes, reversed receipt; all three sizes | Step-by-step rewind deliberately omitted |
+| Outbox `/outbox` | Yes | Real queued/sent/cancelled records after customer actions and dispatch; all three sizes | All status/filter combinations not exhaustively clicked |
+| Analytics `/analytics` | Yes | Existing computed API values, large plain numbers and honest simulation/estimate labels; all three sizes | No claim of real revenue or delivery |
+| Shell | Yes | Production navigation, visible worker result, role switcher, planner source, simulation note, menu keyboard containment and Escape restoration | No screen-reader audit |
 
-## Demo path
+## Gates and scope
 
-The cached main plan deliberately creates a draft registration page. Approving it does not publish the page. Open Webinars, select the webinar, choose “Preview registration publication,” and approve that real supplied plan on Run detail. Then register through the public page or its Live iframe. This preserves the backend pipeline.
+Typecheck, build and all three smoke scripts passed after every screen. Existing smoke assertions were not changed. Backend rehearsal passed. The production server was used for browser demo runs; browser requests are checked against the local origin, including locally bundled fonts. Lint has zero errors and the 34 existing warnings remain.
 
-The worker respects the actual hold window. An immediate tick can legitimately send zero emails. Browser rehearsals wait for the stored dispatch time, then tick again; database times are not altered. Rewind lists the API's notes about already-sent messages rather than claiming recall.
+Backend routes, services, planning/approval/commit/rewind logic, seed/reset, and all three backend smoke scripts are unchanged by this design pass. No fetch, pull, push, rebase, remote operation or branch switch was performed. Local commits only.
 
-Pending drafts have only Approve. Not approving leaves the draft untouched. A changed recipient set is refused, displayed as a fresh preview, and requires another deliberate approval.
+No reset button was added. Live retains the CLI reset hint and the clean seed remains imported history only. Attendance is not simulated. Drafts stay untouched unless approved. All email/payment/hosting actions remain simulated.
 
-## Visual critique and fixes
+Visual comparison, critique and screenshot findings are recorded in `VISUAL_REVIEW.md`; the side-by-side gallery is `screenshots/comparison.html`. The decorative tilted stamp was removed.
 
-Reviewed exact 1440×900, 1280×720 and 390×844 captures plus full-page versions in docs/screenshots. Kept dark-only colours, local next/font type, readable 16px body text, semantic colour, hairline structure and perforated receipts.
+## Final outcome
 
-- Mobile contact columns initially required horizontal table scrolling. Stack labelled fields so tags, state and consent remain visible.
-- Rewind's final fade reduced coloured-text contrast. Resolve the reverse entry to full opacity, keeping the reverse order and direction.
-- Native one-button dialogs allowed Tab to leave the control. Keep focus on Close; Escape restores the triggering rule button.
-- Give webinar/contact selectors explicit accessible names.
-- Include pseudo-elements in reduced-motion suppression so the trace rail also settles instantly.
-- Re-selecting an observed contact now restores its existing settled trace.
-- Remove decorative navigation numbers and obsolete hash-view code.
-- Capture viewport screenshots at the top; otherwise form focus preserved a misleading scroll offset.
+Three full production browser rehearsals passed, including the third with reduced motion. After the observed menu focus fix, a fourth full run passed and regenerated every screenshot. That final run includes the 700ms hold threshold, explicit menu Tab wrapping and route-entry reveals. No browser runtime errors or external browser-origin requests were recorded.
 
-Tested semantic text pairs range from 6.99:1 to 16.49:1. All captured viewports have no horizontal document overflow. Narrow screens scroll naturally instead of shrinking text. Reduced motion ends the trace immediately and disables receipt animation while keeping deliberate hold duration.
-
-## Checks
-
-Final serial checks passed: typecheck, production build, all three smoke scripts (ALL GREEN), rehearse (REHEARSAL ALL GREEN), and demo:reset. Lint has zero errors and 34 retained legacy warnings; new frontend lint is clean. Three full browser rehearsals printed ALL GREEN, including a reduced-motion cycle. The final rebuilt production server also passed a read-only check of clean Live state and zero-duration rail pseudo-element motion. Browser script: PLAYWRIGHT_BROWSERS_PATH=.cache/playwright node scripts/check-ui.mjs. It opens local Chromium, resets real demo data once per cycle and runs three full paths. It does not send real email or collect payments.
-
-Clean reset is checked through HTTP: 50 contacts, 40 trial, 3 unsubscribed; every contact has an imported event and no automatic decisions. The seed is unchanged.
-
-## Omitted and unverified
-
-Attendance button/route/service, cancellation of an unapproved draft, UI reset and step rewind slider are deliberately omitted. Attendance remains a read-only stored field; existing backend rehearsal fixtures are unchanged.
-
-Native hidden-tab polling could not be exercised: this Chromium automation reports both background tabs and minimised windows as visible, even after disabling focus emulation. The verifier explicitly reports this limitation; it does not fabricate document.hidden. Live polls every two seconds and checks document.hidden before each request.
-
-Not verified: Safari/Firefox, physical mobile devices/projector, screen reader, load/soak testing, live Gemini failure rendering in the browser, and HIGH/different-owner approval through the UI. Existing real-HTTP smoke tests cover HIGH, stale and duplicate approval contracts. All browser runs use offline demo mode. Pagination beyond this small demo dataset is not exercised in the browser.
+Additional real-browser checks passed: first-tap rule expansion, menu Tab containment/Escape focus restoration, and the real-event ticker pausing on hover/focus and becoming static under reduced motion. Minimum checked text contrast is 6.99:1. Build/start is stable; the final clean seed is verified separately after browser testing.

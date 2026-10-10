@@ -1,0 +1,106 @@
+[
+  {
+    "class": "ProjectsWall-module__h584gW__track",
+    "x": -2575.52,
+    "y": 0,
+    "width": 44518.03125,
+    "animation": "400s linear -30s infinite ProjectsWall-module__h584gW__marquee",
+    "pxPerSecond": -57.19
+  },
+  {
+    "class": "ProjectsWall-module__h584gW__track",
+    "x": -15364.7,
+    "y": 0,
+    "width": 44518.03125,
+    "animation": "440s linear -120s infinite reverse ProjectsWall-module__h584gW__marquee",
+    "pxPerSecond": 51.92
+  },
+  {
+    "class": "ProjectsWall-module__h584gW__track",
+    "x": -12669,
+    "y": 0,
+    "width": 44518.03125,
+    "animation": "380s linear -200s infinite ProjectsWall-module__h584gW__marquee",
+    "pxPerSecond": -60.17
+  },
+  {
+    "class": "Services-module__mJrWua__wordTrack",
+    "x": -209.431,
+    "y": 0,
+    "width": 7787.75,
+    "animation": "22s linear infinite Services-module__mJrWua__wordRoll",
+    "pxPerSecond": -174.53
+  },
+  {
+    "class": "Services-module__mJrWua__itemsTrack",
+    "x": -828.79,
+    "y": 0,
+    "width": 3461.4375,
+    "animation": "28s linear infinite reverse Services-module__mJrWua__itemsRoll",
+    "pxPerSecond": 30.47
+  },
+  {
+    "class": "Services-module__mJrWua__wordTrack",
+    "x": 0,
+    "y": 0,
+    "width": 14008.5,
+    "animation": "22s linear infinite paused Services-module__mJrWua__wordRoll",
+    "pxPerSecond": 0
+  },
+  {
+    "class": "Services-module__mJrWua__itemsTrack",
+    "x": -837.172,
+    "y": 0,
+    "width": 3348.6875,
+    "animation": "28s linear infinite reverse paused Services-module__mJrWua__itemsRoll",
+    "pxPerSecond": 0
+  },
+  {
+    "class": "Services-module__mJrWua__wordTrack",
+    "x": 0,
+    "y": 0,
+    "width": 10018.75,
+    "animation": "22s linear infinite paused Services-module__mJrWua__wordRoll",
+    "pxPerSecond": 0
+  },
+  {
+    "class": "Services-module__mJrWua__itemsTrack",
+    "x": -980.375,
+    "y": 0,
+    "width": 3921.5,
+    "animation": "28s linear infinite reverse paused Services-module__mJrWua__itemsRoll",
+    "pxPerSecond": 0
+  },
+  {
+    "class": "Services-module__mJrWua__wordTrack",
+    "x": 0,
+    "y": 0,
+    "width": 7412.75,
+    "animation": "22s linear infinite paused Services-module__mJrWua__wordRoll",
+    "pxPerSecond": 0
+  },
+  {
+    "class": "Services-module__mJrWua__itemsTrack",
+    "x": -785.938,
+    "y": 0,
+    "width": 3143.75,
+    "animation": "28s linear infinite reverse paused Services-module__mJrWua__itemsRoll",
+    "pxPerSecond": 0
+  },
+  {
+    "class": "Services-module__mJrWua__wordTrack",
+    "x": 0,
+    "y": 0,
+    "width": 14361.25,
+    "animation": "22s linear infinite paused Services-module__mJrWua__wordRoll",
+    "pxPerSecond": 0
+  },
+  {
+    "class": "Services-module__mJrWua__itemsTrack",
+    "x": -782.922,
+    "y": 0,
+    "width": 3131.6875,
+    "animation": "28s linear infinite reverse paused Services-module__mJrWua__itemsRoll",
+    "pxPerSecond": 0
+  }
+]
