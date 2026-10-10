@@ -76,7 +76,10 @@ export function ContactDetail({ id }: { id: string }) {
       <p>
         <Link href="/contacts">All contacts</Link>
       </p>
-      <h1>{contact?.name ?? "Contact"}.<br /><em>Every change.</em></h1>
+      <h1>
+        {contact?.name ?? "Contact"}.<br />
+        <em>Every change.</em>
+      </h1>
       {contact && (
         <>
           <p>
@@ -98,7 +101,14 @@ export function ContactDetail({ id }: { id: string }) {
         ) : (
           <>
             <Timeline events={events} />
-            {!events.some((e) => e.type === "automation_decision") &&
+            {!events.length && offset === 0 && (
+              <EmptyState>
+                Nothing yet. Plan a webinar, approve it, then register this
+                contact.
+              </EmptyState>
+            )}
+            {events.length > 0 &&
+              !events.some((e) => e.type === "automation_decision") &&
               offset === 0 && (
                 <EmptyState>
                   No automatic decisions yet. Plan a webinar, approve it, then
