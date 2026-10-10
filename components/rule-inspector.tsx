@@ -14,7 +14,17 @@ export function RuleId({ id }: { id: string }) {
       >
         <code>{id}</code>
       </button>
-      <dialog className="rule-drawer" ref={ref} aria-labelledby={title}>
+      <dialog
+        className="rule-drawer"
+        ref={ref}
+        aria-labelledby={title}
+        onKeyDown={(e) => {
+          if (e.key === "Tab") {
+            e.preventDefault();
+            ref.current?.querySelector<HTMLButtonElement>("button")?.focus();
+          }
+        }}
+      >
         <div className="actions">
           <button onClick={() => ref.current?.close()}>
             Close rule inspector
