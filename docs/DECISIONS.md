@@ -93,3 +93,7 @@ Authorized read-only webinar list/detail endpoints and the thin opt-out wrapper 
 The main demo creates a draft page, so the webinar screen offers a supplied publish_page plan followed by the existing approval screen. Public HTML is /register/[slug]; existing /s/[slug] handlers remain JSON. Rewind remains one confirmed whole-run action with server notes; there is no step slider. Run numbers are creation-order labels, not new database identifiers.
 
 The browser verifier scopes repeated messages to visible routes because Next retains hidden route content. The distinct count assertion targets the impact figure rather than other legitimate 37-count receipt lines. These are corrections to new UI selectors; existing backend smoke assertions were not changed. Native background visibility is unavailable in this Chromium automation, so polling pause is explicitly unverified rather than tested using fabricated visibility. Details and visual review are in docs/UI_REPORT.md.
+
+### Animated menu rehearsal timing
+
+The user requested the reference's reverse menu-close animation. Escape now retains the modal through its 600ms close before restoring focus. The existing browser rehearsal asserted focus immediately after the keypress. Add a wait for the menu to become hidden, retaining the exact focus assertion. Backend smoke assertions and behavior are unchanged.

@@ -17,3 +17,11 @@ Ownitt has richer art direction and more varied section compositions, supported 
 The reference's index and territories contain more elaborate image and layered-type reveals. Nexus uses simpler text expansion because rule explanations and run summaries must remain readable, accessible and backed by recorded data. This is a functional editorial application, not a reproduction of the reference's visual complexity.
 
 No reference logo, monogram, parentheses motif, copy, image, video or font was put into the product. Installed font licenses were checked: all four are SIL Open Font License 1.1 and are bundled through next/font/local.
+
+## Expanded interaction pass
+
+Revisited all main reference destinations before this pass. The old two-column fade-in menu has been replaced by full-height navigation territories, a circular top-right opening and reverse close, staggered entrances, expanding hover/focus panels, layered condensed-to-serif titles and revealed descriptions. First captures exposed clipped labels at desktop and muted text on cream at mobile. Reduced the collapsed title size, enlarged only the active territory and made descriptions inherit the contrasting panel ink. Rechecked 1440×900, 1280×720 and 390×844; labels now fit, mobile scrolls the eight real destinations and the descriptions remain readable.
+
+Rules now carry a moving-title territory reveal; headings unveil through a mask and API-loaded content participates in scroll reveals. The new capture `rules-territory-hover.png` records the actual interaction. The previous critique about basic text-only expansion is superseded by this pass. Nexus still lacks Ownitt's original photography and film art direction; this is a meaningful remaining visual difference, not a claim of equivalent polish. Main site experiences were studied, not every article or case page. No copyrighted reference media has been repurposed.
+
+Interaction checks passed for circular opening, expanded panels, route navigation, Escape, keyboard focus containment, all three sizes and changing reduced-motion preference. Physical touch hardware, Safari/Firefox and screen readers remain unverified.

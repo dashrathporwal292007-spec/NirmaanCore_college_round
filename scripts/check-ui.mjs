@@ -117,6 +117,7 @@ for (let cycle = 1; cycle <= cycles; cycle++) {
       );
     }
     await page.keyboard.press("Escape");
+    await page.locator("dialog.menu-overlay").waitFor({ state: "hidden" });
     assert.equal(
       await page
         .getByRole("button", { name: "Menu", exact: true })

@@ -71,3 +71,7 @@ The user's latest direction authorizes reference-inspired cursor and scroll effe
 ## Expanded reference interaction direction
 
 The latest user request supersedes earlier visual restrictions: navigation may use contrasting cream territories on black, circular reveals and layered hover typography. The menu opens and closes with a 600ms top-right circle reveal; eight full-height desktop panels expand on hover or focus, with separately revealed descriptions and serif title layers. At 1000px and below the menu stacks readable rows. Descriptions must inherit the panel's contrasting text colour. Escape, focus containment, modified-click link behavior and reduced-motion immediate navigation remain supported. Reference photography, proprietary fonts, logos and copy are not product assets.
+
+### Motion across the real workflows
+
+Display headings unveil through a mask over 850ms, then drift up to 48px with scrolling. Content sections reveal over 750ms when they enter the viewport, including sections inserted later by real API responses. This extends to touch viewports; fine-pointer cursor behavior remains separate. Live changes to the reduced-motion setting disconnect observers and restore static content immediately. Rules show a 28-second repeated-title territory while their verified trigger, effect and evidence remain ordinary readable content; keyboard focus pauses the repetition. These latest timings replace the earlier smaller motion pass.
