@@ -7,3 +7,7 @@ The requested additive routes already exist in separate commit 79ea6f7, precedin
 ## Shared shell
 
 All screens already have real routes under app/(workspace) with its shared layout. Added the existing real-event ticker to the shell outside Live view, using actual contact timeline responses. The API exposes contact timelines rather than a global event stream, so the shell explicitly names its selected customer. Live view keeps its own selectable-contact ticker; no fabricated or inferred events, and no new endpoint. Both feeds pause requests while hidden; the ticker pauses animation on hover/focus and becomes static under reduced motion. Existing wordmark/Menu/worker controls and local illustration/cursor fixes are preserved.
+
+## Agent screen
+
+Already implemented separately in 580874e (hold timing refinement e892acc). components/agent.tsx opens with the giant condensed/italic statement, preserves the command bar and receipt, shows 37 people separately from 74 messages, and applies has-receipt to shrink the statement after planning. Hold-to-approve, clarification, stale and duplicate handling, HIGH confirmation and whole-run rewind remain unchanged. No duplicate implementation or behavior change was necessary for Batch A.
