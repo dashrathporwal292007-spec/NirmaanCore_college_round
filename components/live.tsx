@@ -9,6 +9,7 @@ import {
   type Webinar,
 } from "@/lib/api";
 import { useWorkspace } from "./workspace";
+import { Timeline } from "./timeline";
 import {
   EmptyState,
   ErrorState,
@@ -103,8 +104,8 @@ export function LiveView() {
           setStage(
             matchMedia("(prefers-reduced-motion: reduce)").matches ? 3 : 1,
           );
-          setPlaying(true);
-        } else if (prior === undefined) {
+          setPlaying(!matchMedia("(prefers-reduced-motion: reduce)").matches);
+        } else if (prior === undefined || prior === latest?.id) {
           setStage(latest ? 3 : 0);
           setPlaying(false);
         }
@@ -149,7 +150,9 @@ export function LiveView() {
           ? "Active subscription recorded"
           : "Customer evidence recorded";
   const effect = trace
-    ? (message?.kind ?? "Action") +
+    ? (message?.kind
+        ? message.kind[0].toUpperCase() + message.kind.slice(1)
+        : "Action") +
       " " +
       String(trace.payload.decision ?? "recorded").replaceAll("_", " ")
     : "Waiting for a stored decision";
@@ -215,6 +218,7 @@ export function LiveView() {
         <label>
           Webinar
           <select
+            aria-label="Webinar"
             value={wid}
             onChange={(e) => {
               setWid(e.target.value);
@@ -234,6 +238,7 @@ export function LiveView() {
         <label>
           Contact to observe
           <select
+            aria-label="Contact to observe"
             value={cid}
             onChange={(e) => {
               setCid(e.target.value);
@@ -263,6 +268,12 @@ export function LiveView() {
                 <Link href={"/register/" + webinar.slug}>
                   Open the public page
                 </Link>
+              </p>
+              <p>
+                To observe this contact, register with{" "}
+                {contacts.find((c) => c.id === cid)?.email ??
+                  "their email address"}
+                .
               </p>
               <iframe
                 className="phone-frame"
@@ -308,24 +319,7 @@ export function LiveView() {
             </EmptyState>
           )}
           <h2 className="section">Timeline</h2>
-          {events
-            .filter((e) => e.rule_id)
-            .map((e) => (
-              <RuleMarker
-                key={e.id}
-                id={e.rule_id!}
-                reason={e.reason ?? "No reason was recorded."}
-                evidence={e.payload.evidence}
-              />
-            ))}
-          {events
-            .filter((e) => !e.rule_id)
-            .map((e) => (
-              <p key={e.id}>
-                {e.type.replaceAll("_", " ")} ·{" "}
-                {new Date(e.created_at).toLocaleTimeString()}
-              </p>
-            ))}
+          <Timeline events={events} />
           {!events.some((e) => e.rule_id) && (
             <EmptyState>
               Imported contacts have no automatic decisions yet. Plan the
