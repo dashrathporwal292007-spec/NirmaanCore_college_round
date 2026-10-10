@@ -186,8 +186,8 @@ export function Agent({
       <h1>
         {detailTitle ?? (
           <>
-            The agent proposes.
-            <br /> You <em>decide.</em>
+            Agents that <em>ask</em>
+            <br /> before they act.
           </>
         )}
       </h1>

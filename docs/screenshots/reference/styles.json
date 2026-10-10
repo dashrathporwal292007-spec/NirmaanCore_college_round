@@ -1,0 +1,1768 @@
+{
+  "desktop": {
+    "headings": [
+      {
+        "tag": "H1",
+        "class": "LocalAnchor-module__cZinja__title",
+        "text": "AGENCE WEB AU PAYS BASQUE.\nL'adresse, pas la limite.",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "32px",
+        "weight": "400",
+        "lineHeight": "38.4px",
+        "tracking": "normal",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "54px 0px 0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H2",
+        "class": "Showreel-module__jU6DKa__title",
+        "text": "WE ARE Ownitt.",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "86.4px",
+        "weight": "800",
+        "lineHeight": "82.08px",
+        "tracking": "-2.16px",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H2",
+        "class": "Manifesto-module__RcQ2Oq__defWord",
+        "text": "OWNITT",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "230.4px",
+        "weight": "800",
+        "lineHeight": "198.144px",
+        "tracking": "-6.912px",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H2",
+        "class": "QuestionScene-module__5QtFJW__title",
+        "text": "Mais\nqu'est-ce\nqu'on\nfait,\nexactement\n?",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "100.8px",
+        "weight": "400",
+        "lineHeight": "102.816px",
+        "tracking": "-1.512px",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H2",
+        "class": "Projects-module__KZz95G__lede",
+        "text": "Devenez l'évidence, pas l'option.",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "79.2px",
+        "weight": "300",
+        "lineHeight": "80.784px",
+        "tracking": "-0.792px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "Burger King",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "63.36px",
+        "weight": "400",
+        "lineHeight": "60.192px",
+        "tracking": "-0.6336px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "Remanence",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "74.88px",
+        "weight": "400",
+        "lineHeight": "71.136px",
+        "tracking": "-0.7488px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "TABAM",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "63.36px",
+        "weight": "400",
+        "lineHeight": "60.192px",
+        "tracking": "-0.6336px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "Peugeot Metropolis",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "63.36px",
+        "weight": "400",
+        "lineHeight": "60.192px",
+        "tracking": "-0.6336px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "Hyskatebag",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "63.36px",
+        "weight": "400",
+        "lineHeight": "60.192px",
+        "tracking": "-0.6336px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "Jean-Baptiste Ancelot",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "86.4px",
+        "weight": "400",
+        "lineHeight": "82.08px",
+        "tracking": "-0.864px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "Youth - Vietnamese Kitchen",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "63.36px",
+        "weight": "400",
+        "lineHeight": "60.192px",
+        "tracking": "-0.6336px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      }
+    ],
+    "sections": [
+      {
+        "tag": "SECTION",
+        "class": "AsteriskHero-module___3IpEq__creamSection AsteriskHero-module___3IpEq__ready",
+        "text": "AGENCE WEB ET COMMUNICATION CRÉATIVE\nprimée\n\nBayonne\nBiarritz\nPays Basque\nLandes\nBordeaux\n",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(244, 241, 234)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "AsteriskHero-module___3IpEq__heroSection AsteriskHero-module___3IpEq__ready ",
+        "text": "NOUS CRÉONS DES MARQUES QUI PARLENT\nAVANT QUE VOUS N'OUVRIEZ\nla bouche.\nAGENCE\nde communic",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(10, 10, 11)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "LocalAnchor-module__cZinja__section",
+        "text": "(\nCRÉATION DE SITE INTERNET\n)\n\nAgence web, agence de communication, studio de branding : a",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgb(5, 5, 5)",
+        "padding": "144px 86.4px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "Showreel-module__jU6DKa__section",
+        "text": "WE ARE Ownitt.\n\nWE ARE Ownitt.",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(5, 5, 5)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "Manifesto-module__RcQ2Oq__section",
+        "text": "ON PASSE TROP DE TEMPS À ESSAYER DE SE DÉMARQUER.\nÀ chercher ce détail qui nous rendrait «",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(5, 5, 5)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "Manifesto-module__RcQ2Oq__defSection",
+        "text": "DÉFINITION\n\nOWNITT\n\n\\ ow·nit \\\nVERBE TRANSITIF\n\n1.L'art d'assumer radicalement sa singular",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(5, 5, 5)",
+        "padding": "0px 86.4px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "QuestionScene-module__5QtFJW__section",
+        "text": "Mais\nqu'est-ce\nqu'on\nfait,\nexactement\n?",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgb(244, 241, 234)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "Projects-module__KZz95G__section",
+        "text": "LA PROMESSE\n\nDevenez l'évidence, pas l'option.\nLES PROJETS\n01\n / CAS CLIENT\nDIRECTION ARTI",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgb(0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "ProjectsWall-module__h584gW__section",
+        "text": "01\nBURGER KING\nDirection artistique\n02\nPEUGEOT METROPOLIS\nDirection artistique\n03\nJUSTE VI",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgb(5, 5, 5)",
+        "padding": "153px 86.4px 63px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "QuestionScene-module__5QtFJW__section",
+        "text": "Et\nconcrètement,\ncomment\non\nle\nfait\n?",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgb(244, 241, 234)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "Services-module__mJrWua__section",
+        "text": "(LA MÉTHODE)\n\nNous exploitons cinq territoires.\n\nSurvolez chaque territoire pour découvrir",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgb(5, 5, 5)",
+        "padding": "162px 86.4px 144px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "QuestionScene-module__5QtFJW__section",
+        "text": "Toujours\npas\nconvaincu\n?",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgb(244, 241, 234)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      }
+    ],
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "class": "BurgerMenu-module__YlH9FW__burgerBtn   ",
+        "text": "MENU",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "13.3333px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px 16px",
+        "margin": "0px",
+        "transition": "opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none"
+      },
+      {
+        "tag": "BUTTON",
+        "class": "Showreel-module__jU6DKa__ctrl",
+        "text": "",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "12.24px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "2.2032px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(10, 10, 11, 0.35)",
+        "padding": "8.568px 15.912px",
+        "margin": "0px",
+        "transition": "color 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none"
+      },
+      {
+        "tag": "BUTTON",
+        "class": "Showreel-module__jU6DKa__ctrl",
+        "text": "",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "12.24px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "2.2032px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(10, 10, 11, 0.35)",
+        "padding": "8.568px 15.912px",
+        "margin": "0px",
+        "transition": "color 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none"
+      },
+      {
+        "tag": "BUTTON",
+        "class": "SiteFooter-module__6q_-4W__nlBtn",
+        "text": "S'INSCRIRE",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "13px",
+        "weight": "700",
+        "lineHeight": "normal",
+        "tracking": "2.08px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgb(10, 10, 11)",
+        "padding": "12px 12px 12px 24px",
+        "margin": "0px",
+        "transition": "color 0.4s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none"
+      },
+      {
+        "tag": "BUTTON",
+        "class": "SiteFooter-module__6q_-4W__legalButton",
+        "text": "GÉRER LES COOKIES",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "11.52px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "0.9216px",
+        "color": "rgba(10, 10, 11, 0.7)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "color 0.35s",
+        "animation": "none"
+      },
+      {
+        "tag": "BUTTON",
+        "class": "CookieBanner-module__xm3yWa__btn CookieBanner-module__xm3yWa__btnGhost",
+        "text": "REFUSER",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "12px",
+        "weight": "500",
+        "lineHeight": "normal",
+        "tracking": "1.44px",
+        "color": "rgba(10, 10, 11, 0.65)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px 18px",
+        "margin": "0px",
+        "transition": "color 0.28s, border-color 0.28s",
+        "animation": "none"
+      },
+      {
+        "tag": "BUTTON",
+        "class": "CookieBanner-module__xm3yWa__btn CookieBanner-module__xm3yWa__btnPrimary",
+        "text": "ACCEPTER",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "12px",
+        "weight": "500",
+        "lineHeight": "normal",
+        "tracking": "1.44px",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgb(10, 10, 11)",
+        "padding": "0px 18px",
+        "margin": "0px",
+        "transition": "color 0.28s, border-color 0.28s",
+        "animation": "none"
+      }
+    ],
+    "animations": [
+      {
+        "target": "AsteriskHero-module___3IpEq__brandStamp",
+        "timing": {
+          "delay": 200,
+          "direction": "normal",
+          "duration": 950,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__asterisk",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 22000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__citiesTrack ",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 18000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__scrollDot",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2200,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__grain",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1600,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__fragmentLine ",
+        "timing": {
+          "delay": 250,
+          "direction": "normal",
+          "duration": 950,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__fragmentLine ",
+        "timing": {
+          "delay": 550,
+          "direction": "normal",
+          "duration": 950,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__fragmentLine AsteriskHero-module___3IpEq__fragmentLineAccent",
+        "timing": {
+          "delay": 880,
+          "direction": "normal",
+          "duration": 1050,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "KeywordRotator-module__GgoFvq__track",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 20000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "LocalAnchor-module__cZinja__lead",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": "auto",
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "LocalAnchor-module__cZinja__punch",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": "auto",
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "Manifesto-module__RcQ2Oq__defAsteriskSpin",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 18000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Manifesto-module__RcQ2Oq__defTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 34000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Projects-module__KZz95G__scrollCueDot",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2200,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ProjectsWall-module__h584gW__bgMark",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 90000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ProjectsWall-module__h584gW__track",
+        "timing": {
+          "delay": -30000,
+          "direction": "normal",
+          "duration": 400000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ProjectsWall-module__h584gW__track",
+        "timing": {
+          "delay": -120000,
+          "direction": "reverse",
+          "duration": 440000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ProjectsWall-module__h584gW__track",
+        "timing": {
+          "delay": -200000,
+          "direction": "normal",
+          "duration": 380000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__numPulse",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2200,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__titleGhost",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 4000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__wordTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 22000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__itemsTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "reverse",
+          "duration": 28000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__numPulse",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2200,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__titleGhost",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 4000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__wordTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 22000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      }
+    ],
+    "menuButtons": 1,
+    "classes": [
+      {
+        "class": "BurgerMenu-module__YlH9FW__menuLabel",
+        "transition": "max-width 0.8s cubic-bezier(0.65, 0, 0.35, 1), margin-right 0.8s cubic-bezier(0.65, 0, 0.35, 1)",
+        "animation": "none",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "13.3333px"
+      },
+      {
+        "class": "BurgerMenu-module__YlH9FW__menuWord",
+        "transition": "transform 0.45s cubic-bezier(0.5, 0, 0.1, 1), opacity 0.3s, letter-spacing 0.45s, color 0.4s",
+        "animation": "none",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "13px"
+      },
+      {
+        "class": "Services-module__mJrWua__marqueeOverlay",
+        "transition": "opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px"
+      },
+      {
+        "class": "Services-module__mJrWua__marqueeOverlay",
+        "transition": "opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px"
+      },
+      {
+        "class": "Services-module__mJrWua__marqueeOverlay",
+        "transition": "opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px"
+      },
+      {
+        "class": "Services-module__mJrWua__marqueeOverlay",
+        "transition": "opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px"
+      },
+      {
+        "class": "Services-module__mJrWua__marqueeOverlay",
+        "transition": "opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px"
+      }
+    ]
+  },
+  "mobile": {
+    "headings": [
+      {
+        "tag": "H1",
+        "class": "LocalAnchor-module__cZinja__title",
+        "text": "AGENCE WEB AU PAYS BASQUE.\nL'adresse, pas la limite.",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "32px",
+        "weight": "400",
+        "lineHeight": "38.4px",
+        "tracking": "normal",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "50.64px 0px 0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H2",
+        "class": "Showreel-module__jU6DKa__title",
+        "text": "WE ARE Ownitt.",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "38.4px",
+        "weight": "800",
+        "lineHeight": "36.48px",
+        "tracking": "-0.96px",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H2",
+        "class": "Manifesto-module__RcQ2Oq__defWord",
+        "text": "OWNITT",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "64px",
+        "weight": "800",
+        "lineHeight": "55.04px",
+        "tracking": "-1.92px",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H2",
+        "class": "QuestionScene-module__5QtFJW__title",
+        "text": "Mais\nqu'est-ce\nqu'on\nfait,\nexactement\n?",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "38.4px",
+        "weight": "400",
+        "lineHeight": "39.168px",
+        "tracking": "-0.576px",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H2",
+        "class": "Projects-module__KZz95G__lede",
+        "text": "Devenez l'évidence,\npas l'option.",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "32px",
+        "weight": "300",
+        "lineHeight": "32.64px",
+        "tracking": "-0.32px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "Burger King",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "32.76px",
+        "weight": "400",
+        "lineHeight": "31.122px",
+        "tracking": "-0.3276px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "Remanence",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "32.76px",
+        "weight": "400",
+        "lineHeight": "31.122px",
+        "tracking": "-0.3276px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "TABAM",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "32.76px",
+        "weight": "400",
+        "lineHeight": "31.122px",
+        "tracking": "-0.3276px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "Peugeot Metropolis",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "32.76px",
+        "weight": "400",
+        "lineHeight": "31.122px",
+        "tracking": "-0.3276px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "Hyskatebag",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "32.76px",
+        "weight": "400",
+        "lineHeight": "31.122px",
+        "tracking": "-0.3276px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "Jean-Baptiste Ancelot",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "32.76px",
+        "weight": "400",
+        "lineHeight": "31.122px",
+        "tracking": "-0.3276px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "H3",
+        "class": "Projects-module__KZz95G__title",
+        "text": "Youth - Vietnamese Kitchen",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "32.76px",
+        "weight": "400",
+        "lineHeight": "31.122px",
+        "tracking": "-0.3276px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      }
+    ],
+    "sections": [
+      {
+        "tag": "SECTION",
+        "class": "AsteriskHero-module___3IpEq__creamSection AsteriskHero-module___3IpEq__ready",
+        "text": "AGENCE WEB ET COMMUNICATION CRÉATIVE\nprimée\n\nBayonne\nBiarritz\nPays Basque\nLandes\nBordeaux\n",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(244, 241, 234)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "AsteriskHero-module___3IpEq__heroSection AsteriskHero-module___3IpEq__ready ",
+        "text": "NOUS CRÉONS DES MARQUES QUI PARLENT\nAVANT QUE VOUS N'OUVRIEZ\nla bouche.\nAGENCE\nde communic",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(10, 10, 11)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "LocalAnchor-module__cZinja__section",
+        "text": "(\nCRÉATION DE SITE INTERNET\n)\n\nAgence web, agence de communication, studio de branding : a",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgb(5, 5, 5)",
+        "padding": "135.04px 24px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "Showreel-module__jU6DKa__section",
+        "text": "SON\nPLEIN ÉCRAN",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(5, 5, 5)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "Manifesto-module__RcQ2Oq__section",
+        "text": "ON PASSE TROP DE TEMPS À ESSAYER DE SE DÉMARQUER.\nÀ chercher ce détail qui nous rendrait «",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(5, 5, 5)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "Manifesto-module__RcQ2Oq__defSection",
+        "text": "DÉFINITION\n\nOWNITT\n\n\\ ow·nit \\\nVERBE TRANSITIF\n\n1.L'art d'assumer radicalement sa singular",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(5, 5, 5)",
+        "padding": "109.72px 24px 0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "QuestionScene-module__5QtFJW__section",
+        "text": "Mais\nqu'est-ce\nqu'on\nfait,\nexactement\n?",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgb(244, 241, 234)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "Projects-module__KZz95G__section",
+        "text": "LA PROMESSE\n\nDevenez l'évidence,\npas l'option.\nLES PROJETS\n01\n / CAS CLIENT\nDIRECTION ARTI",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgb(0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "ProjectsWall-module__h584gW__section",
+        "text": "01\nBURGER KING\nDirection artistique\n02\nPEUGEOT METROPOLIS\nDirection artistique\n03\nJUSTE VI",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgb(5, 5, 5)",
+        "padding": "101.28px 24px 50.64px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "QuestionScene-module__5QtFJW__section",
+        "text": "Et\nconcrètement,\ncomment\non\nle\nfait\n?",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgb(244, 241, 234)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "Services-module__mJrWua__section",
+        "text": "(LA MÉTHODE)\n\nNous exploitons cinq territoires.\n\nSurvolez chaque territoire pour découvrir",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgb(5, 5, 5)",
+        "padding": "151.92px 24px 135.04px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      },
+      {
+        "tag": "SECTION",
+        "class": "QuestionScene-module__5QtFJW__section",
+        "text": "Toujours\npas\nconvaincu\n?",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgb(244, 241, 234)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "all",
+        "animation": "none"
+      }
+    ],
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "class": "BurgerMenu-module__YlH9FW__burgerBtn   ",
+        "text": "MENU",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "13.3333px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "normal",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px 16px",
+        "margin": "0px",
+        "transition": "opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none"
+      },
+      {
+        "tag": "BUTTON",
+        "class": "Showreel-module__jU6DKa__ctrl",
+        "text": "SON",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "11.2px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "2.016px",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "7.84px 11.2px",
+        "margin": "0px",
+        "transition": "color 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none"
+      },
+      {
+        "tag": "BUTTON",
+        "class": "Showreel-module__jU6DKa__ctrl",
+        "text": "PLEIN ÉCRAN",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "11.2px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "2.016px",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "7.84px 11.2px",
+        "margin": "0px",
+        "transition": "color 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none"
+      },
+      {
+        "tag": "BUTTON",
+        "class": "SiteFooter-module__6q_-4W__nlBtn",
+        "text": "S'INSCRIRE",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "13px",
+        "weight": "700",
+        "lineHeight": "normal",
+        "tracking": "2.08px",
+        "color": "rgb(244, 241, 234)",
+        "background": "rgb(10, 10, 11)",
+        "padding": "12px 12px 12px 24px",
+        "margin": "0px",
+        "transition": "color 0.4s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none"
+      },
+      {
+        "tag": "BUTTON",
+        "class": "SiteFooter-module__6q_-4W__legalButton",
+        "text": "GÉRER LES COOKIES",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "11.52px",
+        "weight": "400",
+        "lineHeight": "normal",
+        "tracking": "0.9216px",
+        "color": "rgba(10, 10, 11, 0.7)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px",
+        "margin": "0px",
+        "transition": "color 0.35s",
+        "animation": "none"
+      },
+      {
+        "tag": "BUTTON",
+        "class": "CookieBanner-module__xm3yWa__btn CookieBanner-module__xm3yWa__btnGhost",
+        "text": "REFUSER",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "12px",
+        "weight": "500",
+        "lineHeight": "normal",
+        "tracking": "1.44px",
+        "color": "rgba(10, 10, 11, 0.65)",
+        "background": "rgba(0, 0, 0, 0)",
+        "padding": "0px 18px",
+        "margin": "0px",
+        "transition": "color 0.28s, border-color 0.28s",
+        "animation": "none"
+      },
+      {
+        "tag": "BUTTON",
+        "class": "CookieBanner-module__xm3yWa__btn CookieBanner-module__xm3yWa__btnPrimary",
+        "text": "ACCEPTER",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "12px",
+        "weight": "500",
+        "lineHeight": "normal",
+        "tracking": "1.44px",
+        "color": "rgb(10, 10, 11)",
+        "background": "rgb(10, 10, 11)",
+        "padding": "0px 18px",
+        "margin": "0px",
+        "transition": "color 0.28s, border-color 0.28s",
+        "animation": "none"
+      }
+    ],
+    "animations": [
+      {
+        "target": "AsteriskHero-module___3IpEq__brandStamp",
+        "timing": {
+          "delay": 200,
+          "direction": "normal",
+          "duration": 950,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__asterisk",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 22000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__citiesTrack ",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 18000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__scrollDot",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2200,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__grain",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1600,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__fragmentLine ",
+        "timing": {
+          "delay": 250,
+          "direction": "normal",
+          "duration": 950,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__fragmentLine ",
+        "timing": {
+          "delay": 550,
+          "direction": "normal",
+          "duration": 950,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "AsteriskHero-module___3IpEq__fragmentLine AsteriskHero-module___3IpEq__fragmentLineAccent",
+        "timing": {
+          "delay": 880,
+          "direction": "normal",
+          "duration": 1050,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "KeywordRotator-module__GgoFvq__track",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 20000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "LocalAnchor-module__cZinja__lead",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": "auto",
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "LocalAnchor-module__cZinja__punch",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": "auto",
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "Manifesto-module__RcQ2Oq__defAsteriskSpin",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 18000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Manifesto-module__RcQ2Oq__defTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 34000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Projects-module__KZz95G__scrollCueDot",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2200,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ProjectsWall-module__h584gW__bgMark",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 90000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ProjectsWall-module__h584gW__track",
+        "timing": {
+          "delay": -30000,
+          "direction": "normal",
+          "duration": 400000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ProjectsWall-module__h584gW__track",
+        "timing": {
+          "delay": -120000,
+          "direction": "reverse",
+          "duration": 440000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ProjectsWall-module__h584gW__track",
+        "timing": {
+          "delay": -200000,
+          "direction": "normal",
+          "duration": 380000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__numPulse",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2200,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__titleGhost",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 4000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__wordTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 22000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__itemsTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "reverse",
+          "duration": 28000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__numPulse",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2200,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__titleGhost",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 4000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "Services-module__mJrWua__wordTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 22000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      }
+    ],
+    "menuButtons": 1,
+    "classes": [
+      {
+        "class": "BurgerMenu-module__YlH9FW__menuLabel",
+        "transition": "max-width 0.8s cubic-bezier(0.65, 0, 0.35, 1), margin-right 0.8s cubic-bezier(0.65, 0, 0.35, 1)",
+        "animation": "none",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "13.3333px"
+      },
+      {
+        "class": "BurgerMenu-module__YlH9FW__menuWord",
+        "transition": "transform 0.45s cubic-bezier(0.5, 0, 0.1, 1), opacity 0.3s, letter-spacing 0.45s, color 0.4s",
+        "animation": "none",
+        "font": "elza-condensed, \"Ownitt Glyphes Titre\", \"Ownitt Secours Titre\", \"Ownitt Secours Titre Android\", \"Ownitt Repli Titre\", \"Helvetica Neue\", sans-serif",
+        "size": "13px"
+      },
+      {
+        "class": "Services-module__mJrWua__marqueeOverlay",
+        "transition": "opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px"
+      },
+      {
+        "class": "Services-module__mJrWua__marqueeOverlay",
+        "transition": "opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px"
+      },
+      {
+        "class": "Services-module__mJrWua__marqueeOverlay",
+        "transition": "opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px"
+      },
+      {
+        "class": "Services-module__mJrWua__marqueeOverlay",
+        "transition": "opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px"
+      },
+      {
+        "class": "Services-module__mJrWua__marqueeOverlay",
+        "transition": "opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "animation": "none",
+        "font": "ivypresto-display, \"Ownitt Glyphes Texte\", \"Ownitt Secours Texte\", \"Ownitt Secours Texte Android\", \"Ownitt Repli Texte\", Georgia, serif",
+        "size": "16px"
+      }
+    ]
+  }
+}

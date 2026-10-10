@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { api, setRole, type Mode } from "@/lib/api";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -14,6 +14,7 @@ const tabs = [
   ["Outbox", "/outbox"],
   ["Runs", "/runs"],
   ["Analytics", "/analytics"],
+  ["Rules", "/rules"],
 ];
 const WorkspaceContext = createContext({
   role: "owner" as "owner" | "viewer",
@@ -32,6 +33,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
+  const menu = useRef<HTMLDialogElement>(null);
   const [refresh, setRefresh] = useState(0);
   useEffect(() => {
     let active = true;
@@ -65,21 +67,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
           <Link className="wordmark" href="/">
             Nexus
           </Link>
-          <nav className="nav" aria-label="Workspace">
-            {tabs.map(([tab, href]) => (
-              <Link
-                key={tab}
-                href={href}
-                aria-current={
-                  (href === "/" ? path === "/" : path.startsWith(href))
-                    ? "page"
-                    : undefined
-                }
-              >
-                {tab}
-              </Link>
-            ))}
-          </nav>
+          <button className="menu-toggle" onClick={() => menu.current?.showModal()} aria-haspopup="dialog">Menu</button>
         </div>
         <div className="utility">
           <button
@@ -155,6 +143,10 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
           </span>
         </div>
       </header>
+      <dialog ref={menu} className="menu-overlay" aria-label="Workspace menu">
+        <div className="menu-heading"><span className="wordmark">Nexus</span><button onClick={() => menu.current?.close()}>Close menu</button></div>
+        <nav aria-label="Workspace">{tabs.map(([tab, href]) => <Link key={href} href={href} aria-current={path === href ? "page" : undefined} onClick={() => menu.current?.close()}><span>{tab}</span><small>{({Agent:"Propose first. Approve second.","Live view":"Watch the business correct itself.",Contacts:"Every customer, every decision.",Webinars:"Bring people together.",Runs:"Every action leaves a receipt.",Outbox:"See what was sent. See what stopped.",Rules:"Five rules. One promise.",Analytics:"Count what actually happened."} as Record<string,string>)[tab]}</small></Link>)}</nav>
+      </dialog>
       <main className="workspace" id="main">
         {error && <ErrorState message={error} />}
         {children}

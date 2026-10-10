@@ -53,3 +53,13 @@ To reproduce: build, run demo:reset, start the server at http://localhost:3000, 
 All requested routes now use the shared shell and real client API. Public registration remains outside app chrome. Mobile contact fields stack so tags and consent stay visible. Rule inspector uses a verified static catalogue and trapped keyboard focus. The final rewind motion resolves to fully opaque text; reduced motion covers both pseudo-elements. Decorative navigation numbers were removed.
 
 The per-screen report and native hidden-tab verification limitation are in docs/UI_REPORT.md. Three browser rehearsals, required viewports, final build/typecheck/three smoke scripts/rehearse and clean reset passed. No attendance UI/route, unapproved-draft cancellation, UI reset or step slider was added. Production served the browser paths without runtime errors.
+
+## Editorial direction — supersedes conflicting visual rules above
+
+Black base (#0A0A0B), white text (#F5F2EE), generous empty space. Keep existing jade, sky, rose and saffron strictly for effects, statuses and decisions. Locally bundled next/font fonts remain Big Shoulders Display (one heading token), Instrument Serif italic emphasis, Public Sans body and JetBrains Mono for rule IDs and receipt lines.
+
+Page statements use clamp(56px, 10.4vw, 150px), line-height .94, tracking −.025em. Body 16–18px, at most 76ch. Desktop gutters 6vw, section separation 96–144px, mobile gutters 24px and section separation 96px. Once a plan exists, Agent's statement shrinks to 56–72px so the receipt is the focus. The receipt remains a readable operational document; replace ornamental dashed borders and tilted stamps with hairlines.
+
+A minimal wordmark / worker / Menu bar opens an accessible full-screen native dialog. Role, planner source and simulation disclosure remain available. Five numbered rules expand on hover, focus and explicit touch activation; rule IDs link to that page. Runs use a numbered index with a revealed summary. Live keeps its real three-stage trace at generous scale and public registration is a typographic poster with a quiet form.
+
+Entry, menu, row reveals and receipt printing use 600ms cubic-bezier(.16,1,.3,1). Hold remains deliberate at one second; its progress is faithful to the actual approval threshold. Trace advances at 480ms per stage with 600ms visual transitions. The event ticker uses a slow linear loop, pauses on hover/focus and is static under reduced motion. All motion respects prefers-reduced-motion. No copied reference assets, remote runtime fonts, decorative charts, shadows, gradients, autoplay video, cursor effects or scroll hijacking.
