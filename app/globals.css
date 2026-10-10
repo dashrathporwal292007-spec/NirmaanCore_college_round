@@ -896,3 +896,17 @@ button,input,textarea,select { border-radius:2px; }
 .registration-page form { max-width:440px; margin-top:64px; gap:24px; }
 .registration-page form button { margin-top:12px; }
 @media(max-width:850px) { .registration-page { padding:32px 24px 96px; } .registration-brand { margin-bottom:72px; } .registration-page form { margin-top:48px; } }
+.event-ticker { overflow:hidden; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline); margin-top:96px; padding:20px 0; }
+.event-track { display:flex; width:max-content; animation:event-roll 80s linear infinite; }
+.event-group { display:flex; gap:64px; padding-right:64px; }
+.event-group > span { display:flex; align-items:center; gap:24px; }
+.event-time { color:var(--muted); font-size:16px; }
+.event-ticker:hover .event-track,.event-ticker:focus-within .event-track { animation-play-state:paused; }
+.event-ticker-empty { margin:96px 0 32px; color:var(--muted); }
+.rule-stages { margin:64px 0 96px; }
+.rule-stage { padding:48px 32px; transition:color 600ms var(--ease-editorial); }
+.rule-stage h2 { font-size:clamp(36px,4vw,56px); }
+.trace-rail:after { transition:width 600ms var(--ease-editorial); }
+@keyframes event-roll { to { transform:translateX(-50%); } }
+@media(max-width:850px) { .rule-stage { padding:32px 0; } .event-group { gap:32px; } }
+@media(prefers-reduced-motion:reduce) { .event-track { width:auto; } .event-group { flex-wrap:wrap; gap:16px; padding:0; } .event-group[aria-hidden="true"] { display:none; } }

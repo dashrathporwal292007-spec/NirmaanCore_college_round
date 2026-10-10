@@ -9,6 +9,7 @@ import {
   type Webinar,
 } from "@/lib/api";
 import { useWorkspace } from "./workspace";
+import { EventTicker } from "./event-ticker";
 import { Timeline } from "./timeline";
 import {
   EmptyState,
@@ -166,6 +167,7 @@ export function LiveView() {
         evidence.
       </p>
       {error && <ErrorState message={error} />}
+      <EventTicker events={events} />
       <div className="rule-stages" aria-live="polite">
         {[
           <>
