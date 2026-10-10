@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { pool, withTx } from '../db'
 import { analytics } from '../services/analytics'
-import { actor, endpoint, HttpError, idOf, slugOf, paging, uuid, requireRun, type IdContext, type SlugContext } from './http'
+import { actor, endpoint, HttpError, idOf, slugOf, paging, uuid, requireRun, requireWebinar, type IdContext, type SlugContext } from './http'
 
 export const runs = endpoint(async (req: Request) => {
   await actor(req); const { limit, offset } = paging(req)
@@ -60,5 +60,28 @@ export const publicPage = endpoint(async (_req: Request, ctx: SlugContext) => {
     if (!page) throw new HttpError(404,'NOT_FOUND','Page not found')
     const webinar=(await db.query('select id,title,description,starts_at,status from webinars where page_id=$1 order by id limit 1',[page.id])).rows[0] ?? null
     return {page,webinar,registration_open:webinar?.status==='scheduled'}
+  })
+})
+
+export const webinars = endpoint(async (req: Request) => {
+  await actor(req)
+  const {limit,offset}=paging(req)
+  const rows=(await pool.query(`select w.id,w.title,w.description,w.starts_at,w.status,w.page_id,
+    p.slug,page_status,count(r.contact_id)::int registrant_count
+    from webinars w left join (select id,slug,status page_status from pages) p on p.id=w.page_id
+    left join registrations r on r.webinar_id=w.id
+    group by w.id,p.slug,p.page_status order by w.starts_at desc,w.id desc limit $1 offset $2`,[limit,offset])).rows
+  return {webinars:rows,limit,offset,simulated:true}
+})
+export const webinarDetail = endpoint(async (req: Request, ctx: IdContext) => {
+  await actor(req);const id=await idOf(ctx);await requireWebinar(id)
+  return withTx(async db=>{
+    await db.query('set transaction isolation level repeatable read, read only')
+    const webinar=(await db.query(`select w.id,w.title,w.description,w.starts_at,w.status,w.page_id,p.slug,p.status page_status,
+      (select count(*)::int from registrations where webinar_id=w.id) registrant_count
+      from webinars w left join pages p on p.id=w.page_id where w.id=$1`,[id])).rows[0]
+    const registrants=(await db.query(`select r.contact_id,c.name,c.email,r.attended,r.registered_at
+      from registrations r join contacts c on c.id=r.contact_id where r.webinar_id=$1 order by r.registered_at,r.contact_id`,[id])).rows
+    return {webinar,registrants,simulated:true}
   })
 })

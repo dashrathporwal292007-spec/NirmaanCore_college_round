@@ -4,7 +4,7 @@ import { makePlan, PlannerError } from '../agent/planner'
 import { PlanSchema } from '../agent/plan'
 import { propose, decide, rewind, type Actor } from '../agent/runner'
 import { can } from '../agent/types'
-import { closeWebinar, activateSubscription, registerContacts } from '../services/adaptive'
+import { closeWebinar, activateSubscription, registerContacts, optOut } from '../services/adaptive'
 import { previewPending, approvePending } from '../services/pending'
 import { cancelPending } from '../services/cancel_pending'
 import { lockAdaptive } from '../rules/evaluate'
@@ -124,5 +124,16 @@ export const publicRegister = endpoint(async (req: Request, ctx: SlugContext) =>
     if (ids.length) await db.query(`insert into audit_log (actor,action,entity,after)
       values ('public:registration','register','webinar',$1::jsonb)`, [JSON.stringify({ webinar_id:w.id, contact_id:c.id })])
     return { registered: ids.length === 1 }
+  })
+})
+
+export const contactOptOut = endpoint(async (req: Request, ctx: IdContext) => {
+  const user=await actor(req,'marketer'), id=await idOf(ctx)
+  return withTx(async db=>{
+    await lockAdaptive(db)
+    if(!(await db.query('select id from contacts where id=$1',[id])).rowCount) throw new HttpError(404,'NOT_FOUND','Contact not found')
+    await optOut(db,id)
+    await db.query(`insert into audit_log(actor,action,entity,after) values($1,'simulated_opt_out','contact',$2::jsonb)`,[`user:${user.id}`,JSON.stringify({contact_id:id,simulated:true})])
+    return {contact_id:id,unsubscribed:true,simulated:true}
   })
 })

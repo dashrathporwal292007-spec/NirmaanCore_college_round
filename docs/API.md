@@ -183,3 +183,26 @@ The planner reads `GEMINI_MODEL` at request time and defaults to `gemini-flash-l
 ### Distinct delivery recipients
 
 Dry-run `diff.totals.distinctRecipients` counts each resolved, eligible email contact once across the entire plan. Unsubscribed contacts remain excluded by the existing campaign resolver. `totals.recipients` still counts messages, including repeated recipients. The main demo returns `{"distinctRecipients":37,"recipients":74,"moneyInr":0,"publicVisible":false}`. The new field is stored with the run diff and returned on stale previews; historical diffs may omit it. No risk, approval hash or execution policy changes.
+
+## Additive webinar reads and simulated opt-out
+
+### GET /api/webinars — authenticated viewer+
+No request JSON. Query limit/offset follow the existing list contract. Uses stored webinars and registration counts, including archived records. No join URL is exposed.
+```json
+{"webinars":[{"id":"11111111-1111-4111-8111-111111111111","title":"Workshop","description":"Welcome","starts_at":"2026-10-16T11:30:00.000Z","status":"scheduled","page_id":"22222222-2222-4222-8222-222222222222","slug":"workshop","page_status":"published","registrant_count":2}],"limit":50,"offset":0,"simulated":true}
+```
+Errors: 400,401,500, using the existing error envelope.
+
+### GET /api/webinars/[id] — authenticated viewer+
+No request JSON.
+```json
+{"webinar":{"id":"11111111-1111-4111-8111-111111111111","title":"Workshop","description":"Welcome","starts_at":"2026-10-16T11:30:00.000Z","status":"scheduled","page_id":"22222222-2222-4222-8222-222222222222","slug":"workshop","page_status":"published","registrant_count":2},"registrants":[{"contact_id":"33333333-3333-4333-8333-333333333333","name":"Brew & Bean","email":"brew@example.com","attended":false,"registered_at":"2026-10-11T10:00:00.000Z"}],"simulated":true}
+```
+Example registrants are illustrative; count represents all returned registrations. Nullable page_id/slug/page_status follow stored page linkage. Errors: 400,401,404,500.
+
+### POST /api/contacts/[id]/opt-out — authenticated marketer+
+No request body required (client may send {}). Calls the unchanged optOut service and writes an acting-user audit. Repeats create no additional contact events; each HTTP action is audited.
+```json
+{"contact_id":"33333333-3333-4333-8333-333333333333","unsubscribed":true,"simulated":true}
+```
+Errors: 400,401,403,404,500. This is a private simulated operator action, not a public unsubscribe endpoint. Attendance routes, unapproved-draft cancellation and a UI reset route are intentionally omitted.
