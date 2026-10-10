@@ -57,7 +57,9 @@ async function hold(page) {
     .filter({ hasText: "The approved steps ran. Every change is recorded." })
     .waitFor();
 }
-for (let cycle = 1; cycle <= 3; cycle++) {
+const cycles = Number(process.env.UI_CYCLES ?? 3);
+assert.ok(Number.isInteger(cycles) && cycles >= 1 && cycles <= 3);
+for (let cycle = 1; cycle <= cycles; cycle++) {
   execFileSync("npm", ["run", "demo:reset"], { stdio: "inherit" });
   const context = await browser.newContext({
     viewport: { width: 1440, height: 900 },
@@ -105,6 +107,15 @@ for (let cycle = 1; cycle <= 3; cycle++) {
     await capture(page, "agent-intro");
     await page.getByRole("button", { name: "Menu", exact: true }).click();
     await capture(page, "menu");
+    for (let i = 0; i < 15; i++) {
+      await page.keyboard.press("Tab");
+      assert.ok(
+        await page.evaluate(
+          () => document.activeElement?.closest("dialog") !== null,
+        ),
+        "Menu contains keyboard focus",
+      );
+    }
     await page.keyboard.press("Escape");
     assert.equal(
       await page

@@ -136,7 +136,28 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
           </span>
         </div>
       </header>
-      <dialog ref={menu} className="menu-overlay" aria-label="Workspace menu">
+      <dialog
+        ref={menu}
+        className="menu-overlay"
+        aria-label="Workspace menu"
+        onKeyDown={(e) => {
+          if (e.key !== "Tab") return;
+          const controls = Array.from(
+            e.currentTarget.querySelectorAll<HTMLElement>(
+              "button:not(:disabled), a[href], select:not(:disabled)",
+            ),
+          ).filter((el) => el.getClientRects().length > 0);
+          const first = controls[0],
+            last = controls.at(-1);
+          if (e.shiftKey && document.activeElement === first && last) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last && first) {
+            e.preventDefault();
+            first.focus();
+          }
+        }}
+      >
         <div className="menu-heading">
           <span className="wordmark">Nexus</span>
           <button onClick={() => menu.current?.close()}>Close menu</button>
@@ -187,7 +208,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
           </label>
         </div>
       </dialog>
-      <main className="workspace" id="main">
+      <main className="workspace" id="main" key={path}>
         {error && <ErrorState message={error} />}
         {children}
       </main>
