@@ -22,3 +22,5 @@ Nexus adopts a restrained 600ms ease-out reveal, an accessible full-screen menu,
 ## Limits
 
 The study captures a particular live-site state. Responsive scenes and scroll-dependent animations change what is visible; the raw JSON preserves the measured elements. No claim is made that every animation on the reference has been catalogued.
+
+Additional verification: captured the opened menu after scrolling, and the actual ProjectsWall numbered index and hovered Services row, with the cookie banner dismissed. The desktop overlay expands into vertical navigation territories with image reveals; Nexus deliberately uses text-only navigation and preserves its own black palette.

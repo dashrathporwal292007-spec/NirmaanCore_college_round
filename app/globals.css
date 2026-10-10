@@ -936,3 +936,13 @@ button,input,textarea,select { border-radius:2px; }
 .analytics-ledger { margin-top:96px; }
 .analytics-ledger > div { padding:48px 0; }
 .analytics-ledger .impact-number { font-size:clamp(80px,12vw,160px); }
+.worker-controls { display:flex; align-items:center; gap:16px; margin-left:auto; }
+.worker-controls > span { color:var(--muted); }
+.worker-controls button { background:none; }
+.menu-settings { border-top:1px solid var(--hairline); margin-top:32px; padding-top:24px; }
+.menu-settings label { display:flex; align-items:center; gap:16px; }
+.menu-settings select { width:auto; }
+.utility { justify-content:space-between; }
+@media(max-width:850px) { .top-row .wordmark { order:1; } .menu-toggle { order:2; margin-left:auto; } .worker-controls { order:3; width:100%; margin:0; gap:12px; } .worker-controls > span { flex:1; } .utility .simulation-note { width:auto; } .utility { gap:8px; } }
+.rules-index summary { color:var(--ink); }
+.run-link { color:var(--ink); }

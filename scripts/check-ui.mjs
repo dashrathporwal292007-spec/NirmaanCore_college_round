@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdir } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 const base = process.env.UI_BASE_URL ?? "http://localhost:3000";
-await mkdir("docs/screenshots", { recursive: true });
+await mkdir("docs/screenshots/editorial", { recursive: true });
 const browser = await chromium.launch({ headless: false });
 const errors = [];
 const sizes = [
@@ -23,11 +23,11 @@ async function capture(page, name) {
       name + " has no horizontal overflow at " + width,
     );
     await page.screenshot({
-      path: "docs/screenshots/" + name + "-" + width + "x" + height + ".png",
+      path: "docs/screenshots/editorial/" + name + "-" + width + "x" + height + ".png",
     });
     await page.screenshot({
       path:
-        "docs/screenshots/" + name + "-" + width + "x" + height + "-full.png",
+        "docs/screenshots/editorial/" + name + "-" + width + "x" + height + "-full.png",
       fullPage: true,
     });
   }
@@ -50,6 +50,7 @@ for (let cycle = 1; cycle <= 3; cycle++) {
     viewport: { width: 1440, height: 900 },
     reducedMotion: cycle === 3 ? "reduce" : "no-preference",
   });
+  context.on("request", request => { const url = new URL(request.url()); if (url.protocol.startsWith("http") && url.origin !== new URL(base).origin) errors.push("External runtime request: " + url.origin); });
   const page = await context.newPage();
   page.setDefaultTimeout(15000);
   page.on("pageerror", (e) => errors.push(e.message));
@@ -83,6 +84,13 @@ for (let cycle = 1; cycle <= 3; cycle++) {
     imported.every((events) => events.some((e) => e.type === "imported")),
     "Every clean contact has an imported event",
   );
+  if (cycle === 1) {
+    await capture(page, "agent-intro");
+    await page.getByRole("button", {name:"Menu",exact:true}).click();
+    await capture(page, "menu");
+    await page.keyboard.press("Escape");
+    assert.equal(await page.getByRole("button",{name:"Menu",exact:true}).evaluate(e=>e===document.activeElement),true);
+  }
   await page.getByRole("button", { name: "Print a preview" }).click();
   await page.getByText("74 messages scheduled", { exact: true }).waitFor();
   assert.equal(
@@ -115,7 +123,8 @@ for (let cycle = 1; cycle <= 3; cycle++) {
   const person = cs.contacts.find(
     (c) => c.tags.includes("trial") && !c.unsubscribed,
   );
-  await page.getByRole("link", { name: "Webinars", exact: true }).click();
+  await page.getByRole("button", {name:"Menu",exact:true}).click();
+  await page.getByRole("link", { name: /^Webinars/ }).click();
   await page.getByRole("link", { name: w.title, exact: true }).click();
   await page
     .getByRole("button", { name: "Preview registration publication" })
@@ -123,7 +132,8 @@ for (let cycle = 1; cycle <= 3; cycle++) {
   await page.waitForURL("**/runs/*");
   await hold(page);
   console.log("Approved visible run");
-  await page.getByRole("link", { name: "Live view", exact: true }).click();
+  await page.getByRole("button", {name:"Menu",exact:true}).click();
+  await page.getByRole("link", { name: /^Live view/ }).click();
   await page.getByLabel("Webinar", { exact: true }).selectOption(w.id);
   await page.getByLabel("Contact to observe").selectOption(person.id);
   await page.waitForTimeout(2300);
@@ -195,32 +205,14 @@ for (let cycle = 1; cycle <= 3; cycle++) {
     .getByRole("link", { name: "Read the full contact timeline" })
     .click();
   await page.getByRole("heading", { name: "Every recorded change" }).waitFor();
-  const rule = page
-    .getByRole("button", {
-      name: "REMINDER_REQUIRES_UNREGISTERED",
-      exact: true,
-    })
-    .filter({ visible: true })
-    .first();
+  const rule = page.getByRole("link", {name:"REMINDER_REQUIRES_UNREGISTERED",exact:true}).first();
   await rule.waitFor();
-  if (cycle === 1) await capture(page, "contact-timeline");
-  await rule.focus();
-  await page.keyboard.press("Enter");
-  await page
-    .getByRole("dialog")
-    .filter({
-      has: page.getByRole("heading", { name: "Why this rule exists" }),
-    })
-    .waitFor();
-  await page.keyboard.press("Tab");
-  assert.ok(
-    await page.evaluate(
-      () => document.activeElement?.closest("dialog") !== null,
-    ),
-  );
-  if (cycle === 1) await capture(page, "rule-inspector");
-  await page.keyboard.press("Escape");
-  assert.equal(await rule.evaluate((e) => e === document.activeElement), true);
+  if (cycle===1) await capture(page,"contact-timeline");
+  await rule.focus(); await page.keyboard.press("Enter");
+  await page.waitForURL("**/rules#REMINDER_REQUIRES_UNREGISTERED");
+  await page.locator("#REMINDER_REQUIRES_UNREGISTERED[open]").waitFor();
+  assert.equal(await page.locator("#REMINDER_REQUIRES_UNREGISTERED summary").evaluate(e=>e===document.activeElement),true);
+  if(cycle===1) await capture(page,"rules");
   await page.goto(base + "/webinars/" + w.id);
   await page
     .getByRole("button", { name: "Close webinar", exact: true })
@@ -354,7 +346,9 @@ for (let cycle = 1; cycle <= 3; cycle++) {
     );
     assert.equal(await page.locator(".trace-rail").count(), 0);
   }
+  await page.getByRole("button",{name:"Menu",exact:true}).click();
   await page.getByLabel("Demo role").selectOption("viewer");
+  await page.keyboard.press("Escape");
   assert.equal(
     await page
       .getByRole("button", { name: "Run worker tick", exact: true })

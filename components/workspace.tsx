@@ -67,9 +67,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
           <Link className="wordmark" href="/">
             Nexus
           </Link>
-          <button className="menu-toggle" onClick={() => menu.current?.showModal()} aria-haspopup="dialog">Menu</button>
-        </div>
-        <div className="utility">
+          <div className="worker-controls">
           <button
             disabled={busy || role === "viewer"}
             onClick={async () => {
@@ -91,21 +89,10 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
             {busy ? "Running tick…" : "Run worker tick"}
           </button>
           <span role="status">{last}</span>
-          <label>
-            Demo role{" "}
-            <select
-              value={role}
-              onChange={(e) => {
-                const r = e.target.value as "owner" | "viewer";
-                updateRole(r);
-                setRole(r);
-                setRefresh((n) => n + 1);
-              }}
-            >
-              <option value="owner">Owner</option>
-              <option value="viewer">Viewer</option>
-            </select>
-          </label>
+          </div>
+          <button className="menu-toggle" onClick={() => menu.current?.showModal()} aria-haspopup="dialog">Menu</button>
+        </div>
+        <div className="utility">
           <span className="mode-wrap">
             <button
               className="mode"
@@ -146,6 +133,23 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
       <dialog ref={menu} className="menu-overlay" aria-label="Workspace menu">
         <div className="menu-heading"><span className="wordmark">Nexus</span><button onClick={() => menu.current?.close()}>Close menu</button></div>
         <nav aria-label="Workspace">{tabs.map(([tab, href]) => <Link key={href} href={href} aria-current={path === href ? "page" : undefined} onClick={() => menu.current?.close()}><span>{tab}</span><small>{({Agent:"Propose first. Approve second.","Live view":"Watch the business correct itself.",Contacts:"Every customer, every decision.",Webinars:"Bring people together.",Runs:"Every action leaves a receipt.",Outbox:"See what was sent. See what stopped.",Rules:"Five rules. One promise.",Analytics:"Count what actually happened."} as Record<string,string>)[tab]}</small></Link>)}</nav>
+        <div className="menu-settings">
+          <label>
+            Demo role{" "}
+            <select
+              value={role}
+              onChange={(e) => {
+                const r = e.target.value as "owner" | "viewer";
+                updateRole(r);
+                setRole(r);
+                setRefresh((n) => n + 1);
+              }}
+            >
+              <option value="owner">Owner</option>
+              <option value="viewer">Viewer</option>
+            </select>
+          </label>
+        </div>
       </dialog>
       <main className="workspace" id="main">
         {error && <ErrorState message={error} />}
