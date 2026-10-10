@@ -15,3 +15,11 @@ Already implemented separately in 580874e (hold timing refinement e892acc). comp
 ## Public registration screen
 
 Already implemented separately in 8b099f3 (initial route 89e73a5). app/register/[slug]/page.tsx renders components/registration.tsx outside the workspace chrome. Its poster headline uses the real published page/webinar title, with a quiet name/email form, API-backed success and duplicate notices, native required/email validation and an explicit Simulated note. It consumes the existing JSON /s/[slug] endpoints; no handler or public-page route change was necessary.
+
+## Live view
+
+The existing full-bleed trace already uses stored automatic decisions, real rule IDs/reasons/evidence and the corresponding real outbox effect. Stages advance at 480ms and 960ms; existing history renders reached rather than replaying a made-up new event. The /register/[slug] iframe works with real public registration, and contact email/timeline reads poll every two seconds with hidden-document checks and visibility resume. Updated the empty state to the exact requested next-step/reset sentence; preserved a separate explanation of the real draft-publication approval step. No attendance, UI reset or unapproved-draft cancellation was added.
+
+### Screenshot correction
+
+The first clean-seed capture placed next-step guidance after the tall inactive trace, below the first desktop viewport. Move that real empty state directly after the heading and before the ticker/trace, and show the registration instruction only when an eligible published webinar exists. This preserves the required display hierarchy while making the exact next-step sentence visible before inactive stages. It changes no API, seed or trace data.

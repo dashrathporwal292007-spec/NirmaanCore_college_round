@@ -162,11 +162,31 @@ export function LiveView() {
       <h1>
         The business <em>corrects itself.</em>
       </h1>
-      <p>
-        Register a customer. Watch the reminder stop, with its rule and
-        evidence.
-      </p>
+      {webinars.some(
+        (w) => w.page_status === "published" && w.status === "scheduled",
+      ) && (
+        <p>
+          Register a customer. Watch the reminder stop, with its rule and
+          evidence.
+        </p>
+      )}
       {error && <ErrorState message={error} />}
+      {loading ? (
+        <p>Loading the workspace…</p>
+      ) : !webinars.some(
+          (w) => w.page_status === "published" && w.status === "scheduled",
+        ) ? (
+        <EmptyState>
+          <p>
+            Plan the webinar, approve it, then register on the public page.
+            Reset between runs with npm run demo:reset.
+          </p>
+          <p>
+            The demo plan creates a draft page: open Webinars to preview and
+            approve its publication. <Link href="/">Open Agent</Link>.
+          </p>
+        </EmptyState>
+      ) : null}
       <EventTicker events={events} />
       <div className="rule-stages" aria-live="polite">
         {[
@@ -204,18 +224,6 @@ export function LiveView() {
           </section>
         ))}
       </div>
-      {loading ? (
-        <p>Loading the workspace…</p>
-      ) : !webinars.some(
-          (w) => w.page_status === "published" && w.status === "scheduled",
-        ) ? (
-        <EmptyState>
-          Plan the webinar, approve it, then register on the public page. The
-          demo plan creates a draft page: open Webinars to preview and approve
-          its publication. <Link href="/">Open Agent</Link>.{" "}
-          <small>Reset between runs with npm run demo:reset.</small>
-        </EmptyState>
-      ) : null}
       <div className="toolbar">
         <label>
           Webinar
