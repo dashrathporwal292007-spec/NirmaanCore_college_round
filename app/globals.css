@@ -930,3 +930,6 @@ button,input,textarea,select { border-radius:2px; }
 .run-index-row:hover .run-summary,.run-index-row:focus-within .run-summary { max-height:160px; opacity:1; }
 @media(hover:none) { .run-summary { max-height:none; opacity:1; } }
 @media(prefers-reduced-motion:reduce) { .run-summary { max-height:none; opacity:1; } }
+.run-detail h1 { font-size:clamp(56px,8vw,112px); margin-bottom:48px; }
+.run-detail h1 br { display:block; }
+.run-detail > p { margin-bottom:64px; }
