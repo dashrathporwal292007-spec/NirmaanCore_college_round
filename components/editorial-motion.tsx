@@ -1,11 +1,25 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 
 /** Decorative motion only: never intercepts scrolling or pointer actions. */
 export function EditorialMotion() {
   const path = usePathname();
+  const [cursorHost, setCursorHost] = useState<Element | null>(null);
+  useEffect(() => {
+    const sync = () => setCursorHost(document.querySelector("dialog[open]"));
+    const observer = new MutationObserver(sync);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["open"],
+      childList: true,
+      subtree: true,
+    });
+    sync();
+    return () => observer.disconnect();
+  }, []);
   const dot = useRef<HTMLSpanElement>(null);
   const ring = useRef<HTMLSpanElement>(null);
 
@@ -150,10 +164,11 @@ export function EditorialMotion() {
       allowed.removeEventListener("change", start);
     };
   }, []);
-  return (
+  const cursor = (
     <>
       <span ref={dot} className="pointer-dot" aria-hidden="true" />
       <span ref={ring} className="pointer-ring" aria-hidden="true" />
     </>
   );
+  return cursorHost ? createPortal(cursor, cursorHost) : cursor;
 }

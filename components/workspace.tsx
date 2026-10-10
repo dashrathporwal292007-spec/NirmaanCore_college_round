@@ -224,6 +224,15 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
                 closeMenu(href);
               }}
             >
+              {/* Original local artwork, decorative rather than invented business data. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className="panel-art"
+                src={`/menu/${href === "/" ? "agent" : href.slice(1)}.svg`}
+                alt=""
+                width={800}
+                height={1000}
+              />
               <span className="panel-number" aria-hidden="true">
                 {String(index + 1).padStart(2, "0")}
               </span>

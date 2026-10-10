@@ -75,3 +75,7 @@ The latest user request supersedes earlier visual restrictions: navigation may u
 ### Motion across the real workflows
 
 Display headings unveil through a mask over 850ms, then drift up to 48px with scrolling. Content sections reveal over 750ms when they enter the viewport, including sections inserted later by real API responses. This extends to touch viewports; fine-pointer cursor behavior remains separate. Live changes to the reduced-motion setting disconnect observers and restore static content immediately. Rules show a 28-second repeated-title territory while their verified trigger, effect and evidence remain ordinary readable content; keyboard focus pauses the repetition. These latest timings replace the earlier smaller motion pass.
+
+### Menu cursor and artwork
+
+Native modal dialogs occupy the browser top layer, above ordinary z-index stacking. The cursor portals into the open dialog and returns to the document on close. Both dot and ring use difference blending for contrast across cream and black. Eight original, local SVG illustrations support the menu sections; desktop reveals them on hover/focus and mobile shows compact thumbnails. These are decorative artwork, not fabricated analytics or workflow evidence. No runtime image service is needed.
