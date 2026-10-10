@@ -924,3 +924,9 @@ button,input,textarea,select { border-radius:2px; }
 .manual-rule { margin:24px 0; }
 .manual-rule p { margin-top:16px; }
 @media(max-width:850px) { .rules-index summary { grid-template-columns:40px 1fr; gap:12px; } .rule-explanation { padding-left:52px; } .rule-explanation-columns { grid-template-columns:1fr; gap:24px; } .rule-explanation code { overflow-wrap:anywhere; } }
+.run-index-row { padding:32px 0; border-top:1px solid var(--hairline); }
+.run-index-row a { font-family:var(--font-display); font-size:clamp(40px,5vw,72px); line-height:1; }
+.run-summary { margin:20px 0 12px; max-height:0; opacity:0; overflow:hidden; transition:max-height 600ms var(--ease-editorial),opacity 600ms var(--ease-editorial); }
+.run-index-row:hover .run-summary,.run-index-row:focus-within .run-summary { max-height:160px; opacity:1; }
+@media(hover:none) { .run-summary { max-height:none; opacity:1; } }
+@media(prefers-reduced-motion:reduce) { .run-summary { max-height:none; opacity:1; } }

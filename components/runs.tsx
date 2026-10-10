@@ -32,7 +32,7 @@ export function Runs() {
   }, [revision]);
   return (
     <>
-      <h1>Runs</h1>
+      <h1>Every action.<br /><em>A receipt.</em></h1>
       <p>
         Every request, approval and rewind stays recorded. Run numbers follow
         creation order in this demo.
@@ -46,10 +46,10 @@ export function Runs() {
         </EmptyState>
       ) : (
         items.map((r) => (
-          <div className="list-row" key={r.id}>
+          <div className="list-row run-index-row" tabIndex={0} key={r.id}>
             <div>
               <Link href={"/runs/" + r.id}>{runNumber(items, r.id)}</Link>
-              <p>{r.instruction}</p>
+              <p className="run-summary">{r.instruction}</p>
               <small>
                 {new Date(r.created_at).toLocaleString("en-IN", {
                   timeZone: "Asia/Kolkata",
