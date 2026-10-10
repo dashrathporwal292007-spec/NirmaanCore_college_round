@@ -7,7 +7,7 @@ import { snapshot } from './planner_snapshot'
 async function main() {
   process.env.DEMO_MODE='0' // process only; never edits .env.local
   const before=await snapshot()
-  const lines=['# Live Gemini planner rehearsal','',`Model: ${process.env.GEMINI_MODEL ?? 'gemini-flash-latest'}. Key present: ${!!process.env.GEMINI_API_KEY?.trim()}.`,
+  const lines=['# Live Gemini planner rehearsal','',`Model: ${process.env.GEMINI_MODEL?.trim() || 'gemini-flash-latest'}. Key present: ${!!process.env.GEMINI_API_KEY?.trim()}.`,
     'Only planner calls were made; no runs were proposed or committed. Raw provider errors and credentials are never recorded.','']
   let live=0
   for (const [i,prompt] of DEMO_PROMPTS.entries()) {

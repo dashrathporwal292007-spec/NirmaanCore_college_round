@@ -169,3 +169,13 @@ All tools use the registered pipeline. `create_page`: title (3–120), template 
 After `npm run build`, `npm run rehearse` starts its own loopback production HTTP server in DEMO_MODE=1, resets the configured demo database, and exercises plan/approve, publication through a second supplied plan, public registration, simulated attendance, close, pending draft approval, simulated checkout, tick and rewind. It advances synthetic outbox due times to avoid waiting minutes, but dispatch still calls the real worker/evaluator. After dispatch it expects honest cannot-recall notes and preserved registrations/subscriptions; a separate vip run proves exact reversible tag rewind. Any mismatch exits nonzero; the server is stopped on exit. Run reset/rehearsal/smoke tests serially; they share the demo database.
 
 `npm run check:planner` tests bounded timeout, malformed JSON repair/failure, invalid tools/arguments, missing key, unavailable provider and all canned prompts while comparing complete stored-row snapshots. `npm run check:gemini` uses the local key, temporarily disables demo mode in its process, runs all five prompts without execution, verifies unchanged snapshots, and writes sanitized outcomes to docs/GEMINI_REPORT.md. It exits nonzero if any prompt did not receive an actual Gemini response. Neither command prints credentials/raw provider errors. The verified live model is `gemini-flash-latest`; no real email or payments are used.
+
+## Gemini model configuration
+
+Set the model in the ignored `.env.local` file:
+
+```dotenv
+GEMINI_MODEL=gemini-flash-latest
+```
+
+The planner reads `GEMINI_MODEL` at request time and defaults to `gemini-flash-latest` when it is unset, blank or whitespace-only. Set another supported model name here to override the default; restart the running Next server after editing `.env.local`. `.env.example` includes this setting. Keep `GEMINI_API_KEY` in `.env.local`; do not commit that file.

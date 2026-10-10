@@ -104,7 +104,7 @@ interface PlannerDependencies {
 async function callModel({ system, instruction, rejected, signal, timeoutMs, apiKey }: ModelRequest) {
   const contents = rejected ? `${instruction}\n\nPrevious output was rejected: ${rejected}\nReturn corrected JSON only.` : instruction
   const res = await new GoogleGenAI({ apiKey }).models.generateContent({
-    model: process.env.GEMINI_MODEL ?? 'gemini-flash-latest', contents,
+    model: process.env.GEMINI_MODEL?.trim() || 'gemini-flash-latest', contents,
     config: { systemInstruction: system, responseMimeType: 'application/json', temperature: 0.1,
       abortSignal: signal, httpOptions: { timeout: timeoutMs, retryOptions: { attempts: 1 } } },
   })
