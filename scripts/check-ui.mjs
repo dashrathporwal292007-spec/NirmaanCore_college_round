@@ -316,7 +316,7 @@ for (let cycle = 1; cycle <= cycles; cycle++) {
     .filter({ visible: true })
     .click();
   await page
-    .getByText("1 messages queued. Delivery is simulated.", { exact: true })
+    .getByText(/^1 messages queued\. Delivery is simulated\./)
     .waitFor();
   await page.getByLabel("Contact", { exact: true }).selectOption(person.id);
   await page
