@@ -96,10 +96,12 @@ export function Agent({
   role,
   onMode,
   loadId,
+  detailTitle,
 }: {
   role: "owner" | "viewer";
   onMode: (m: Mode) => void;
   loadId?: string;
+  detailTitle?: string;
 }) {
   const [prompt, setPrompt] = useState(prompts[0]);
   const [detail, setDetail] = useState<Detail | null>(null);
@@ -182,47 +184,54 @@ export function Agent({
   return (
     <div className={run ? "agent has-receipt" : "agent"}>
       <h1>
-        The agent proposes.
-        <br /> You <em>decide.</em>
+        {detailTitle ?? (
+          <>
+            The agent proposes.
+            <br /> You <em>decide.</em>
+          </>
+        )}
       </h1>
-      <section className="command">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            void plan();
-          }}
-        >
-          <div>
-            <label htmlFor="prompt">What should Nexus do?</label>
-            <textarea
-              id="prompt"
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              maxLength={2000}
-              minLength={5}
-              required
-            />
-          </div>
-          <button disabled={busy}>
-            {busy ? "Working…" : "Print a preview"}
-          </button>
-        </form>
-        <div className="examples" aria-label="Example prompts">
-          {prompts.map((p, i) => (
-            <button key={p} onClick={() => setPrompt(p)}>
-              {i === 0
-                ? "Main demo"
-                : i === 1
-                  ? "Tag trial contacts"
-                  : i === 2
-                    ? "Create a page"
-                    : i === 3
-                      ? "Ask about a webinar"
-                      : "Ask about an email"}
+      {detailTitle && <p>{run?.instruction ?? "Reading the run…"}</p>}
+      {!detailTitle && (
+        <section className="command">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              void plan();
+            }}
+          >
+            <div>
+              <label htmlFor="prompt">What should Nexus do?</label>
+              <textarea
+                id="prompt"
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                maxLength={2000}
+                minLength={5}
+                required
+              />
+            </div>
+            <button disabled={busy}>
+              {busy ? "Working…" : "Print a preview"}
             </button>
-          ))}
-        </div>
-      </section>
+          </form>
+          <div className="examples" aria-label="Example prompts">
+            {prompts.map((p, i) => (
+              <button key={p} onClick={() => setPrompt(p)}>
+                {i === 0
+                  ? "Main demo"
+                  : i === 1
+                    ? "Tag trial contacts"
+                    : i === 2
+                      ? "Create a page"
+                      : i === 3
+                        ? "Ask about a webinar"
+                        : "Ask about an email"}
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
       {error && <ErrorState message={error} />}
       <div role="status">{notice && <p className="notice">{notice}</p>}</div>
       <div className="split">
@@ -462,6 +471,22 @@ export function Agent({
               ))}
             </ol>
           )}
+        </section>
+      )}
+      {detailTitle && detail && (
+        <section className="section">
+          <h2>Decision record</h2>
+          <p>Run ID: {detail.run.id}</p>
+          <details>
+            <summary>Review approvals and audit</summary>
+            <pre>
+              {JSON.stringify(
+                { approvals: detail.approvals, audit: detail.audit },
+                null,
+                2,
+              )}
+            </pre>
+          </details>
         </section>
       )}
       {chat.length > 0 && (
