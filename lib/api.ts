@@ -8,7 +8,7 @@ export interface Step {id:string;seq:number;tool:string;args:Record<string,Json>
 export interface Detail {run:Run;steps:Step[];approvals:Record<string,Json>[];audit:Record<string,Json>[];notes:string[]}
 export interface Contact {id:string;name:string;email:string;phone:string|null;tags:string[];source:string;status:string;unsubscribed:boolean;created_at:string}
 export interface Event {id:string;type:string;payload:Record<string,Json>;run_id:string|null;created_at:string;instruction:string|null;rule_id:string|null;reason:string|null}
-export interface Rule {ruleId:string;reason:string;evidence?:Json}
+export interface Rule {ruleId?:string;rule?:string;reason?:string;evidence?:Json}
 export interface Message {id:string;campaign_id:string;contact_id:string;contact_name:string;kind:string;webinar_id:string|null;payload:{subject:string;body:string};dispatch_after:string;status:string;cancel_reason:Rule|null;dispatched_at:string|null}
 export interface Pending {recipients:{id:string;name:string}[];subject:string;body:string;fingerprint:string}
 export interface Analytics {funnel:{leads:number;registered:number;attended:number;subscribed:number};campaigns:{queued:number;sent:number;cancelled:number;failed:number;opened:number;clicked:number};billing:{mrr_inr:number;usage_units:number;invoiced_inr:number};automation:{estimated_minutes_saved:number;by_run:{run_id:string;estimated_minutes:number}[]};simulated:true;savings_are_estimates:true}
