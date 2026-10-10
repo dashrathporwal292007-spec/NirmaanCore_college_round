@@ -62,15 +62,6 @@ export function Rules() {
                 </span>
                 <span>{names[i]}</span>
               </summary>
-              <div className="rule-hover-banner" aria-hidden="true">
-                <div className="rule-hover-track">
-                  {[0, 1, 2, 3].map((copy) => (
-                    <span key={copy}>
-                      {names[i]} <em>{String(i + 1).padStart(2, "0")}</em>
-                    </span>
-                  ))}
-                </div>
-              </div>
               <div className="rule-explanation">
                 <p className="rule-reason">{rule.why}</p>
                 <div className="rule-explanation-columns">
