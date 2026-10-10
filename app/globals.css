@@ -663,3 +663,25 @@ textarea {
     justify-content: stretch;
   }
 }
+.registration-page {
+  max-width: 620px;
+  margin: auto;
+  padding: 32px 24px 64px;
+}
+.registration-brand {
+  font-family: var(--font-display);
+  font-size: 28px;
+}
+.registration-page h1 {
+  font-size: 48px;
+}
+.registration-page form {
+  display: grid;
+  gap: 20px;
+}
+.registration-page form button {
+  width: 100%;
+}
+.registration-page .section {
+  font-size: 16px;
+}
