@@ -37,19 +37,23 @@ export function EditorialMotion() {
           for (const entry of entries)
             if (entry.isIntersecting) {
               entry.target.classList.add("scroll-visible");
-              observer.unobserve(entry.target);
+            } else if (entry.boundingClientRect.top > innerHeight) {
+              // Re-entering from below replays the reveal; content above stays readable.
+              entry.target.classList.remove("scroll-visible");
             }
         },
-        { threshold: 0.06 },
+        { threshold: 0, rootMargin: "0px 0px -48px 0px" },
       );
       const scan = () => {
         scanFrame = 0;
         document
           .querySelectorAll<HTMLElement>(
-            "main .section, main .receipt, main .run-index-row, main .rules-index > details, main .live-columns, main .rule-stages",
+            "main .section, main .receipt, main .command, main .list-row, main .contact-table tbody tr, main .rules-index > details, main .live-columns, main .rule-stages, main .timeline-spine > li, main .analytics-ledger > div, main form",
           )
           .forEach((el) => {
             if (elements.has(el)) return;
+            // Avoid stacking reveals on a parent and its children.
+            if (el.parentElement?.closest(".scroll-reveal")) return;
             elements.add(el);
             el.classList.add("scroll-reveal");
             observer.observe(el);
