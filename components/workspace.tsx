@@ -1,18 +1,37 @@
 "use client";
 import { useEffect, useState } from "react";
 import { api, setRole, type Mode } from "@/lib/api";
-import { Agent } from "@/components/agent";
-import { DataView, WebinarView } from "@/components/views";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { createContext, useContext, type ReactNode } from "react";
+
 import { ErrorState } from "@/components/shared";
-const tabs = ["Agent", "Live view", "Contacts", "Webinars", "Outbox", "Runs"];
-export default function Home() {
-  const [view, setView] = useState("Agent");
+const tabs = [
+  ["Agent", "/"],
+  ["Live view", "/live"],
+  ["Contacts", "/contacts"],
+  ["Webinars", "/webinars"],
+  ["Outbox", "/outbox"],
+  ["Runs", "/runs"],
+  ["Analytics", "/analytics"],
+];
+const WorkspaceContext = createContext({
+  role: "owner" as "owner" | "viewer",
+  onMode: (m: Mode) => {
+    void m;
+  },
+  revision: 0,
+  refresh: () => {},
+});
+export const useWorkspace = () => useContext(WorkspaceContext);
+export function WorkspaceShell({ children }: { children: ReactNode }) {
+  const path = usePathname();
   const [role, updateRole] = useState<"owner" | "viewer">("owner");
   const [mode, setMode] = useState<Mode | null>(null);
   const [last, setLast] = useState("No tick run this session");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
-  const [runId, setRunId] = useState<string>();
+
   const [refresh, setRefresh] = useState(0);
   useEffect(() => {
     let active = true;
@@ -24,43 +43,42 @@ export default function Home() {
       const r = cookie?.endsWith("000000000003") ? "viewer" : "owner";
       updateRole(r);
       setRole(r);
-      const hash = decodeURIComponent(location.hash.slice(1));
-      if (tabs.includes(hash)) setView(hash);
     });
     return () => {
       active = false;
     };
   }, []);
-  function navigate(tab: string) {
-    setView(tab);
-    setRunId(undefined);
-    location.hash = encodeURIComponent(tab);
-  }
   return (
-    <>
+    <WorkspaceContext.Provider
+      value={{
+        role,
+        onMode: setMode,
+        revision: refresh,
+        refresh: () => setRefresh((n) => n + 1),
+      }}
+    >
       <a className="skip" href="#main">
         Skip to workspace
       </a>
       <header>
         <div className="top-row">
-          <a
-            className="wordmark"
-            href="#Agent"
-            onClick={() => navigate("Agent")}
-          >
+          <Link className="wordmark" href="/">
             Nexus
-          </a>
+          </Link>
           <nav className="nav" aria-label="Workspace">
-            {tabs.map((tab, i) => (
-              <a
+            {tabs.map(([tab, href], i) => (
+              <Link
                 key={tab}
-                href={`#${encodeURIComponent(tab)}`}
-                aria-current={view === tab ? "page" : undefined}
-                onClick={() => navigate(tab)}
+                href={href}
+                aria-current={
+                  (href === "/" ? path === "/" : path.startsWith(href))
+                    ? "page"
+                    : undefined
+                }
               >
                 <small>{i + 1} </small>
                 {tab}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
@@ -140,23 +158,8 @@ export default function Home() {
       </header>
       <main className="workspace" id="main">
         {error && <ErrorState message={error} />}
-        <div hidden={view !== "Agent"}>
-          <Agent role={role} onMode={setMode} loadId={runId} />
-        </div>
-        {view === "Webinars" ? (
-          <WebinarView />
-        ) : view !== "Agent" ? (
-          <DataView
-            key={`${view}-${refresh}`}
-            view={view}
-            openRun={(id) => {
-              setRunId(id);
-              setView("Agent");
-              location.hash = "Agent";
-            }}
-          />
-        ) : null}
+        {children}
       </main>
-    </>
+    </WorkspaceContext.Provider>
   );
 }
