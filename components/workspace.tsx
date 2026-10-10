@@ -282,6 +282,19 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
       <main className="workspace" id="main" key={path}>
         {error && <ErrorState message={error} />}
         {children}
+        <section className="section scroll-territories" aria-label="Explore the workspace">
+          <h2>One business.<br /><em>Every moving part.</em></h2>
+          <nav aria-label="Explore screens">
+            {tabs.map(([tab, href], index) => (
+              <Link key={href} href={href} className="scroll-territory">
+                <span className="territory-number">{String(index + 1).padStart(2, "0")}</span>
+                <span className="territory-name">{tab}<em aria-hidden="true">{tab}</em></span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`/menu/${href === "/" ? "agent" : href.slice(1)}.svg`} alt="" width={800} height={1000} />
+              </Link>
+            ))}
+          </nav>
+        </section>
       </main>
     </WorkspaceContext.Provider>
   );
