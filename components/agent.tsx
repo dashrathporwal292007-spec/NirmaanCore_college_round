@@ -40,7 +40,7 @@ function Hold({
       fired.current = true;
       setHolding(false);
       onApprove();
-    }, 1000);
+    }, 700);
   }
   useEffect(
     () => () => {
