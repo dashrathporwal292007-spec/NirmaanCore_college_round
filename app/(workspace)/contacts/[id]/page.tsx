@@ -1,15 +1,7 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { DataView } from "@/components/views";
-import { useWorkspace } from "@/components/workspace";
+import { useParams } from "next/navigation";
+import { ContactDetail } from "@/components/timeline";
 export default function Page() {
-  const router = useRouter();
-  const { revision } = useWorkspace();
-  return (
-    <DataView
-      key={revision}
-      view="Contacts"
-      openRun={(id) => router.push(`/runs/${id}`)}
-    />
-  );
+  const { id } = useParams<{ id: string }>();
+  return <ContactDetail key={id} id={id} />;
 }
