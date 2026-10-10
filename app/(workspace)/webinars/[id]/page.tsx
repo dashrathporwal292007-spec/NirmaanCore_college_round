@@ -1,4 +1,7 @@
-import { WebinarView } from "@/components/views";
+"use client";
+import { useParams } from "next/navigation";
+import { WebinarScreen } from "@/components/webinar-detail";
 export default function Page() {
-  return <WebinarView />;
+  const { id } = useParams<{ id: string }>();
+  return <WebinarScreen key={id} id={id} />;
 }

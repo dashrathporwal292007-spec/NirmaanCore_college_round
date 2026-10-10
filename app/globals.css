@@ -823,3 +823,9 @@ textarea {
 .rule-stage:not(.reached) .rule-id {
   color: var(--muted);
 }
+.list-row {
+  align-items: flex-start;
+}
+.webinar-actions label {
+  margin: 20px 0;
+}
