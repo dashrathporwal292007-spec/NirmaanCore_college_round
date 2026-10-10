@@ -26,7 +26,7 @@ export function AnalyticsScreen() {
   }, [revision]);
   return (
     <>
-      <h1>Recorded results</h1>
+      <h1>Count what<br /><em>happened.</em></h1>
       <p>
         Computed from the current database, including retained history.
         Rewinding a run does not erase irreversible records.

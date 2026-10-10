@@ -933,3 +933,6 @@ button,input,textarea,select { border-radius:2px; }
 .run-detail h1 { font-size:clamp(56px,8vw,112px); margin-bottom:48px; }
 .run-detail h1 br { display:block; }
 .run-detail > p { margin-bottom:64px; }
+.analytics-ledger { margin-top:96px; }
+.analytics-ledger > div { padding:48px 0; }
+.analytics-ledger .impact-number { font-size:clamp(80px,12vw,160px); }
