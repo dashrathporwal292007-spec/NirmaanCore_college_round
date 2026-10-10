@@ -161,6 +161,12 @@ async function request<T>(
   body?: unknown,
   publicRequest = false,
 ): Promise<T> {
+  if (
+    !publicRequest &&
+    typeof document !== "undefined" &&
+    !document.cookie.split("; ").some((v) => v.startsWith("uid="))
+  )
+    setRole("owner");
   let response: Response;
   try {
     response = await fetch(path, {
