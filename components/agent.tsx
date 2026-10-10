@@ -1,13 +1,479 @@
-'use client'
-import {useEffect,useRef,useState} from 'react'
-import {api,ApiError,users,type Detail,type Mode} from '@/lib/api'
-import {EmptyState,ErrorState,ReceiptLine,RiskBadge,Stamp,StatusPill,inr} from './shared'
-export const prompts=['Run a webinar this Friday called AI Content for Local Brands for contacts tagged trial, send them an invite, remind anyone who has not registered, and offer attendees the Social Growth plan.','Tag the trial contacts as vip','Create a business landing page for Nexora Digital with headline Grow your local brand','Run a webinar for trial contacts','Email everyone about our new plan']
-function Hold({onApprove,disabled}:{onApprove:()=>void;disabled:boolean}){const[holding,setHolding]=useState(false);const timer=useRef<ReturnType<typeof setTimeout>|null>(null);const fired=useRef(false);function cancel(){if(timer.current)clearTimeout(timer.current);timer.current=null;setHolding(false)}function begin(){if(disabled||timer.current||fired.current)return;setHolding(true);timer.current=setTimeout(()=>{timer.current=null;fired.current=true;setHolding(false);onApprove()},1000)}useEffect(()=>()=>{if(timer.current)clearTimeout(timer.current)},[]);return <button className={`hold ${holding?'holding':''}`} disabled={disabled} onPointerDown={e=>{e.currentTarget.setPointerCapture(e.pointerId);fired.current=false;begin()}} onPointerUp={()=>{cancel();fired.current=false}} onPointerCancel={()=>{cancel();fired.current=false}} onBlur={()=>{cancel();fired.current=false}} onKeyDown={e=>{if(e.key==='Escape'){cancel();return}if((e.key==='Enter'||e.key===' ')&&!e.repeat){e.preventDefault();fired.current=false;begin()}}} onKeyUp={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cancel();fired.current=false}}}><span>{holding?'Keep holding…':'Hold to approve and run'}</span></button>}
-export function Agent({role,onMode,loadId}:{role:'owner'|'viewer';onMode:(m:Mode)=>void;loadId?:string}){const[prompt,setPrompt]=useState(prompts[0]);const[detail,setDetail]=useState<Detail|null>(null);const[busy,setBusy]=useState(false);const[error,setError]=useState('');const[notice,setNotice]=useState('');const[chat,setChat]=useState<string[]>([]);const[typed,setTyped]=useState('');const[confirm,setConfirm]=useState(false);const[reverse,setReverse]=useState(false)
-useEffect(()=>{if(loadId)api.run(loadId).then(setDetail).catch(e=>setError(e.message))},[loadId]);const run=detail?.run;const diff=run?.diff;const pending=run?.status==='awaiting_approval';const selfHigh=run?.risk==='HIGH'&&run.user_id===users[role];
-async function act(fn:()=>Promise<void>){setBusy(true);setError('');try{await fn()}catch(e){setError(e instanceof ApiError?e.message:'This request failed. Try again.')}finally{setBusy(false)}}
-async function plan(){await act(async()=>{const result=await api.plan(prompt);onMode(result);setConfirm(false);setReverse(false);setTyped('');setNotice('');if(result.clarification){setChat(c=>[...c,prompt,result.clarification!]);return}if(result.runId){setDetail(await api.run(result.runId));setChat(c=>[...c,prompt,result.summary]);if(result.status==='completed')setNotice('This low-risk request ran automatically. Review the receipt and rewind if needed.')}})}
-async function decide(decision:'approved'|'rejected'){if(!run)return;await act(async()=>{const result=await api.approve(run.id,decision,typed);setDetail(await api.run(run.id));setTyped('');setNotice(result.changed?'The preview changed. Nothing ran. Review this fresh receipt and approve again.':result.duplicate?'This run was already approved. Nothing ran twice.':decision==='rejected'?'Request rejected. Nothing ran.':'The approved steps ran. Every change is recorded.')})}
-const money=diff?.totals.moneyInr??0;const publicPages=diff?.lines.filter(l=>l.entity==='page'&&l.publicVisible).reduce((n,l)=>n+l.count,0)??0;const distinct=diff?.totals.distinctRecipients
-return <div className={run?'agent has-receipt':'agent'}><h1>The agent proposes.<br/> You <em>decide.</em></h1><section className="command"><form onSubmit={e=>{e.preventDefault();void plan()}}><div><label htmlFor="prompt">What should Nexus do?</label><textarea id="prompt" value={prompt} onChange={e=>setPrompt(e.target.value)} maxLength={2000} minLength={5} required/></div><button disabled={busy}>{busy?'Working…':'Print a preview'}</button></form><div className="examples" aria-label="Example prompts">{prompts.map((p,i)=><button key={p} onClick={()=>setPrompt(p)}>{i===0?'Main demo':i===1?'Tag trial contacts':i===2?'Create a page':i===3?'Ask about a webinar':'Ask about an email'}</button>)}</div></section>{error&&<ErrorState message={error}/>}<div role="status">{notice&&<p className="notice">{notice}</p>}</div><div className="split"><section className="receipt" aria-label="Receipt"><div className="receipt-heading"><h2>{run?.status==='completed'?'What ran':run?.status==='rewound'?'Rewind receipt':'What will change'}</h2><small>{run?`Run ${run.id.slice(0,8)}`:'Your next request'}</small></div>{!run?<EmptyState>Plan a request and the receipt prints here, before anything runs.</EmptyState>:<><Stamp status={run.status} id={run.id}/>{diff?.lines.map((line,i)=><ReceiptLine key={`${run.id}-${reverse}-${i}`} index={reverse?diff.lines.length-1-i:i} reverse={reverse} kind={run.status==='rewound'?(detail?.steps.find(s=>s.seq===line.step)?.status==='cannot_rewind'?'blocked':'remove'):line.action.includes('removed')?'remove':line.action.includes('tag')||line.tool==='query_contacts'?'change':'add'} title={run.status==='rewound'?(detail?.steps.find(s=>s.seq===line.step)?.status==='cannot_rewind'?'Not reversed: ':'Rewind reviewed: ')+line.entity+': '+line.action:line.entity+': '+line.action} detail={line.count}/>)}<div className="total"><span>Total money moved</span><strong>{inr(money)}</strong></div>{diff?.lines.some(l=>l.skipped)&&<p className="deferred">Unsubscribed contacts were excluded by the campaign resolver.</p>}{run.plan?.steps.filter(s=>s.tool==='draft_campaign'||s.tool==='draft_followup').map((s,i)=><details className="deferred" key={i}><summary>Review message content, draft {i+1}</summary><pre>{JSON.stringify(s.args,null,2)}</pre></details>)}{run.plan?.deferred.map(d=><p className="deferred" key={d}>Deferred: {d}</p>)}{!diff&&<p>No successful dry-run receipt exists for this run.</p>}{run.error&&<ErrorState message={run.error}/>}</>}</section><aside aria-label="Impact and approval"><div className="metrics"><div className="metric"><div className="impact-number">{run?(distinct??'—'):'—'}</div><p>People reached</p><small>{diff?`${diff.totals.recipients} messages scheduled`:'Preview before action'}</small>{diff&&distinct===undefined&&<small>Distinct count unavailable for this older receipt.</small>}</div><div className="metric"><div className="impact-number">{run?inr(money):'—'}</div><p>Money moved</p></div><div className="metric"><div className="impact-number">{run?publicPages:'—'}</div><p>Pages made public</p></div></div>{run&&<><p className="impact-sentence">{pending?'Proposed: ':''}{distinct??'Unknown number of'} people, {inr(money)} in recorded money effects, and {publicPages} pages made public.</p>{run.risk&&<RiskBadge risk={run.risk}/>}{!pending&&<StatusPill status={run.status}/>} {pending&&<div className="decision-controls"><p>Nothing has happened yet.</p>{run.risk==='HIGH'&&<><label htmlFor="typed">Type CONFIRM to approve<input id="typed" value={typed} onChange={e=>setTyped(e.target.value)} autoComplete="off"/></label>{selfHigh&&<p className="tone-blocked">A different owner must approve this high-risk request.</p>}</>}<Hold onApprove={()=>void decide('approved')} disabled={busy||role==='viewer'||selfHigh||run.risk==='HIGH'&&typed!=='CONFIRM'}/><button disabled={busy||role==='viewer'||selfHigh} onClick={()=>void decide('rejected')}>Reject request</button>{role==='viewer'&&<small>Switch to owner to decide. Permissions are checked by the server.</small>}</div>}{run.status==='completed'&&<div className="section">{!confirm?<button disabled={busy||role==='viewer'} onClick={()=>setConfirm(true)}>Rewind this run</button>:<div className="confirm"><p>Rewind all reversible changes in this run? Sent messages and irreversible actions remain recorded.</p><div className="actions"><button disabled={busy} onClick={()=>void act(async()=>{const result=await api.rewind(run.id);setDetail(await api.run(run.id));setReverse(true);setConfirm(false);setNotice(result.notes.length?'Run rewound with limits. Review what remains below.':'The reversible changes were rewound.')})}>Confirm rewind</button><button onClick={()=>setConfirm(false)}>Keep this run</button></div></div>}</div>}</> }</aside></div>{detail&&<section className="section"><h2>{run?.status==='rewound'?'What remains':'What ran'}</h2>{detail.notes.map(n=><p className="tone-blocked" key={n}>{n}</p>)}{!detail.steps.length?<EmptyState>No steps have run. Review the preview before approving.</EmptyState>:<ol className="steps">{detail.steps.map(s=><li key={s.id}><strong>{s.tool.replaceAll('_',' ')}</strong> · <StatusPill status={s.status}/><details><summary>Show recorded result</summary><pre>{JSON.stringify(s.result,null,2)}</pre></details></li>)}</ol>}</section>}{chat.length>0&&<section className="section"><h2>Conversation</h2>{chat.map((reply,i)=><p className="chat" key={i}>{reply}</p>)}</section>}</div>}
+"use client";
+import { useEffect, useRef, useState } from "react";
+import { api, ApiError, users, type Detail, type Mode } from "@/lib/api";
+import {
+  EmptyState,
+  ErrorState,
+  ReceiptLine,
+  RiskBadge,
+  Stamp,
+  StatusPill,
+  inr,
+} from "./shared";
+export const prompts = [
+  "Run a webinar this Friday called AI Content for Local Brands for contacts tagged trial, send them an invite, remind anyone who has not registered, and offer attendees the Social Growth plan.",
+  "Tag the trial contacts as vip",
+  "Create a business landing page for Nexora Digital with headline Grow your local brand",
+  "Run a webinar for trial contacts",
+  "Email everyone about our new plan",
+];
+function Hold({
+  onApprove,
+  disabled,
+}: {
+  onApprove: () => void;
+  disabled: boolean;
+}) {
+  const [holding, setHolding] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const fired = useRef(false);
+  function cancel() {
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = null;
+    setHolding(false);
+  }
+  function begin() {
+    if (disabled || timer.current || fired.current) return;
+    setHolding(true);
+    timer.current = setTimeout(() => {
+      timer.current = null;
+      fired.current = true;
+      setHolding(false);
+      onApprove();
+    }, 1000);
+  }
+  useEffect(
+    () => () => {
+      if (timer.current) clearTimeout(timer.current);
+    },
+    [],
+  );
+  return (
+    <button
+      className={`hold ${holding ? "holding" : ""}`}
+      disabled={disabled}
+      onPointerDown={(e) => {
+        e.currentTarget.setPointerCapture(e.pointerId);
+        fired.current = false;
+        begin();
+      }}
+      onPointerUp={() => {
+        cancel();
+        fired.current = false;
+      }}
+      onPointerCancel={() => {
+        cancel();
+        fired.current = false;
+      }}
+      onBlur={() => {
+        cancel();
+        fired.current = false;
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          cancel();
+          return;
+        }
+        if ((e.key === "Enter" || e.key === " ") && !e.repeat) {
+          e.preventDefault();
+          fired.current = false;
+          begin();
+        }
+      }}
+      onKeyUp={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          cancel();
+          fired.current = false;
+        }
+      }}
+    >
+      <span>{holding ? "Keep holding…" : "Hold to approve and run"}</span>
+    </button>
+  );
+}
+export function Agent({
+  role,
+  onMode,
+  loadId,
+}: {
+  role: "owner" | "viewer";
+  onMode: (m: Mode) => void;
+  loadId?: string;
+}) {
+  const [prompt, setPrompt] = useState(prompts[0]);
+  const [detail, setDetail] = useState<Detail | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
+  const [chat, setChat] = useState<string[]>([]);
+  const [typed, setTyped] = useState("");
+  const [confirm, setConfirm] = useState(false);
+  const [reverse, setReverse] = useState(false);
+  useEffect(() => {
+    if (loadId)
+      api
+        .run(loadId)
+        .then(setDetail)
+        .catch((e) => setError(e.message));
+  }, [loadId]);
+  const run = detail?.run;
+  const diff = run?.diff;
+  const pending = run?.status === "awaiting_approval";
+  const selfHigh = run?.risk === "HIGH" && run.user_id === users[role];
+  async function act(fn: () => Promise<void>) {
+    setBusy(true);
+    setError("");
+    try {
+      await fn();
+    } catch (e) {
+      setError(
+        e instanceof ApiError ? e.message : "This request failed. Try again.",
+      );
+    } finally {
+      setBusy(false);
+    }
+  }
+  async function plan() {
+    await act(async () => {
+      const result = await api.plan(prompt);
+      onMode(result);
+      setConfirm(false);
+      setReverse(false);
+      setTyped("");
+      setNotice("");
+      if (result.clarification) {
+        setChat((c) => [...c, prompt, result.clarification!]);
+        return;
+      }
+      if (result.runId) {
+        setDetail(await api.run(result.runId));
+        setChat((c) => [...c, prompt, result.summary]);
+        if (result.status === "completed")
+          setNotice(
+            "This low-risk request ran automatically. Review the receipt and rewind if needed.",
+          );
+      }
+    });
+  }
+  async function decide(decision: "approved" | "rejected") {
+    if (!run) return;
+    await act(async () => {
+      const result = await api.approve(run.id, decision, typed);
+      setDetail(await api.run(run.id));
+      setTyped("");
+      setNotice(
+        result.changed
+          ? "The preview changed. Nothing ran. Review this fresh receipt and approve again."
+          : result.duplicate
+            ? "This run was already approved. Nothing ran twice."
+            : decision === "rejected"
+              ? "Request rejected. Nothing ran."
+              : "The approved steps ran. Every change is recorded.",
+      );
+    });
+  }
+  const money = diff?.totals.moneyInr ?? 0;
+  const publicPages =
+    diff?.lines
+      .filter((l) => l.entity === "page" && l.publicVisible)
+      .reduce((n, l) => n + l.count, 0) ?? 0;
+  const distinct = diff?.totals.distinctRecipients;
+  return (
+    <div className={run ? "agent has-receipt" : "agent"}>
+      <h1>
+        The agent proposes.
+        <br /> You <em>decide.</em>
+      </h1>
+      <section className="command">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            void plan();
+          }}
+        >
+          <div>
+            <label htmlFor="prompt">What should Nexus do?</label>
+            <textarea
+              id="prompt"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              maxLength={2000}
+              minLength={5}
+              required
+            />
+          </div>
+          <button disabled={busy}>
+            {busy ? "Working…" : "Print a preview"}
+          </button>
+        </form>
+        <div className="examples" aria-label="Example prompts">
+          {prompts.map((p, i) => (
+            <button key={p} onClick={() => setPrompt(p)}>
+              {i === 0
+                ? "Main demo"
+                : i === 1
+                  ? "Tag trial contacts"
+                  : i === 2
+                    ? "Create a page"
+                    : i === 3
+                      ? "Ask about a webinar"
+                      : "Ask about an email"}
+            </button>
+          ))}
+        </div>
+      </section>
+      {error && <ErrorState message={error} />}
+      <div role="status">{notice && <p className="notice">{notice}</p>}</div>
+      <div className="split">
+        <section className="receipt" aria-label="Receipt">
+          <div className="receipt-heading">
+            <h2>
+              {run?.status === "completed"
+                ? "What ran"
+                : run?.status === "rewound"
+                  ? "Rewind receipt"
+                  : "What will change"}
+            </h2>
+            <small>
+              {run ? `Run ${run.id.slice(0, 8)}` : "Your next request"}
+            </small>
+          </div>
+          {!run ? (
+            <EmptyState>
+              Plan a request and the receipt prints here, before anything runs.
+            </EmptyState>
+          ) : (
+            <>
+              <Stamp status={run.status} id={run.id} />
+              {diff?.lines.map((line, i) => (
+                <ReceiptLine
+                  key={`${run.id}-${reverse}-${i}`}
+                  index={reverse ? diff.lines.length - 1 - i : i}
+                  reverse={reverse}
+                  kind={
+                    run.status === "rewound"
+                      ? detail?.steps.find((s) => s.seq === line.step)
+                          ?.status === "cannot_rewind"
+                        ? "blocked"
+                        : "remove"
+                      : line.action.includes("removed")
+                        ? "remove"
+                        : line.action.includes("tag") ||
+                            line.tool === "query_contacts"
+                          ? "change"
+                          : "add"
+                  }
+                  title={
+                    run.status === "rewound"
+                      ? (detail?.steps.find((s) => s.seq === line.step)
+                          ?.status === "cannot_rewind"
+                          ? "Not reversed: "
+                          : "Rewind reviewed: ") +
+                        line.entity +
+                        ": " +
+                        line.action
+                      : line.entity + ": " + line.action
+                  }
+                  detail={line.count}
+                />
+              ))}
+              <div className="total">
+                <span>Total money moved</span>
+                <strong>{inr(money)}</strong>
+              </div>
+              {diff?.lines.some((l) => l.skipped) && (
+                <p className="deferred">
+                  Unsubscribed contacts were excluded by the campaign resolver.
+                </p>
+              )}
+              {run.plan?.steps
+                .filter(
+                  (s) =>
+                    s.tool === "draft_campaign" || s.tool === "draft_followup",
+                )
+                .map((s, i) => (
+                  <details className="deferred" key={i}>
+                    <summary>Review message content, draft {i + 1}</summary>
+                    <pre>{JSON.stringify(s.args, null, 2)}</pre>
+                  </details>
+                ))}
+              {run.plan?.deferred.map((d) => (
+                <p className="deferred" key={d}>
+                  Deferred: {d}
+                </p>
+              ))}
+              {!diff && (
+                <p>No successful dry-run receipt exists for this run.</p>
+              )}
+              {run.error && <ErrorState message={run.error} />}
+            </>
+          )}
+        </section>
+        <aside aria-label="Impact and approval">
+          <div className="metrics">
+            <div className="metric">
+              <div className="impact-number">
+                {run ? (distinct ?? "—") : "—"}
+              </div>
+              <p>People reached</p>
+              <small>
+                {diff
+                  ? `${diff.totals.recipients} messages scheduled`
+                  : "Preview before action"}
+              </small>
+              {diff && distinct === undefined && (
+                <small>
+                  Distinct count unavailable for this older receipt.
+                </small>
+              )}
+            </div>
+            <div className="metric">
+              <div className="impact-number">{run ? inr(money) : "—"}</div>
+              <p>Money moved</p>
+            </div>
+            <div className="metric">
+              <div className="impact-number">{run ? publicPages : "—"}</div>
+              <p>Pages made public</p>
+            </div>
+          </div>
+          {run && (
+            <>
+              <p className="impact-sentence">
+                {pending ? "Proposed: " : ""}
+                {distinct ?? "Unknown number of"} people, {inr(money)} in
+                recorded money effects, and {publicPages} pages made public.
+              </p>
+              {run.risk && <RiskBadge risk={run.risk} />}
+              {!pending && <StatusPill status={run.status} />}{" "}
+              {pending && (
+                <div className="decision-controls">
+                  <p>Nothing has happened yet.</p>
+                  {run.risk === "HIGH" && (
+                    <>
+                      <label htmlFor="typed">
+                        Type CONFIRM to approve
+                        <input
+                          id="typed"
+                          value={typed}
+                          onChange={(e) => setTyped(e.target.value)}
+                          autoComplete="off"
+                        />
+                      </label>
+                      {selfHigh && (
+                        <p className="tone-blocked">
+                          A different owner must approve this high-risk request.
+                        </p>
+                      )}
+                    </>
+                  )}
+                  <Hold
+                    onApprove={() => void decide("approved")}
+                    disabled={
+                      busy ||
+                      role === "viewer" ||
+                      selfHigh ||
+                      (run.risk === "HIGH" && typed !== "CONFIRM")
+                    }
+                  />
+                  <button
+                    disabled={busy || role === "viewer" || selfHigh}
+                    onClick={() => void decide("rejected")}
+                  >
+                    Reject request
+                  </button>
+                  {role === "viewer" && (
+                    <small>
+                      Switch to owner to decide. Permissions are checked by the
+                      server.
+                    </small>
+                  )}
+                </div>
+              )}
+              {run.status === "completed" && (
+                <div className="section">
+                  {!confirm ? (
+                    <button
+                      disabled={busy || role === "viewer"}
+                      onClick={() => setConfirm(true)}
+                    >
+                      Rewind this run
+                    </button>
+                  ) : (
+                    <div className="confirm">
+                      <p>
+                        Rewind all reversible changes in this run? Sent messages
+                        and irreversible actions remain recorded.
+                      </p>
+                      <div className="actions">
+                        <button
+                          disabled={busy}
+                          onClick={() =>
+                            void act(async () => {
+                              const result = await api.rewind(run.id);
+                              setDetail(await api.run(run.id));
+                              setReverse(true);
+                              setConfirm(false);
+                              setNotice(
+                                result.notes.length
+                                  ? "Run rewound with limits. Review what remains below."
+                                  : "The reversible changes were rewound.",
+                              );
+                            })
+                          }
+                        >
+                          Confirm rewind
+                        </button>
+                        <button onClick={() => setConfirm(false)}>
+                          Keep this run
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </>
+          )}
+        </aside>
+      </div>
+      {detail && (
+        <section className="section">
+          <h2>{run?.status === "rewound" ? "What remains" : "What ran"}</h2>
+          {detail.notes.map((n) => (
+            <p className="tone-blocked" key={n}>
+              {n}
+            </p>
+          ))}
+          {!detail.steps.length ? (
+            <EmptyState>
+              No steps have run. Review the preview before approving.
+            </EmptyState>
+          ) : (
+            <ol className="steps">
+              {detail.steps.map((s) => (
+                <li key={s.id}>
+                  <strong>{s.tool.replaceAll("_", " ")}</strong> ·{" "}
+                  <StatusPill status={s.status} />
+                  <details>
+                    <summary>Show recorded result</summary>
+                    <pre>{JSON.stringify(s.result, null, 2)}</pre>
+                  </details>
+                </li>
+              ))}
+            </ol>
+          )}
+        </section>
+      )}
+      {chat.length > 0 && (
+        <section className="section">
+          <h2>Conversation</h2>
+          {chat.map((reply, i) => (
+            <p className="chat" key={i}>
+              {reply}
+            </p>
+          ))}
+        </section>
+      )}
+    </div>
+  );
+}

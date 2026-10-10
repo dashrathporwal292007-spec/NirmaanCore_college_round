@@ -33,3 +33,17 @@ Only receipt printing (170ms stagger, reversed on rewind), hold fill and Live vi
 ## Review gate
 
 Capture 1440×900, 1280×720 and 390×844 against real API responses. Check overflow, readable type, hierarchy, focus, honest empty states and controls. Fix identified defects and remove one decorative element before final delivery. Record actual findings separately.
+
+## First visual critique
+
+The first desktop capture pushed the approval control below the fold because three impact numbers were stacked. Place the three figures on one desktop row, retain 64px display type, and keep the full receipt readable. Add entity names to terse backend effect actions such as created. Mobile keeps natural vertical reading and page scrolling. Remove the decorative period from the wordmark. Use localhost for local browser testing: the existing origin guard rejects the 127.0.0.1 browser origin, although nonbrowser smoke requests omit Origin. No security check is bypassed or changed.
+
+## Final verification
+
+Real Chromium interactions pass: main preview (37 people / 74 messages), cancelled short hold, Space-key deliberate approval, rewind confirmation/cancellation, public registration through existing APIs, real REMINDER_REQUIRES_UNREGISTERED timeline, contacts/outbox/runs navigation, clarification reply, LOW auto-run, owner/viewer switch, worker tick and reduced-motion receipt. No browser runtime errors. Text contrast measured 6.99:1 or higher for tested semantic pairs (including their tints); body/muted exceed 7.5:1. Viewports have no horizontal overflow. Captures include exact 1440×900, 1280×720 and 390×844 images plus full-page versions. Narrow/short screens scroll naturally rather than shrinking type. The empty Next route announcer is excluded from application-error assertions.
+
+The command measure is capped at 76ch and the textarea expands to its content, so the main prompt is readable on mobile. The desktop heading compacts only once a receipt exists, making room for the decision. Tilted stamp and perforations remain; the decorative wordmark period was removed.
+
+Not manually verified: Safari/Firefox, a physical projector or screen reader, and live Gemini failure rendering in the browser. Existing backend tests cover stale/duplicate decisions and HIGH typed/different-owner rules; the browser pass uses offline demo mode.
+
+To reproduce: build, run demo:reset, start the server at http://localhost:3000, then run `PLAYWRIGHT_BROWSERS_PATH=.cache/playwright node scripts/check-ui.mjs`. Install the local browser with `PLAYWRIGHT_BROWSERS_PATH=.cache/playwright npx playwright install chromium` if needed. This check changes real demo data; run serially with the smoke scripts.
