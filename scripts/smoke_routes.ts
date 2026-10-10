@@ -32,6 +32,7 @@ async function main() {
   console.log('ok 1 HTTP auth, roles, validation, cross-origin and missing resource errors')
 
   const p = await request('/api/agent/plan','POST',{instruction:DEMO_SENTENCE},USERS.marketer)
+  assert.equal(p.diff.totals.distinctRecipients,37); assert.equal(p.diff.totals.recipients,74)
   assert.equal(p.status,'awaiting_approval'); assert.equal(p.source,'fallback');assert.equal(p.plannerMode,'demo');assert.equal(p.fallbackReason,null)
   assert.equal(await count('select count(*) n from webinars'),0)
   assert.equal(await count('select count(*) n from outbox'),0)

@@ -28,6 +28,7 @@ async function main() {
   const preview = await dryRun(demoPlan(), MARKETER)
   assert.deepEqual(await snapshot(), before, 'dry-run must change nothing')
   assert.equal(preview.risk, 'MEDIUM')
+  assert.equal(preview.diff.totals.distinctRecipients, 37)
   assert.equal(preview.diff.totals.recipients, 74)   // 37 invite + 37 reminder
   console.log('ok 1  dry-run is clean:', preview.diff.totals)
 

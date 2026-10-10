@@ -28,6 +28,7 @@ export interface Effect {
 }
 
 export interface ToolOutput<R = any, C = any> {
+  recipientIds?: string[]  // Internal resolved delivery targets; never exposed in effects.
   result: R                 // later steps can reference this: $step1.contact_ids
   effects: Effect[]
   compensation: C | null    // stored on run_steps, used by rewind

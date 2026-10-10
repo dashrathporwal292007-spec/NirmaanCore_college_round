@@ -12,7 +12,7 @@ import { audit } from './log'
 export interface Actor { id: string; role: Role }
 export interface Diff {
   lines: (Effect & { tool: string; step: number })[]
-  totals: { recipients: number; moneyInr: number; publicVisible: boolean }
+  totals: { distinctRecipients: number; recipients: number; moneyInr: number; publicVisible: boolean }
 }
 
 /** The ONE place plans execute. Dry-run and commit both call this. */
@@ -22,6 +22,7 @@ async function executePlan(
 ) {
   validatePlan(plan, user.role)
   const ctx: Ctx = { db, user, runId, dry, now: new Date() }
+  const recipients = new Set<string>()
   const results: any[] = []
   const stepEffects: { tool: string; effects: Effect[] }[] = []
   for (let i = 0; i < plan.steps.length; i++) {
@@ -30,18 +31,20 @@ async function executePlan(
     if (!dry && process.env.FORCE_FAIL_STEP === String(i + 1))
       throw new Error(`Forced failure at step ${i + 1} (${tool.name}) for the demo`)
     const out = await tool.execute(args, ctx)
+    for (const id of out.recipientIds ?? []) recipients.add(id)
     results.push(out.result)
     stepEffects.push({ tool: tool.name, effects: out.effects })
     if (record) await record(ctx, i, tool, args, out)
   }
-  return { stepEffects }
+  return { stepEffects, distinctRecipients: recipients.size }
 }
 
-function buildDiff(stepEffects: { tool: string; effects: Effect[] }[]): Diff {
+function buildDiff(stepEffects: { tool: string; effects: Effect[] }[], distinctRecipients: number): Diff {
   const lines = stepEffects.flatMap((s, i) => s.effects.map(e => ({ ...e, tool: s.tool, step: i + 1 })))
   return {
     lines,
     totals: {
+      distinctRecipients,
       recipients: lines.reduce((n, l) => n + (l.recipients ?? 0), 0),
       moneyInr: lines.reduce((n, l) => n + (l.moneyInr ?? 0), 0),
       publicVisible: lines.some(l => l.publicVisible),
@@ -58,8 +61,8 @@ function hashPlan(plan: Plan, diff: Diff) { const stable = (v: any): any => Arra
 /** Run the whole plan inside a transaction that is ALWAYS rolled back. */
 export async function dryRun(plan: Plan, actor: Actor, runId: string = randomUUID()) {
   validatePlan(plan, actor.role)
-  const { stepEffects } = await withRollback(async db => { await lockAdaptive(db); return executePlan(db, plan, actor, runId, true) })
-  const diff = buildDiff(stepEffects)
+  const { stepEffects, distinctRecipients } = await withRollback(async db => { await lockAdaptive(db); return executePlan(db, plan, actor, runId, true) })
+  const diff = buildDiff(stepEffects, distinctRecipients)
   return { diff, risk: computeRisk(plan, diff), planHash: hashPlan(plan, diff) }
 }
 
@@ -147,7 +150,7 @@ export async function commit(runId: string, requester: Actor) {
       await db.query('LOCK TABLE contacts, pages, webinars, campaigns, registrations, subscriptions, plans IN SHARE ROW EXCLUSIVE MODE')
       await db.query('SAVEPOINT approval_preview')
       const check = await executePlan(db, locked.plan, current, runId, true)
-      const freshDiff = buildDiff(check.stepEffects)
+      const freshDiff = buildDiff(check.stepEffects, check.distinctRecipients)
       await db.query('ROLLBACK TO SAVEPOINT approval_preview')
       await db.query('RELEASE SAVEPOINT approval_preview')
       const freshHash = hashPlan(locked.plan, freshDiff)

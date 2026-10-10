@@ -70,6 +70,7 @@ export const scheduleCampaign: Tool<z.infer<typeof schedSchema>> = {
     await logEvents(ctx, targets.map(t => t.id), 'campaign_queued', { campaign_id, name: c.name, kind: c.kind })
     const outbox_ids = ins.rows.map(r => r.id)
     return {
+      recipientIds: targets.map(t => t.id),
       result: { campaign_id, outbox_ids, recipients: targets.length },
       effects: [{ entity: 'email', action: `${c.kind} queued, held ${hold} min before sending`, count: targets.length,
                  recipients: targets.length, skipped: rows.length - targets.length, fingerprint: fp,

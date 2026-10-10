@@ -13,7 +13,9 @@ async function main() {
   await resetDemo()
   const launch=await request('/api/agent/plan','POST',{instruction:DEMO_SENTENCE},USERS.marketer)
   assert.equal(launch.plannerMode,'demo');assert.equal(launch.status,'awaiting_approval')
-  assert.deepEqual(launch.diff.totals,{recipients:74,moneyInr:0,publicVisible:false})
+  const {distinctRecipients,...existingTotals}=launch.diff.totals
+  assert.deepEqual(existingTotals,{recipients:74,moneyInr:0,publicVisible:false})
+  assert.equal(distinctRecipients,37)
   assert.equal(await n('select count(*) n from outbox'),0)
   assert.equal((await approve(launch.runId)).status,'completed')
   assert.equal((await approve(launch.runId)).duplicate,true)

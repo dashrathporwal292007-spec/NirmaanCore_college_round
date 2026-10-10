@@ -30,7 +30,7 @@ Instruction: trimmed string, 5–2000 characters. Optional `plan` allows a front
 ```
 Response awaiting approval:
 ```json
-{"runId":"11111111-1111-4111-8111-111111111111","status":"awaiting_approval","diff":{"lines":[{"entity":"page","action":"published","count":1,"publicVisible":true,"sample":["/s/our-agency-11111111-1111-4111-8111-111111111111"],"tool":"publish_page","step":2}],"totals":{"recipients":0,"moneyInr":0,"publicVisible":true}},"risk":"MEDIUM","requiredRole":"marketer","summary":"Create and publish page","deferred":[],"source":"supplied","plannerMode":"supplied","fallbackReason":null}
+{"runId":"11111111-1111-4111-8111-111111111111","status":"awaiting_approval","diff":{"lines":[{"entity":"page","action":"published","count":1,"publicVisible":true,"sample":["/s/our-agency-11111111-1111-4111-8111-111111111111"],"tool":"publish_page","step":2}],"totals":{"distinctRecipients":0,"recipients":0,"moneyInr":0,"publicVisible":true}},"risk":"MEDIUM","requiredRole":"marketer","summary":"Create and publish page","deferred":[],"source":"supplied","plannerMode":"supplied","fallbackReason":null}
 ```
 The example diff line is illustrative; every tool effect appears in `lines`. Source is `supplied`, `fallback` or `llm` (retained for compatibility). Every plan/clarification response also has `plannerMode`: `supplied`, `gemini`, `demo` (explicit offline mode), or `fallback` (Gemini/key/context failure); `fallbackReason` is null or a safe code (`timeout`, `invalid_json`, `invalid_plan`, `missing_key`, `unavailable`, `context_failed`). LOW runs auto-commit and return `{runId,status:"completed",summary,deferred,source,plannerMode,fallbackReason}`; fetch run detail for stored diff. Clarification response creates no run: `{"clarification":"When should it start?","summary":"Need a date","source":"llm","plannerMode":"gemini","fallbackReason":null}`. DEMO_MODE=1 returns canned results without network or planner-context reads for these prompts (case/punctuation insensitive):
 
@@ -48,7 +48,7 @@ Request:
 ```json
 {"run_id":"11111111-1111-4111-8111-111111111111","decision":"approved","typed":"CONFIRM"}
 ```
-`decision`: approved or rejected. `typed` optional, but exactly CONFIRM for HIGH approval. HIGH runs require a different owner from the requester, including for rejection. Response: `{"runId":"...","status":"completed"}` or rejected. Stale: `{"runId":"...","status":"awaiting_approval","changed":true,"diff":{"lines":[],"totals":{"recipients":0,"moneyInr":0,"publicVisible":false}},"risk":"MEDIUM"}`. Completed duplicate: `{"runId":"...","status":"completed","duplicate":true}`. Errors: 400,401,403,404,409,422,500.
+`decision`: approved or rejected. `typed` optional, but exactly CONFIRM for HIGH approval. HIGH runs require a different owner from the requester, including for rejection. Response: `{"runId":"...","status":"completed"}` or rejected. Stale: `{"runId":"...","status":"awaiting_approval","changed":true,"diff":{"lines":[],"totals":{"distinctRecipients":0,"recipients":0,"moneyInr":0,"publicVisible":false}},"risk":"MEDIUM"}`. Completed duplicate: `{"runId":"...","status":"completed","duplicate":true}`. Errors: 400,401,403,404,409,422,500.
 
 ### POST /api/runs/[id]/decision — same auth and behavior as agent approve
 
@@ -70,7 +70,7 @@ Most recent first. Errors: 400,401,500.
 
 No JSON request. Response:
 ```json
-{"run":{"id":"...","user_id":"...","instruction":"Launch","plan":{"summary":"Launch","deferred":[],"steps":[]},"diff":{"lines":[],"totals":{"recipients":0,"moneyInr":0,"publicVisible":false}},"risk":"MEDIUM","plan_hash":"sha256","required_role":"marketer","status":"completed","error":null,"created_at":"2026-10-10T10:00:00.000Z","completed_at":"2026-10-10T10:01:00.000Z"},"steps":[{"id":"...","seq":1,"tool":"query_contacts","args":{"tag":"trial"},"result":{"contact_ids":[],"count":0,"unsubscribed":0},"compensation":null,"status":"done"}],"approvals":[{"id":"...","required_role":"marketer","requested_by":"...","decided_by":"...","decision":"approved","decided_at":"2026-10-10T10:01:00.000Z"}],"audit":[{"id":"1","actor":"user:...","action":"dry_run","entity":"agent_run","before":null,"after":{"risk":"MEDIUM"},"at":"2026-10-10T10:00:00.000Z"}],"notes":[]}
+{"run":{"id":"...","user_id":"...","instruction":"Launch","plan":{"summary":"Launch","deferred":[],"steps":[]},"diff":{"lines":[],"totals":{"distinctRecipients":0,"recipients":0,"moneyInr":0,"publicVisible":false}},"risk":"MEDIUM","plan_hash":"sha256","required_role":"marketer","status":"completed","error":null,"created_at":"2026-10-10T10:00:00.000Z","completed_at":"2026-10-10T10:01:00.000Z"},"steps":[{"id":"...","seq":1,"tool":"query_contacts","args":{"tag":"trial"},"result":{"contact_ids":[],"count":0,"unsubscribed":0},"compensation":null,"status":"done"}],"approvals":[{"id":"...","required_role":"marketer","requested_by":"...","decided_by":"...","decision":"approved","decided_at":"2026-10-10T10:01:00.000Z"}],"audit":[{"id":"1","actor":"user:...","action":"dry_run","entity":"agent_run","before":null,"after":{"risk":"MEDIUM"},"at":"2026-10-10T10:00:00.000Z"}],"notes":[]}
 ```
 Plan/diff/risk may be null on failed/refused runs. Notes come from the rewind audit. Errors: 400,401,404,500.
 
@@ -179,3 +179,7 @@ GEMINI_MODEL=gemini-flash-latest
 ```
 
 The planner reads `GEMINI_MODEL` at request time and defaults to `gemini-flash-latest` when it is unset, blank or whitespace-only. Set another supported model name here to override the default; restart the running Next server after editing `.env.local`. `.env.example` includes this setting. Keep `GEMINI_API_KEY` in `.env.local`; do not commit that file.
+
+### Distinct delivery recipients
+
+Dry-run `diff.totals.distinctRecipients` counts each resolved, eligible email contact once across the entire plan. Unsubscribed contacts remain excluded by the existing campaign resolver. `totals.recipients` still counts messages, including repeated recipients. The main demo returns `{"distinctRecipients":37,"recipients":74,"moneyInr":0,"publicVisible":false}`. The new field is stored with the run diff and returned on stale previews; historical diffs may omit it. No risk, approval hash or execution policy changes.
