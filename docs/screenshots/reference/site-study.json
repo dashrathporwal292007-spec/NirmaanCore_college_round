@@ -1,0 +1,1074 @@
+{
+  "projets": {
+    "headings": [
+      "Réalisations",
+      "Recevez la lettre, sans bla-bla."
+    ],
+    "sections": 0,
+    "animated": [
+      {
+        "target": "ProjectsArchive-module__XLornG__title",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "ProjectsArchive-module__XLornG__baseline",
+        "timing": {
+          "delay": 250,
+          "direction": "normal",
+          "duration": 900,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "ProjectsArchive-module__XLornG__caseCta",
+        "timing": {
+          "delay": 400,
+          "direction": "normal",
+          "duration": 900,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "ProjectsArchive-module__XLornG__craft",
+        "timing": {
+          "delay": 500,
+          "direction": "normal",
+          "duration": 900,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2600,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2600,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2600,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ProjectsArchive-module__XLornG__dragHintSub",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "SiteShell-module__UEjjta__footerReveal",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": "auto",
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 160,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 320,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      }
+    ],
+    "links": [
+      "/projets/etudes-de-cas",
+      "/expertise",
+      "/projets/burger-king",
+      "/projets/burger-king",
+      "/projets/peugeot-metropolis",
+      "/projets/visa-limitless-run",
+      "/projets/youth",
+      "/projets/youth"
+    ]
+  },
+  "expertise": {
+    "headings": [
+      "Cinq territoires. Un seul cap : exister fort.",
+      "Ce qu'on déploie.",
+      "Assez parlé. Regardez plutôt.",
+      "Recevez la lettre, sans bla-bla."
+    ],
+    "sections": 6,
+    "animated": [
+      {
+        "target": "ProjectsPreuve-module__H4Vdsa__tvImage ",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 700,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "endDelay": 0,
+          "fill": "backwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "ProjectsPreuve-module__H4Vdsa__tvImage ",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1200,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "endDelay": 0,
+          "fill": "backwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "ProjectsPreuve-module__H4Vdsa__tvImage ProjectsPreuve-module__H4Vdsa__tvImageOn",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 700,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "endDelay": 0,
+          "fill": "backwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "ProjectsPreuve-module__H4Vdsa__tvImage ProjectsPreuve-module__H4Vdsa__tvImageOn",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1200,
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "endDelay": 0,
+          "fill": "backwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "ExpertiseHero-module__bl3dgG__scrollDot",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2400,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ExpertiseIntro-module__drlk8a__mark",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 12000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ServicesScroll-module__o1dB4q__marqueeTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 38000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ServicesScroll-module__o1dB4q__marqueeTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 38000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ServicesScroll-module__o1dB4q__marqueeTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 38000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ServicesScroll-module__o1dB4q__marqueeTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 38000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ServicesScroll-module__o1dB4q__marqueeTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 38000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ServicesScroll-module__o1dB4q__closerMark",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 38000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      }
+    ],
+    "links": [
+      "/strategie-de-marque",
+      "/projets",
+      "/agence-branding",
+      "/projets",
+      "/creation-site-internet",
+      "/projets",
+      "/agence-publicite",
+      "/projets"
+    ]
+  },
+  "agence": {
+    "headings": [
+      "Don't just be different. Ownitt.",
+      "Agence de communication de publicité marketing de branding web digitale social media créative primée de communication Agence de communication, de publicité, marketing, de branding, web, digitale, social media, créative et primée.",
+      "Nos valeurs en cinq règles.",
+      "À chaque projet Une équipe d'élite",
+      "L'équipe d'élite, activée.",
+      "Recevez la lettre, sans bla-bla."
+    ],
+    "sections": 6,
+    "animated": [
+      {
+        "target": "KeywordRotator-module__GgoFvq__track",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 20000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AgenceManifesto-module__6SRH0W__heroDot",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AgenceManifesto-module__6SRH0W__bancTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 46000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AgenceManifesto-module__6SRH0W__bancTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "reverse",
+          "duration": 60000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AgenceManifesto-module__6SRH0W__bancTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 46000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AgenceManifesto-module__6SRH0W__bancTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "reverse",
+          "duration": 60000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AgenceManifesto-module__6SRH0W__bancTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 46000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AgenceManifesto-module__6SRH0W__bancTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "reverse",
+          "duration": 60000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AgenceManifesto-module__6SRH0W__bancTrack",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 46000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AgenceManifesto-module__6SRH0W__defector",
+        "timing": {
+          "delay": 0,
+          "direction": "alternate",
+          "duration": 26000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "AgenceManifesto-module__6SRH0W__sheetCueDot",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "MediaMarquee-module__RtHMDW__track",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 32000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      }
+    ],
+    "links": [
+      "https://www.linkedin.com/in/herve-nguetsop-ownitt/",
+      "/expertise",
+      "/projets/etudes-de-cas",
+      "/contact"
+    ]
+  },
+  "blog": {
+    "headings": [
+      "Stratégie, inspirations & créativité.",
+      "WordPress, Wix ou sur mesure : quel site pour une TPE ?",
+      "Faire créer son site : les questions à poser avant de signer",
+      "Qu'est-ce qu'une promesse de marque ? Exemples concrets",
+      "Symbole basque et logo : le lauburu sans faire carte postale",
+      "Avocats : se différencier quand la publicité est encadrée",
+      "Hervé Nguetsop au SEO & GEO Summit, le 16 octobre",
+      "Couleur de marque : ce que votre palette dit vraiment",
+      "Brief créatif : comment briefer une agence sans dicter la solution",
+      "Typographie de marque : vos lettres parlent avant vos mots",
+      "Choisir un nom de marque : les critères qui tiennent",
+      "Hervé Nguetsop signe les marques de Solutions Parfum"
+    ],
+    "sections": 1,
+    "animated": [
+      {
+        "target": "page-module__jXZM3G__heroBgStar",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 40000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "page-module__jXZM3G__heroDividerStar",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 12000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "SiteShell-module__UEjjta__footerReveal",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": "auto",
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 160,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 320,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 420,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 520,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 660,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 760,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "CookieBanner-module__xm3yWa__banner",
+        "timing": {
+          "delay": 100,
+          "direction": "normal",
+          "duration": 750,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "CookieBanner-module__xm3yWa__header",
+        "timing": {
+          "delay": 350,
+          "direction": "normal",
+          "duration": 500,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      }
+    ],
+    "links": [
+      "/blog/wordpress-wix-ou-sur-mesure-quel-site-tpe",
+      "/blog/questions-a-poser-avant-de-faire-creer-son-site",
+      "/blog/qu-est-ce-qu-une-promesse-de-marque-exemples",
+      "/blog/symboles-basques-logo-lauburu-rouge-vert",
+      "/blog/avocats-se-differencier-communication-reglementee-zugzwang-commercial",
+      "/blog/herve-nguetsop-seo-geo-summit-disneyland-paris-caillou",
+      "/blog/couleur-de-marque-choisir-sa-palette-distinctive",
+      "/blog/brief-creatif-comment-briefer-une-agence"
+    ]
+  },
+  "contact": {
+    "headings": [
+      "On se dit tout ?",
+      "Par où on commence ?",
+      "On a déjà hâte de vous rencontrer.",
+      "Recevez la lettre, sans bla-bla."
+    ],
+    "sections": 3,
+    "animated": [
+      {
+        "target": "ContactHero-module__Qd5gEG__scrollDot",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2400,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ContactStudio-module__mX3T-G__track ",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 40000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "ContactStudio-module__mX3T-G__track ContactStudio-module__mX3T-G__trackReverse",
+        "timing": {
+          "delay": 0,
+          "direction": "reverse",
+          "duration": 40000,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "SiteShell-module__UEjjta__footerReveal",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": "auto",
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 160,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 320,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 420,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 520,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 660,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 760,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "CookieBanner-module__xm3yWa__banner",
+        "timing": {
+          "delay": 100,
+          "direction": "normal",
+          "duration": 750,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      }
+    ],
+    "links": [
+      "mailto:contact@ownitt.fr",
+      "/rendez-vous",
+      "https://www.instagram.com/ownitt.agency/",
+      "https://www.linkedin.com/company/ownitt-agence-web-creative/",
+      "https://fr.pinterest.com/Ownittagency/",
+      "/newsletter"
+    ]
+  },
+  "projets/etudes-de-cas": {
+    "headings": [
+      "Quelques cas clients à la loupe.",
+      "Burger King",
+      "Peugeot Metropolis",
+      "Juste Visa & Friends",
+      "VISA - The Ocean Snack Machine",
+      "VISA - Limitless Night",
+      "Youth - Vietnamese Kitchen",
+      "Hyskatebag",
+      "Remanence",
+      "Jean-Baptiste Ancelot",
+      "La Smoocyclette",
+      "Sur la Lune"
+    ],
+    "sections": 1,
+    "animated": [
+      {
+        "target": "SiteShell-module__UEjjta__footerReveal",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": "auto",
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 160,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 320,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 420,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 520,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 660,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": {},
+        "timing": {
+          "delay": 760,
+          "direction": "normal",
+          "duration": 1700,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "forwards",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "CookieBanner-module__xm3yWa__banner",
+        "timing": {
+          "delay": 100,
+          "direction": "normal",
+          "duration": 750,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "CookieBanner-module__xm3yWa__header",
+        "timing": {
+          "delay": 350,
+          "direction": "normal",
+          "duration": 500,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      },
+      {
+        "target": "CookieBanner-module__xm3yWa__dot",
+        "timing": {
+          "delay": 0,
+          "direction": "normal",
+          "duration": 2400,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "none",
+          "iterationStart": 0,
+          "iterations": null
+        }
+      },
+      {
+        "target": "CookieBanner-module__xm3yWa__text",
+        "timing": {
+          "delay": 450,
+          "direction": "normal",
+          "duration": 500,
+          "easing": "linear",
+          "endDelay": 0,
+          "fill": "both",
+          "iterationStart": 0,
+          "iterations": 1
+        }
+      }
+    ],
+    "links": [
+      "/projets",
+      "/expertise",
+      "/projets/burger-king",
+      "/projets/burger-king",
+      "/projets/peugeot-metropolis",
+      "/projets/peugeot-metropolis",
+      "/projets/visa-juste-visa-friends",
+      "/projets/visa-juste-visa-friends"
+    ]
+  }
+}

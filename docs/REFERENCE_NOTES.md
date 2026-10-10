@@ -30,3 +30,11 @@ A second desktop sampling measured actual horizontal transform movement over app
 The opening consumes initial wheel input to transition between scenes; real wheel input was needed to reach the numbered case navigation reliably. Its desktop 01–08 rail is hidden at 390px, so the mobile comparison captures the responsive project section instead. Nexus uses ordinary page scrolling throughout.
 
 Cursor follow-up: a fresh desktop Playwright inspection found a 6px difference-blended dot and a 36px trailing ring. Both transforms show rotation and non-uniform scaling during pointer movement. Nexus uses its own implementation of this movement, not reference source code. Its scroll adaptation uses native scrolling, viewport-triggered reveals and limited heading drift instead of the reference's wheel-controlled opening scene.
+
+## Full navigation study and panel-menu follow-up
+
+Revisited the homepage at desktop and mobile and inspected all five main destinations: projects, expertise, agency, blog and contact, plus the case-study index. Captured both initial and scrolled states under `screenshots/reference/study-*.png`; route inventories and active-animation timing samples are in `site-study.json`. This covers the main site experiences, not every blog article, client case, location landing page or external social destination. No forms were submitted.
+
+The menu overlay uses a circular clip-path reveal originating near the top-right control, 600ms cubic-bezier(.77,0,.175,1). Its five full-height desktop territories flex on hover over 500ms cubic-bezier(.76,0,.24,1), with 40ms staggered panel entrance. Title layers and supporting descriptions change separately; descriptions use a 350ms reveal with an 80ms delay. The reference uses photography for active territories. Nexus substitutes its own type-led panel treatment and retains eight real destinations. Mobile becomes a readable vertical list. Closing reverses the circular reveal before navigation; Escape and keyboard focus use the same treatment.
+
+The other pages repeat oversized headings, alternating text-led surfaces, animated repeated typography, expandable expertise content and project reveals. Nexus maps these patterns onto its real rules, runs, receipt and registration workflows rather than adding agency content or inventing activity.

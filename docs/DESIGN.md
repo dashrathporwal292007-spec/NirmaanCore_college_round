@@ -67,3 +67,7 @@ Entry, menu, row reveals and receipt printing use 600ms cubic-bezier(.16,1,.3,1)
 ## Scroll and pointer update
 
 The user's latest direction authorizes reference-inspired cursor and scroll effects, superseding the earlier cursor restriction. On fine mouse pointers a 6px dot and a trailing 36px ring stretch with velocity; interactive controls enlarge the ring. Inputs keep their native caret, keyboard input hides the decoration, and coarse pointers/reduced motion disable it. Sections reveal over 650ms and headings drift at most 28px with natural scrolling. No wheel interception or forced scene navigation; approval, receipt and trace semantics remain unchanged. Motion adds no requests or backend changes.
+
+## Expanded reference interaction direction
+
+The latest user request supersedes earlier visual restrictions: navigation may use contrasting cream territories on black, circular reveals and layered hover typography. The menu opens and closes with a 600ms top-right circle reveal; eight full-height desktop panels expand on hover or focus, with separately revealed descriptions and serif title layers. At 1000px and below the menu stacks readable rows. Descriptions must inherit the panel's contrasting text colour. Escape, focus containment, modified-click link behavior and reduced-motion immediate navigation remain supported. Reference photography, proprietary fonts, logos and copy are not product assets.

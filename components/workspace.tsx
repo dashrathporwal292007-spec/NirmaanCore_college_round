@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import { api, setRole, type Mode } from "@/lib/api";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { createContext, useContext, type ReactNode } from "react";
 
 import { ErrorState } from "@/components/shared";
@@ -27,6 +27,31 @@ const WorkspaceContext = createContext({
 export const useWorkspace = () => useContext(WorkspaceContext);
 export function WorkspaceShell({ children }: { children: ReactNode }) {
   const path = usePathname();
+  const router = useRouter();
+  const [closing, setClosing] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const closeMenu = (href?: string) => {
+    if (closeTimer.current) return;
+    const finish = () => {
+      menu.current?.close();
+      setClosing(false);
+      setMenuOpen(false);
+      closeTimer.current = null;
+      if (href) router.push(href);
+    };
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) finish();
+    else {
+      setClosing(true);
+      closeTimer.current = setTimeout(finish, 600);
+    }
+  };
+  useEffect(
+    () => () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    },
+    [],
+  );
   const [role, updateRole] = useState<"owner" | "viewer">("owner");
   const [mode, setMode] = useState<Mode | null>(null);
   const [last, setLast] = useState("No tick run this session");
@@ -92,10 +117,20 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
           </div>
           <button
             className="menu-toggle"
-            onClick={() => menu.current?.showModal()}
+            onClick={() => {
+              setClosing(false);
+              menu.current?.showModal();
+              setMenuOpen(true);
+            }}
+            aria-expanded={menuOpen}
+            aria-controls="workspace-menu"
             aria-haspopup="dialog"
           >
-            Menu
+            <span>Menu</span>
+            <i className="menu-lines" aria-hidden="true">
+              <i />
+              <i />
+            </i>
           </button>
         </div>
         <div className="utility">
@@ -138,7 +173,12 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
       </header>
       <dialog
         ref={menu}
-        className="menu-overlay"
+        id="workspace-menu"
+        className={`menu-overlay panel-menu ${closing ? "is-closing" : ""}`}
+        onCancel={(e) => {
+          e.preventDefault();
+          closeMenu();
+        }}
         aria-label="Workspace menu"
         onKeyDown={(e) => {
           if (e.key !== "Tab") return;
@@ -160,17 +200,37 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
       >
         <div className="menu-heading">
           <span className="wordmark">Nexus</span>
-          <button onClick={() => menu.current?.close()}>Close menu</button>
+          <button className="menu-close" onClick={() => closeMenu()}>
+            Close menu<span aria-hidden="true">×</span>
+          </button>
         </div>
         <nav aria-label="Workspace">
-          {tabs.map(([tab, href]) => (
+          {tabs.map(([tab, href], index) => (
             <Link
               key={href}
               href={href}
               aria-current={path === href ? "page" : undefined}
-              onClick={() => menu.current?.close()}
+              style={{ "--panel-order": index } as React.CSSProperties}
+              onClick={(e) => {
+                if (
+                  e.ctrlKey ||
+                  e.metaKey ||
+                  e.shiftKey ||
+                  e.altKey ||
+                  e.button !== 0
+                )
+                  return;
+                e.preventDefault();
+                closeMenu(href);
+              }}
             >
-              <span>{tab}</span>
+              <span className="panel-number" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="panel-title">
+                <span>{tab}</span>
+                <span aria-hidden="true">{tab}</span>
+              </span>
               <small>
                 {
                   (
