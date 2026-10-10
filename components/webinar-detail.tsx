@@ -15,7 +15,7 @@ import {
 export function WebinarScreen({ id }: { id: string }) {
   const { role, revision, refresh, onMode } = useWorkspace(),
     router = useRouter(),
-    generation = useRef(0);
+    generation = useRef({ value: 0 });
   const [data, setData] = useState<WebinarDetail | null>(null),
     [contacts, setContacts] = useState<Contact[]>([]),
     [cid, setCid] = useState(""),
@@ -27,13 +27,13 @@ export function WebinarScreen({ id }: { id: string }) {
     [busy, setBusy] = useState(false),
     [stale, setStale] = useState(false);
   const load = useCallback(async () => {
-    const n = ++generation.current;
+    const n = ++generation.current.value;
     const [d, c, p] = await Promise.all([
       api.webinar(id),
       allContacts(),
       role === "owner" ? api.pending(id, kind) : Promise.resolve(null),
     ]);
-    if (n !== generation.current) return;
+    if (n !== generation.current.value) return;
     setData(d);
     setContacts(c);
     setPending(p);
@@ -46,9 +46,10 @@ export function WebinarScreen({ id }: { id: string }) {
     setError("");
   }, [id, kind, role]);
   useEffect(() => {
+    const counter = generation.current;
     void load().catch((e) => setError(e.message));
     return () => {
-      generation.current++;
+      counter.value++;
     };
   }, [load, revision]);
   async function act(fn: () => Promise<string>) {
@@ -159,7 +160,11 @@ export function WebinarScreen({ id }: { id: string }) {
             <h2>Customer actions</h2>
             <label>
               Contact
-              <select value={cid} onChange={(e) => setCid(e.target.value)}>
+              <select
+                aria-label="Contact"
+                value={cid}
+                onChange={(e) => setCid(e.target.value)}
+              >
                 {contacts.map((c) => (
                   <option key={c.id} value={c.id}>
                     {c.name}
