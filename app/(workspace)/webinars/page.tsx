@@ -1,4 +1,4 @@
-import { WebinarView } from "@/components/views";
+import { WebinarsList } from "@/components/webinars";
 export default function Page() {
-  return <WebinarView />;
+  return <WebinarsList />;
 }
