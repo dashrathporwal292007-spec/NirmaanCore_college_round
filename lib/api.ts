@@ -77,6 +77,28 @@ export interface Message {
   cancel_reason: Rule | null;
   dispatched_at: string | null;
 }
+export interface Webinar {
+  id: string;
+  title: string;
+  description: string;
+  starts_at: string;
+  status: string;
+  page_id: string | null;
+  slug: string | null;
+  page_status: string | null;
+  registrant_count: number;
+}
+export interface WebinarDetail {
+  webinar: Webinar;
+  registrants: {
+    contact_id: string;
+    name: string;
+    email: string;
+    attended: boolean;
+    registered_at: string;
+  }[];
+  simulated: true;
+}
 export interface Pending {
   recipients: { id: string; name: string }[];
   subject: string;
@@ -178,6 +200,20 @@ export function setRole(role: keyof typeof users) {
   document.cookie = `uid=${users[role]}; Path=/; SameSite=Lax`;
 }
 export const api = {
+  webinars: (filters: Record<string, string | number | undefined> = {}) =>
+    request<{
+      webinars: Webinar[];
+      limit: number;
+      offset: number;
+      simulated: true;
+    }>("/api/webinars" + query(filters)),
+  webinar: (id: string) =>
+    request<WebinarDetail>("/api/webinars/" + encodeURIComponent(id)),
+  optOut: (id: string) =>
+    request<{ contact_id: string; unsubscribed: true; simulated: true }>(
+      "/api/contacts/" + encodeURIComponent(id) + "/opt-out",
+      {},
+    ),
   plan: (instruction: string, plan?: Plan) =>
     request<PlanResponse>("/api/agent/plan", {
       instruction,

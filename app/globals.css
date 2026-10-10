@@ -685,3 +685,71 @@ textarea {
 .registration-page .section {
   font-size: 16px;
 }
+.rule-stages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 2px dashed var(--hairline);
+  border-bottom: 2px dashed var(--hairline);
+  margin: 40px 0;
+}
+.rule-stage {
+  padding: 28px 24px;
+  min-width: 0;
+  color: var(--muted);
+  position: relative;
+}
+.rule-stage h2 {
+  font-size: 28px;
+  margin: 12px 0 20px;
+}
+.rule-stage.reached {
+  color: var(--ink);
+}
+.trace-rail {
+  height: 2px;
+  background: var(--hairline);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.trace-rail:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--added);
+  transition: width 480ms linear;
+}
+.trace-rail.reached:after {
+  width: 100%;
+}
+.live-columns {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1.3fr);
+  gap: 48px;
+}
+.phone-frame {
+  width: 390px;
+  max-width: 100%;
+  height: 844px;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  background: var(--background);
+}
+.empty small {
+  display: block;
+  margin-top: 16px;
+}
+@media (max-width: 850px) {
+  .rule-stages,
+  .live-columns {
+    grid-template-columns: 1fr;
+  }
+  .rule-stage {
+    padding: 24px 0;
+  }
+  .rule-stage + .rule-stage {
+    border-top: 1px solid var(--line);
+  }
+}
