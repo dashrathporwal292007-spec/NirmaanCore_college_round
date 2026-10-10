@@ -1,51 +1,13 @@
 import assert from 'node:assert/strict'
-import { spawn, type ChildProcess } from 'node:child_process'
-import { createServer } from 'node:net'
-import { setTimeout as sleep } from 'node:timers/promises'
+import { request, start, cleanup, base, getServerOutput } from './http-demo'
 import { pool } from '../lib/db'
 import { seed, USERS } from './seed'
 import { DEMO_SENTENCE, demoPlan } from '../lib/agent/planner'
 import type { Plan } from '../lib/agent/plan'
 
-let server: ChildProcess | undefined
-let base = process.env.ROUTES_BASE_URL ?? ''
-let serverOutput = ''
 const OTHER_OWNER = '00000000-0000-0000-0000-000000000004'
 const sql = async (query: string, values: unknown[] = []) => (await pool.query(query, values)).rows
 const count = async (query: string, values: unknown[] = []) => Number((await sql(query, values))[0].n)
-async function request(path: string, method = 'GET', input?: unknown, uid: string | null = USERS.owner, expected = 200, extra: Record<string,string> = {}) {
-  const res = await fetch(base + path, { method, headers: { ...(uid ? { Cookie: `uid=${uid}` } : {}),
-    ...(input === undefined ? {} : { 'Content-Type': 'application/json' }), ...extra },
-    body: input === undefined ? undefined : JSON.stringify(input), signal: AbortSignal.timeout(20_000) })
-  const text = await res.text()
-  assert.equal(res.status, expected, `${method} ${path}: ${text}`)
-  assert.match(res.headers.get('cache-control') ?? '', /no-store/)
-  return JSON.parse(text)
-}
-async function start() {
-  if (base) {
-    const u = new URL(base)
-    assert.ok(u.protocol === 'http:' && ['127.0.0.1','localhost','[::1]'].includes(u.hostname), 'ROUTES_BASE_URL must be loopback HTTP')
-    base = u.origin
-    return
-  }
-  const probe = createServer()
-  await new Promise<void>((resolve,reject) => { probe.once('error',reject); probe.listen(0,'127.0.0.1',resolve) })
-  const address = probe.address(); assert.ok(address && typeof address !== 'string')
-  const port = address.port
-  await new Promise<void>((resolve,reject) => probe.close(e => e ? reject(e) : resolve()))
-  base = `http://127.0.0.1:${port}`
-  server = spawn(process.execPath, ['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port',String(port)],
-    { cwd: process.cwd(), env: { ...process.env, DEMO_MODE: '1' }, stdio: ['ignore','pipe','pipe'] })
-  for (const stream of [server.stdout, server.stderr]) stream?.on('data', chunk => { serverOutput = (serverOutput + chunk.toString()).slice(-8000) })
-  server.on('error', error => { serverOutput += String(error) })
-  for (let i=0;i<150;i++) {
-    if (server.exitCode !== null) throw new Error(`HTTP server exited: ${serverOutput}`)
-    try { if ((await fetch(base+'/api/runs',{signal:AbortSignal.timeout(1000)})).status === 401) return } catch { /* wait for readiness */ }
-    await sleep(200)
-  }
-  throw new Error(`HTTP server did not become ready: ${serverOutput}`)
-}
 async function submit(plan: Plan, uid: string = USERS.marketer) {
   return request('/api/agent/plan','POST',{ instruction:'HTTP tool composer test',plan },uid)
 }
@@ -63,10 +25,14 @@ async function main() {
   await request('/api/agent/plan','POST',{instruction:DEMO_SENTENCE},USERS.owner,403,{Origin:'https://untrusted.example'})
   const bad = await fetch(base+'/api/agent/plan',{method:'POST',headers:{Cookie:`uid=${USERS.owner}`,'Content-Type':'application/json'},body:'{',signal:AbortSignal.timeout(5000)})
   assert.equal(bad.status,400);assert.equal((await bad.json()).error.code,'INVALID_INPUT')
+  const beforePlannerError = await sql(`select (select count(*) from agent_runs) runs,(select count(*) from audit_log) audit`)
+  const plannerFailure = await request('/api/agent/plan','POST',{instruction:'Unsupported rehearsal prompt'},USERS.marketer,422)
+  assert.equal(plannerFailure.error.details.plannerCode,'demo_unsupported')
+  assert.deepEqual(await sql(`select (select count(*) from agent_runs) runs,(select count(*) from audit_log) audit`),beforePlannerError)
   console.log('ok 1 HTTP auth, roles, validation, cross-origin and missing resource errors')
 
   const p = await request('/api/agent/plan','POST',{instruction:DEMO_SENTENCE},USERS.marketer)
-  assert.equal(p.status,'awaiting_approval'); assert.equal(p.source,'fallback')
+  assert.equal(p.status,'awaiting_approval'); assert.equal(p.source,'fallback');assert.equal(p.plannerMode,'demo');assert.equal(p.fallbackReason,null)
   assert.equal(await count('select count(*) n from webinars'),0)
   assert.equal(await count('select count(*) n from outbox'),0)
   const refused=await request('/api/agent/plan','POST',{instruction:DEMO_SENTENCE},USERS.viewer,403)
@@ -180,12 +146,4 @@ async function main() {
   console.log('ok 6 cancellation idempotency, read APIs and computed analytics')
   console.log('ALL GREEN')
 }
-async function cleanup() {
-  if (server && server.exitCode === null) {
-    server.kill('SIGTERM')
-    await Promise.race([new Promise<void>(resolve=>server!.once('exit',()=>resolve())),sleep(5000)])
-    if (server.exitCode === null) server.kill('SIGKILL')
-  }
-  await pool.end()
-}
-main().catch(error=>{console.error(error);if(serverOutput) console.error(serverOutput);process.exitCode=1}).finally(cleanup)
+main().catch(error=>{console.error(error);if(getServerOutput()) console.error(getServerOutput());process.exitCode=1}).finally(async () => { await cleanup(); await pool.end() })
