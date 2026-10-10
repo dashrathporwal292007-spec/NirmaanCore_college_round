@@ -19,3 +19,7 @@ Preserved real numbered run labels, status, actual instruction summaries and det
 ## Outbox
 
 Preserved every stored status and each email's Simulated marker/reason. Added a Blocked by rule filter derived only from cancelled records whose stored cancel_reason.allow is false (the actual evaluator denial); manual cancel/rewind remain distinct. Uses existing cancelled list pagination, then paginates the derived view correctly. Each matching record shows both its actual cancelled status and Blocked by rule label. No fictional blocked API status or backend change. The client type now includes the already-returned optional allow field.
+
+## Analytics
+
+The existing endpoint computes distinct contacts, actual sent counts, simulated invoices/MRR and stored usage, so retained the page rather than skipping it. Increased main figures to 72–128px. No charts, fabricated revenue or guessed time savings; backend estimates remain explicitly labelled estimates and delivery/billing Simulated notes remain.
