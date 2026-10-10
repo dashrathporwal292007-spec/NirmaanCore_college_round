@@ -1,17 +1,10 @@
-# NirmaanCore_college_round
-Bit n Build 2026
+# Nexus
 
-# Nexus — Phase 0–1 backend checkpoint
-
-Next.js App Router, TypeScript, Tailwind, node-postgres, Zod, Gemini adapter and Recharts. No src directory; @/* resolves from the repository root.
-
-## Scope
-
-This checkpoint implements typed tools, transactional dry-run/commit, risk calculation, approval, stale-preview protection, audit/contact events and compensation. UI, API routes, authentication and adaptive services are later phases. Read docs/BLUEPRINT.md and docs/DECISIONS.md before extending it.
+A Bit n Build prototype: the agent proposes a business workflow, a person approves it, and deterministic rules keep pending actions appropriate. Next.js App Router, TypeScript and PostgreSQL 16.
 
 ## Setup
 
-Requires Node 20.9+ and Docker. The verified environment used Node 24 and Postgres 16.
+Use Node 24 and a disposable demo database. In a fresh checkout:
 
 ```sh
 npm ci
@@ -19,26 +12,30 @@ cp .env.example .env.local
 docker run -d --name nexus-db -e POSTGRES_PASSWORD=nexus -e POSTGRES_DB=nexus -p 127.0.0.1:5432:5432 postgres:16
 docker exec -i nexus-db psql -v ON_ERROR_STOP=1 -U postgres -d nexus < docs/schema.sql
 docker exec -i nexus-db psql -v ON_ERROR_STOP=1 -U postgres -d nexus < docs/schema_adaptive.sql
-npm run seed
-npm run smoke
-```
-
-Migrations apply once to a new database. If the container already exists, use `docker start nexus-db`; do not reapply these migrations blindly. If Docker is unavailable, provide DATABASE_URL explicitly rather than choosing another database automatically.
-
-**Seed and smoke reset all application data in the configured database. Use only a disposable prototype database.** Expected seed: 50 contacts, 40 trial, 3 unsubscribed; 3 users, 3 plans, one published seed page. All contact emails use example.com.
-
-## Checks
-
-```sh
-npm run typecheck
-npm run lint
+npm run demo:reset
 npm run build
-npm run check:core
-npm run smoke
+npm run start
 ```
 
-Database tests run sequentially. The core check resets data; smoke resets it again. Smoke leaves committed/rewound/failed run history; `npm run seed` resets the demo when needed.
+Apply schemas once to a new database. For an existing container, use `docker start nexus-db`; do not blindly reapply schemas. Without Docker, explicitly configure DATABASE_URL in the ignored .env.local. Keep DEMO_MODE=1 for the offline demo; no API key is required. Optional live planning uses GEMINI_API_KEY and GEMINI_MODEL (default gemini-flash-latest). Never commit .env.local.
 
-DEMO_MODE=1 needs no API key. `makePlan(DEMO_SENTENCE)` returns the cached plan; other instructions explicitly fail without an LLM call. Set DEMO_MODE=0 and GEMINI_API_KEY only when testing live planning. No email delivery or real payments occur.
+Open http://localhost:3000. Public registration is /register/[slug]. Publish its draft through the normal approval pipeline before registering.
 
-`npm run dev` starts the scaffold at localhost:3000. Webpack is selected because Turbopack's helper process cannot bind its port in this execution environment. App UI is scaffold-only.
+## Scripts
+
+- `npm run dev`: development server.
+- `npm run typecheck`, `npm run build`, `npm run lint`: static checks.
+- `npm run smoke`, `npm run smoke:adaptive`, `npm run smoke:routes`: core, adaptive and real HTTP/DB checks.
+- `npm run rehearse`: backend demo rehearsal.
+- `npm run demo:reset`: clean seed, 50 contacts / 40 trial / 3 unsubscribed.
+- `npm run worker`: periodic simulated dispatch; the UI can also run one tick.
+
+Run database tests serially: smoke, rehearse and reset replace demo data. For three browser rehearsals, start production, then run `PLAYWRIGHT_BROWSERS_PATH=.cache/playwright node scripts/check-ui.mjs` (install Chromium there with Playwright first).
+
+## Real and simulated
+
+Real: database records, registrations, permissions, dry-run previews, approvals, rule decisions, audit history and reversible compensation. Demo cookie roles are not production login.
+
+Simulated: email delivery, payments/invoices, subscription checkout and webinar hosting. No attendance control, UI reset or unapproved-draft cancellation. Sent messages and active subscriptions cannot be recalled by rewind. Fonts and original menu artwork are bundled locally; offline demo mode needs no external runtime requests.
+
+Contracts: docs/API.md. Design/reference: docs/DESIGN.md and docs/REFERENCE_NOTES.md. Verification: docs/BATCH_A.md and docs/BATCH_B.md.

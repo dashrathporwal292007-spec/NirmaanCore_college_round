@@ -247,6 +247,12 @@ for (let cycle = 1; cycle <= cycles; cycle++) {
   await rule.focus();
   await page.keyboard.press("Enter");
   await page.getByRole("dialog", { name: "Rule inspector" }).waitFor();
+  if (cycle === 1) await capture(page, "rule-drawer");
+  await page.keyboard.press("Escape");
+  await page.getByRole("dialog", { name: "Rule inspector" }).waitFor({ state: "hidden" });
+  assert.equal(await rule.evaluate((e) => e === document.activeElement), true, "Rule drawer restores focus");
+  await page.keyboard.press("Enter");
+  await page.getByRole("dialog", { name: "Rule inspector" }).waitFor();
   await page.getByRole("link", { name: "Read all rules", exact: true }).click();
   await page.waitForURL("**/rules#REMINDER_REQUIRES_UNREGISTERED");
   await page.locator("#REMINDER_REQUIRES_UNREGISTERED[open]").waitFor();
