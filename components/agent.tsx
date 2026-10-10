@@ -182,9 +182,17 @@ export function Agent({
       .reduce((n, l) => n + l.count, 0) ?? 0;
   const distinct = diff?.totals.distinctRecipients;
   return (
-    <div className={`${run ? "agent has-receipt" : "agent"}${detailTitle ? " run-detail" : ""}`}>
+    <div
+      className={`${run ? "agent has-receipt" : "agent"}${detailTitle ? " run-detail" : ""}`}
+    >
       <h1>
-        {detailTitle ? <>{detailTitle}<br /><em>On the record.</em></> : (
+        {detailTitle ? (
+          <>
+            {detailTitle}
+            <br />
+            <em>On the record.</em>
+          </>
+        ) : (
           <>
             Agents that <em>ask</em>
             <br /> before they act.

@@ -95,7 +95,11 @@ export function WebinarScreen({ id }: { id: string }) {
       <p>
         <Link href="/webinars">All webinars</Link>
       </p>
-      <h1>A gathering.<br /><em>A next step.</em></h1>
+      <h1>
+        A gathering.
+        <br />
+        <em>A next step.</em>
+      </h1>
       <h2>{w?.title ?? "Webinar"}</h2>
       {error && <ErrorState message={error} />}
       <p role="status" className="notice">
