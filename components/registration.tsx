@@ -56,6 +56,7 @@ export function Registration({ slug }: { slug: string }) {
         <p role="status">Opening registration…</p>
       ) : (
         <>
+          <p className="poster-kicker">A place to <em>learn.</em></p>
           <h1>
             {data?.webinar?.title ??
               data?.page.title ??

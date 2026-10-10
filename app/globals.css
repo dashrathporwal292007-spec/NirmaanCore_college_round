@@ -888,3 +888,11 @@ button,input,textarea,select { border-radius:2px; }
 @keyframes editorial-entry { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
 @media(max-width:850px) { header { padding:16px 24px; } .workspace { padding:72px 24px 96px; } .utility { gap:12px; } .utility .simulation-note { width:100%; } .menu-overlay { padding:24px; } .menu-overlay nav { grid-template-columns:1fr; gap:12px; } .menu-heading { margin-bottom:32px; } .command { margin:96px 0 48px; } .has-receipt .command { margin:32px 0; } }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; transition:none !important; } }
+.registration-page { max-width:1440px; padding:48px 6vw 96px; }
+.registration-brand { margin-bottom:96px; font-size:36px; }
+.registration-page h1 { font-size:clamp(56px,9vw,132px); max-width:15ch; margin-bottom:48px; }
+.poster-kicker { font-size:24px; margin-bottom:24px; }
+.poster-kicker em { font-family:var(--font-serif); font-size:36px; }
+.registration-page form { max-width:440px; margin-top:64px; gap:24px; }
+.registration-page form button { margin-top:12px; }
+@media(max-width:850px) { .registration-page { padding:32px 24px 96px; } .registration-brand { margin-bottom:72px; } .registration-page form { margin-top:48px; } }
