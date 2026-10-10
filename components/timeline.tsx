@@ -76,7 +76,7 @@ export function ContactDetail({ id }: { id: string }) {
       <p>
         <Link href="/contacts">All contacts</Link>
       </p>
-      <h1>{contact?.name ?? "Contact timeline"}</h1>
+      <h1>{contact?.name ?? "Contact"}.<br /><em>Every change.</em></h1>
       {contact && (
         <>
           <p>
