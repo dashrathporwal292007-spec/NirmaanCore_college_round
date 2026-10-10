@@ -7,3 +7,7 @@ Existing real-data search covers name, email, tags and unsubscribed state. Incre
 ## Rules and drawer
 
 Verified the five catalogue entries against evaluate.ts, adaptive.ts and blueprint §2.5; manual cancellation/rewind explanations remain separate. The existing five numbered hover/focus rows and moving typography are preserved. Rule IDs now open a keyboard-contained native dialog drawer with the same catalogue explanations and a /rules link. Unknown IDs explicitly flag unconfirmed behavior. The browser rehearsal now opens the requested drawer and follows its Read all rules link before the existing unchanged page/hash/focus assertions; no backend smoke assertions changed.
+
+## Webinars
+
+Existing list/detail use real status/count data and preserve Close, Approve-only pending follow-up with stale-fingerprint handling, untouched-draft note and three explicitly Simulated customer buttons. Added observation of new stored automatic decisions after workspace refresh/worker ticks; notices append the real effect/reason without inventing an effect on no-op ticks. Registration/opt-out/checkout remain existing API calls. No attendance action was added; the exact omission note remains.

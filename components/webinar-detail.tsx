@@ -16,6 +16,7 @@ export function WebinarScreen({ id }: { id: string }) {
   const { role, revision, refresh, onMode } = useWorkspace(),
     router = useRouter(),
     generation = useRef({ value: 0 });
+  const seenDecisions = useRef<Record<string, Set<string>>>({});
   const [data, setData] = useState<WebinarDetail | null>(null),
     [contacts, setContacts] = useState<Contact[]>([]),
     [cid, setCid] = useState(""),
@@ -52,6 +53,56 @@ export function WebinarScreen({ id }: { id: string }) {
       counter.value++;
     };
   }, [load, revision]);
+  useEffect(() => {
+    if (!cid) return;
+    let active = true;
+    const key = id + cid;
+    void api
+      .timeline(cid, { limit: 200 })
+      .then(({ events }) => {
+        if (!active) return;
+        const prior = seenDecisions.current[key];
+        const decisions = events.filter(
+          (e) => e.type === "automation_decision",
+        );
+        seenDecisions.current[key] = new Set(decisions.map((e) => e.id));
+        const latest =
+          prior &&
+          decisions.find(
+            (e) =>
+              !prior.has(e.id) &&
+              (!e.payload.evidence ||
+                typeof e.payload.evidence !== "object" ||
+                Array.isArray(e.payload.evidence) ||
+                !("webinar_id" in e.payload.evidence) ||
+                e.payload.evidence.webinar_id === id),
+          );
+        if (!latest) return;
+        const label =
+          latest.payload.decision === "cancelled"
+            ? latest.rule_id === "REMINDER_REQUIRES_UNREGISTERED"
+              ? "Reminder cancelled."
+              : latest.rule_id === "OPTED_OUT_BLOCKS_PROMO"
+                ? "Promotional messages cancelled."
+                : latest.rule_id === "PROMO_REQUIRES_NOT_SUBSCRIBED"
+                  ? "Offer cancelled."
+                  : "Action cancelled."
+            : (latest.reason ?? "Automatic decision recorded.");
+        setNotice((old) =>
+          old.includes(label)
+            ? old
+            : [old, label, latest.reason !== label ? latest.reason : ""]
+                .filter(Boolean)
+                .join(" "),
+        );
+      })
+      .catch((e) => {
+        if (active) setError(e.message);
+      });
+    return () => {
+      active = false;
+    };
+  }, [cid, id, revision]);
   async function act(fn: () => Promise<string>) {
     setBusy(true);
     setError("");
