@@ -42,7 +42,7 @@ export function Outbox() {
   }, [status, offset, revision]);
   return (
     <>
-      <h1>Outbox</h1>
+      <h1>What went out.<br /> What <em>stopped.</em></h1>
       <p>
         <SimulatedMark /> · These emails are database records. No external mail
         is delivered.
