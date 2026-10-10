@@ -44,7 +44,7 @@ export function ContactsList() {
     );
   return (
     <>
-      <h1>Contacts</h1>
+      <h1>Every customer.<br /> Every <em>decision.</em></h1>
       <p>One customer record. Every business decision follows it.</p>
       <label htmlFor="contact-search">
         Search names, email addresses or tags
