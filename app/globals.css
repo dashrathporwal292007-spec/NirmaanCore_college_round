@@ -411,10 +411,6 @@ header {
 .rule p {
   margin: 10px 0;
 }
-.trace .rule {
-  animation: trace-in 480ms both;
-  animation-delay: var(--delay);
-}
 .section {
   border-top: 2px dashed var(--hairline);
   padding-top: 32px;
@@ -505,18 +501,12 @@ details summary {
 }
 @keyframes undo-line {
   from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
     opacity: 1;
-  }
-  to {
-    opacity: 0.55;
-  }
-}
-@keyframes trace-in {
-  from {
-    border-color: var(--hairline);
-  }
-  to {
-    border-color: var(--added);
+    transform: none;
   }
 }
 @media (max-width: 850px) {
@@ -575,7 +565,8 @@ details summary {
 }
 @media (prefers-reduced-motion: reduce) {
   *,
-  *:before {
+  *:before,
+  *:after {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
@@ -826,13 +817,38 @@ textarea {
 .list-row {
   align-items: flex-start;
 }
-.webinar-actions label {
-  margin: 20px 0;
-}
 .analytics-ledger > div {
   padding: 32px 0;
   border-top: 1px solid var(--line);
 }
 .analytics-ledger h2 {
   margin-top: 8px;
+}
+
+.rule-stage:not(.reached) .rule {
+  border-color: var(--hairline);
+}
+.rule-stage:not(.reached) .rule code {
+  color: var(--muted);
+}
+
+@media (max-width: 850px) {
+  .contact-table thead {
+    display: none;
+  }
+  .contact-table tr {
+    display: block;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .contact-table td {
+    display: block;
+    border: 0;
+    padding: 0 0 8px;
+    overflow-wrap: anywhere;
+  }
+  .contact-table td[data-label]:before {
+    content: attr(data-label) ": ";
+    color: var(--muted);
+  }
 }

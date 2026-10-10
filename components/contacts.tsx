@@ -66,7 +66,7 @@ export function ContactsList() {
         </EmptyState>
       ) : (
         <div className="table-wrap">
-          <table>
+          <table className="contact-table">
             <thead>
               <tr>
                 <th>Contact</th>
@@ -85,9 +85,12 @@ export function ContactsList() {
                     <br />
                     <small>{c.email}</small>
                   </td>
-                  <td>{c.tags.join(", ") || "No tags"}</td>
-                  <td>{c.status}</td>
-                  <td className={c.unsubscribed ? "tone-blocked" : ""}>
+                  <td data-label="Tags">{c.tags.join(", ") || "No tags"}</td>
+                  <td data-label="State">{c.status}</td>
+                  <td
+                    data-label="Consent"
+                    className={c.unsubscribed ? "tone-blocked" : ""}
+                  >
                     {c.unsubscribed ? "Unsubscribed" : "Eligible"}
                   </td>
                 </tr>
