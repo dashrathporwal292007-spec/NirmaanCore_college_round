@@ -11,55 +11,74 @@ export function EditorialMotion() {
 
   useEffect(() => {
     const preference = matchMedia("(prefers-reduced-motion: reduce)");
-    if (preference.matches) return;
-    const elements = Array.from(
-      document.querySelectorAll<HTMLElement>(
-        "main .section, main .receipt, main .run-index, main .rule-list, main .live-columns",
-      ),
-    );
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries)
-          if (entry.isIntersecting) {
-            entry.target.classList.add("scroll-visible");
-            observer.unobserve(entry.target);
-          }
-      },
-      { threshold: 0.06 },
-    );
-    elements.forEach((el) => {
-      el.classList.add("scroll-reveal");
-      observer.observe(el);
-    });
-    let frame = 0;
-    const heading = document.querySelector<HTMLElement>("main h1");
-    const update = () => {
-      frame = 0;
-      heading?.style.setProperty(
-        "--scroll-heading",
-        `${Math.min(scrollY * 0.07, 28)}px`,
+    let stop = () => {};
+    const start = () => {
+      stop();
+      if (preference.matches) return;
+      const elements = new Set<HTMLElement>();
+      let frame = 0,
+        scanFrame = 0;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries)
+            if (entry.isIntersecting) {
+              entry.target.classList.add("scroll-visible");
+              observer.unobserve(entry.target);
+            }
+        },
+        { threshold: 0.06 },
       );
+      const scan = () => {
+        scanFrame = 0;
+        document
+          .querySelectorAll<HTMLElement>(
+            "main .section, main .receipt, main .run-index-row, main .rules-index > details, main .live-columns, main .rule-stages",
+          )
+          .forEach((el) => {
+            if (elements.has(el)) return;
+            elements.add(el);
+            el.classList.add("scroll-reveal");
+            observer.observe(el);
+          });
+      };
+      scan();
+      // API responses insert content after route entry; observe those too.
+      const mutations = new MutationObserver(() => {
+        if (!scanFrame) scanFrame = requestAnimationFrame(scan);
+      });
+      mutations.observe(document.body, { childList: true, subtree: true });
+      const update = () => {
+        frame = 0;
+        document
+          .querySelector<HTMLElement>("main h1")
+          ?.style.setProperty(
+            "--scroll-heading",
+            `${Math.min(scrollY * 0.1, 48)}px`,
+          );
+      };
+      const onScroll = () => {
+        if (!frame) frame = requestAnimationFrame(update);
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      stop = () => {
+        observer.disconnect();
+        mutations.disconnect();
+        cancelAnimationFrame(frame);
+        cancelAnimationFrame(scanFrame);
+        window.removeEventListener("scroll", onScroll);
+        elements.forEach((el) =>
+          el.classList.remove("scroll-reveal", "scroll-visible"),
+        );
+        document
+          .querySelector<HTMLElement>("main h1")
+          ?.style.removeProperty("--scroll-heading");
+      };
     };
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    const disable = () => {
-      if (preference.matches) {
-        elements.forEach((el) => el.classList.remove("scroll-reveal"));
-        heading?.style.removeProperty("--scroll-heading");
-      }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    preference.addEventListener("change", disable);
+    start();
+    preference.addEventListener("change", start);
     return () => {
-      observer.disconnect();
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      preference.removeEventListener("change", disable);
-      elements.forEach((el) =>
-        el.classList.remove("scroll-reveal", "scroll-visible"),
-      );
-      heading?.style.removeProperty("--scroll-heading");
+      stop();
+      preference.removeEventListener("change", start);
     };
   }, [path]);
 
