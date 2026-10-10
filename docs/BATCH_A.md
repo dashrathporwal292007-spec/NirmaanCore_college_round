@@ -11,3 +11,7 @@ All screens already have real routes under app/(workspace) with its shared layou
 ## Agent screen
 
 Already implemented separately in 580874e (hold timing refinement e892acc). components/agent.tsx opens with the giant condensed/italic statement, preserves the command bar and receipt, shows 37 people separately from 74 messages, and applies has-receipt to shrink the statement after planning. Hold-to-approve, clarification, stale and duplicate handling, HIGH confirmation and whole-run rewind remain unchanged. No duplicate implementation or behavior change was necessary for Batch A.
+
+## Public registration screen
+
+Already implemented separately in 8b099f3 (initial route 89e73a5). app/register/[slug]/page.tsx renders components/registration.tsx outside the workspace chrome. Its poster headline uses the real published page/webinar title, with a quiet name/email form, API-backed success and duplicate notices, native required/email validation and an explicit Simulated note. It consumes the existing JSON /s/[slug] endpoints; no handler or public-page route change was necessary.
