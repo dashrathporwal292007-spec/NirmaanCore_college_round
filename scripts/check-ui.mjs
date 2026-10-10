@@ -246,6 +246,8 @@ for (let cycle = 1; cycle <= cycles; cycle++) {
   if (cycle === 1) await capture(page, "contact-timeline");
   await rule.focus();
   await page.keyboard.press("Enter");
+  await page.getByRole("dialog", { name: "Rule inspector" }).waitFor();
+  await page.getByRole("link", { name: "Read all rules", exact: true }).click();
   await page.waitForURL("**/rules#REMINDER_REQUIRES_UNREGISTERED");
   await page.locator("#REMINDER_REQUIRES_UNREGISTERED[open]").waitFor();
   assert.equal(
