@@ -9,6 +9,8 @@ import Websites from "./views/Websites.jsx";
 import Webinars from "./views/Webinars.jsx";
 import Marketing from "./views/Marketing.jsx";
 import Approvals from "./views/Approvals.jsx";
+import Activitylogs from "./views/Activitylogs.jsx";
+import Analytics from "./views/Analytics.jsx";
 
 import Header from "./components/Header.jsx";
 import BottomNav from "./components/BottomNav.jsx";
@@ -71,6 +73,12 @@ function AppContent() {
 
       case "approvals":
         return <Approvals />;
+
+      case "activity-logs":
+        return <Activitylogs />;
+
+      case "analytics":
+        return <Analytics />;
 
       default:
         return (

@@ -62,7 +62,21 @@ export default function Header({ currentTab, onOpenMenu }) {
       case 'ai-command-center':
         return 'AI Command Center';
       case 'crm':
-        return 'CRM';
+        return 'CRM Contacts';
+      case 'workflows':
+        return 'Visual Workflow Builder';
+      case 'websites':
+        return 'Websites';
+      case 'webinars':
+        return 'Webinars';
+      case 'marketing':
+        return 'Marketing Campaigns';
+      case 'approvals':
+        return 'Security Approvals';
+      case 'activity-logs':
+        return 'Activity & Audit Logs';
+      case 'analytics':
+        return 'Platform Analytics';
       default:
         return 'Overview';
     }
