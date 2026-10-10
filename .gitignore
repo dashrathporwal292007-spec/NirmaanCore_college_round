@@ -45,3 +45,9 @@ next-env.d.ts
 /outputs/
 
 .env.local
+
+# local offline tools
+*.db
+standalone_demo/
+venv/
+
