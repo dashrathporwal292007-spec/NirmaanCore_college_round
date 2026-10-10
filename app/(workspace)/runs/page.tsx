@@ -1,15 +1,4 @@
-"use client";
-import { useRouter } from "next/navigation";
-import { DataView } from "@/components/views";
-import { useWorkspace } from "@/components/workspace";
+import { Runs } from "@/components/runs";
 export default function Page() {
-  const router = useRouter();
-  const { revision } = useWorkspace();
-  return (
-    <DataView
-      key={revision}
-      view="Runs"
-      openRun={(id) => router.push(`/runs/${id}`)}
-    />
-  );
+  return <Runs />;
 }
