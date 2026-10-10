@@ -1,6 +1,6 @@
 # Nexus backend API — Phase 3
 
-All successful responses are JSON with HTTP 200. Public pages are JSON, not rendered HTML. No UI is provided in this phase. Database field names use snake_case; agent runner results retain camelCase. IDs below are UUID strings (examples use fixed illustrative UUIDs); timestamps are ISO 8601 strings. Bigserial event/audit IDs are JSON strings. Responses have `Cache-Control: no-store`.
+All successful responses are JSON with HTTP 200. The public /s/[slug] endpoint returns JSON. Its separate frontend page is /register/[slug]; API route handlers remain unchanged. Database field names use snake_case; agent runner results retain camelCase. IDs below are UUID strings (examples use fixed illustrative UUIDs); timestamps are ISO 8601 strings. Bigserial event/audit IDs are JSON strings. Responses have `Cache-Control: no-store`.
 
 ## Authentication and errors
 
