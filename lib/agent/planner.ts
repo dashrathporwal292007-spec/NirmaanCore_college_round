@@ -2,18 +2,8 @@
 import { GoogleGenAI } from '@google/genai'
 import { pool } from '../db'
 import { registry } from '../tools/registry'
-import { Plan, PlanSchema } from './plan'
+import { Plan, PlanSchema, validatePlan } from './plan'
 
-// Verify option names against the current @google/genai docs when you install it.
-const getAi = () => new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! })
-const withTimeout = async <T,>(p: Promise<T>, ms: number) => {
-  let timer: ReturnType<typeof setTimeout> | undefined
-  try {
-    return await Promise.race([p, new Promise<T>((_, rej) => {
-      timer = setTimeout(() => rej(new Error('LLM timeout')), ms)
-    })])
-  } finally { if (timer) clearTimeout(timer) }
-}
 const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim()
 
 export const DEMO_SENTENCE =
@@ -43,7 +33,26 @@ export const demoPlan = (): Plan => ({
     { tool: 'schedule_campaign', args: { campaign_id: '$step4.campaign_id' } }, { tool: 'draft_campaign', args: { name: 'Webinar reminder', subject: 'Reminder: AI Content for Local Brands is on Friday', body: 'Quick reminder to reserve your seat: {{join_url}}', tag: 'webinar-friday', webinar_id: '$step3.webinar_id', kind: 'reminder' } }, { tool: 'schedule_campaign', args: { campaign_id: '$step6.campaign_id', delay_minutes: 3 } },
   ],
 })
-const FALLBACKS: Record<string, () => Plan> = { [normalize(DEMO_SENTENCE)]: demoPlan }
+export const DEMO_PROMPTS = [
+  DEMO_SENTENCE,
+  'Tag the trial contacts as vip',
+  'Create a business landing page for Nexora Digital with headline Grow your local brand',
+  'Run a webinar for trial contacts',
+  'Email everyone about our new plan',
+] as const
+const canned: (() => Plan)[] = [
+  demoPlan,
+  () => ({ summary: 'Tag trial contacts as vip', deferred: [], steps: [
+    { tool: 'query_contacts', args: { tag: 'trial' } },
+    { tool: 'tag_contacts', args: { contact_ids: '$step1.contact_ids', tag: 'vip' } },
+  ] }),
+  () => ({ summary: 'Create a draft business page for Nexora Digital', deferred: [], steps: [
+    { tool: 'create_page', args: { title: 'Nexora Digital', template: 'business', headline: 'Grow your local brand' } },
+  ] }),
+  () => ({ summary: 'A webinar needs a date', clarification: 'On which date should the webinar run?', deferred: [], steps: [] }),
+  () => ({ summary: 'Choose an audience before drafting an email', clarification: 'Which contact tag should receive this email, and which plan should it describe?', deferred: [], steps: [] }),
+]
+const FALLBACKS: Partial<Record<string, () => Plan>> = Object.fromEntries(DEMO_PROMPTS.map((prompt, i) => [normalize(prompt), canned[i]]))
 
 async function buildSystemPrompt() {
   const tags = (await pool.query(`select distinct unnest(tags) as t from contacts order by 1 limit 30`)).rows.map(r => r.t)
@@ -74,37 +83,122 @@ Instruction: ${DEMO_SENTENCE}
 Output: ${JSON.stringify(demoPlan())}`
 }
 
-async function callModel(system: string, instruction: string, rejected?: string) {
-  const contents = rejected
-    ? `${instruction}\n\nYour previous output was rejected: ${rejected}\nReturn corrected JSON only.`
-    : instruction
-  const res = await getAi().models.generateContent({
-    model: process.env.GEMINI_MODEL ?? 'gemini-2.5-flash',
-    contents,
-    config: { systemInstruction: system, responseMimeType: 'application/json', temperature: 0.1 },
+export type PlannerCode = 'timeout' | 'invalid_json' | 'invalid_plan' | 'missing_key' | 'unavailable' | 'context_failed' | 'demo_unsupported'
+export class PlannerError extends Error {
+  constructor(public code: PlannerCode, message: string) { super(message) }
+}
+export interface PlanningResult {
+  plan: Plan
+  source: 'llm' | 'fallback'
+  plannerMode: 'gemini' | 'demo' | 'fallback'
+  fallbackReason: PlannerCode | null
+}
+interface ModelRequest { system: string; instruction: string; rejected?: string; signal: AbortSignal; timeoutMs: number; apiKey: string }
+interface PlannerConfig { demoMode: boolean; apiKey?: string; timeoutMs: number }
+interface PlannerDependencies {
+  callModel: (request: ModelRequest) => Promise<string>
+  buildSystemPrompt: () => Promise<string>
+  getConfig?: () => PlannerConfig
+}
+
+async function callModel({ system, instruction, rejected, signal, timeoutMs, apiKey }: ModelRequest) {
+  const contents = rejected ? `${instruction}\n\nPrevious output was rejected: ${rejected}\nReturn corrected JSON only.` : instruction
+  const res = await new GoogleGenAI({ apiKey }).models.generateContent({
+    model: process.env.GEMINI_MODEL ?? 'gemini-flash-latest', contents,
+    config: { systemInstruction: system, responseMimeType: 'application/json', temperature: 0.1,
+      abortSignal: signal, httpOptions: { timeout: timeoutMs, retryOptions: { attempts: 1 } } },
   })
   return res.text ?? ''
 }
 
-export async function makePlan(instruction: string): Promise<{ plan: Plan; source: 'llm' | 'fallback' }> {
-  const cached = FALLBACKS[normalize(instruction)]
-  if (process.env.DEMO_MODE === '1' && cached) return { plan: cached(), source: 'fallback' }
-  if (process.env.DEMO_MODE === '1') throw new Error('Demo mode supports the cached demo instruction only; no LLM call was made.')
-  if (!process.env.GEMINI_API_KEY) throw new Error('GEMINI_API_KEY is required outside demo mode.')
-
-  let rejected: string | undefined
-  let system: string | undefined
-  for (let attempt = 0; attempt < 2; attempt++) {
-    try {
-      system ??= await buildSystemPrompt()
-      const raw = await withTimeout(callModel(system, instruction, rejected), 12_000)
-      const plan = PlanSchema.parse(JSON.parse(raw))
-      if (!plan.clarification && !plan.steps.length) throw new Error('No steps and no clarification')
-      return { plan, source: 'llm' }
-    } catch (e: any) {
-      rejected = String(e.message).slice(0, 300)
+/** Validate model syntax/tools before propose() can persist any run or audit row. Role checks remain in the runner. */
+function parseModel(raw: string): Plan {
+  let json: unknown
+  try { json = JSON.parse(raw) } catch { throw new PlannerError('invalid_json', 'Gemini returned malformed JSON after one retry. Try again or use a demo prompt.') }
+  try {
+    const plan = PlanSchema.parse(json)
+    if (plan.clarification) {
+      if (plan.steps.length || !plan.clarification.trim()) throw new Error('Invalid clarification')
+    } else {
+      validatePlan(plan, 'owner') // role-blind allowlist/reference check, never executes tools
+      for (const step of plan.steps) {
+        const parsed = registry[step.tool].schema.safeParse(step.args)
+        if (!parsed.success) {
+          const concreteErrors = parsed.error.issues.filter(issue => {
+            let value: unknown = step.args
+            for (const key of issue.path) {
+              if (typeof value === 'string' && /^\$step\d+\.[A-Za-z_]\w*$/.test(value)) return false
+              value = value && typeof value === 'object' ? (value as Record<PropertyKey, unknown>)[key] : undefined
+            }
+            return !(typeof value === 'string' && /^\$step\d+\.[A-Za-z_]\w*$/.test(value))
+          })
+          if (concreteErrors.length) throw new Error('Invalid tool arguments')
+        }
+      }
     }
-  }
-  if (cached) return { plan: cached(), source: 'fallback' }       // the demo never dies on stage
-  throw new Error('Could not produce a valid plan. Try rephrasing the instruction.')
+    return plan
+  } catch { throw new PlannerError('invalid_plan', 'Gemini returned an invalid plan after one retry (tool, reference or schema). Try rephrasing.') }
 }
+const errorFor = (code: PlannerCode) => new PlannerError(code, {
+  timeout: 'Gemini planning timed out. Try again or use a demo prompt.',
+  missing_key: 'GEMINI_API_KEY is required outside demo mode for this prompt.',
+  unavailable: 'Gemini is unavailable. Try again or use a supported demo prompt.',
+  context_failed: 'Could not load planner context. No run was created.',
+  demo_unsupported: 'Demo mode supports the documented canned prompts only; no network call was made.',
+  invalid_json: 'Gemini returned malformed JSON after one retry.',
+  invalid_plan: 'Gemini returned an invalid plan after one retry.',
+}[code])
+
+/** Injected transport is for deterministic failure tests; routes cannot supply dependencies or configuration. */
+export function createPlanner(deps: PlannerDependencies) {
+  return async (instruction: string): Promise<PlanningResult> => {
+    const cfg = deps.getConfig?.() ?? {
+      demoMode: process.env.DEMO_MODE === '1', apiKey: process.env.GEMINI_API_KEY?.trim(),
+      timeoutMs: Math.min(20_000, Math.max(100, Number(process.env.PLANNER_TIMEOUT_MS) || 12_000)),
+    }
+    const cached = FALLBACKS[normalize(instruction)]
+    const fallback = (reason: PlannerCode): PlanningResult => {
+      if (!cached) throw errorFor(reason)
+      return { plan: cached(), source: 'fallback', plannerMode: 'fallback', fallbackReason: reason }
+    }
+    if (cfg.demoMode) {
+      if (!cached) throw errorFor('demo_unsupported')
+      return { plan: cached(), source: 'fallback', plannerMode: 'demo', fallbackReason: null }
+    }
+    if (!cfg.apiKey) return fallback('missing_key')
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), cfg.timeoutMs)
+    const deadline = Date.now() + cfg.timeoutMs
+    const bounded = async <T,>(work: () => Promise<T>): Promise<T> => {
+      if (controller.signal.aborted) throw errorFor('timeout')
+      let onAbort: () => void = () => {}
+      try {
+        return await Promise.race([Promise.resolve().then(work), new Promise<T>((_, reject) => {
+          onAbort = () => reject(errorFor('timeout'))
+          controller.signal.addEventListener('abort', onAbort, { once: true })
+        })])
+      } finally { controller.signal.removeEventListener('abort', onAbort) }
+    }
+    try {
+      let system: string
+      try { system = await bounded(deps.buildSystemPrompt) }
+      catch { return fallback(controller.signal.aborted ? 'timeout' : 'context_failed') }
+      let rejected: string | undefined
+      for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+          const raw = await bounded(() => deps.callModel({ system, instruction, rejected, signal: controller.signal,
+            timeoutMs: Math.max(1, deadline - Date.now()), apiKey: cfg.apiKey! }))
+          const plan = parseModel(raw)
+          return { plan, source: 'llm', plannerMode: 'gemini', fallbackReason: null }
+        } catch (error) {
+          const failure = controller.signal.aborted ? errorFor('timeout') : error instanceof PlannerError ? error : errorFor('unavailable')
+          if (attempt === 0 && ['invalid_json', 'invalid_plan'].includes(failure.code)) { rejected = failure.code; continue }
+          if (cached) return fallback(failure.code)
+          throw failure
+        }
+      }
+      throw errorFor('invalid_plan')
+    } finally { clearTimeout(timeout); controller.abort() }
+  }
+}
+export const makePlan = createPlanner({ callModel, buildSystemPrompt })

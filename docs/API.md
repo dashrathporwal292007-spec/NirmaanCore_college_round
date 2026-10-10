@@ -30,9 +30,17 @@ Instruction: trimmed string, 5–2000 characters. Optional `plan` allows a front
 ```
 Response awaiting approval:
 ```json
-{"runId":"11111111-1111-4111-8111-111111111111","status":"awaiting_approval","diff":{"lines":[{"entity":"page","action":"published","count":1,"publicVisible":true,"sample":["/s/our-agency-11111111-1111-4111-8111-111111111111"],"tool":"publish_page","step":2}],"totals":{"recipients":0,"moneyInr":0,"publicVisible":true}},"risk":"MEDIUM","requiredRole":"marketer","summary":"Create and publish page","deferred":[],"source":"supplied"}
+{"runId":"11111111-1111-4111-8111-111111111111","status":"awaiting_approval","diff":{"lines":[{"entity":"page","action":"published","count":1,"publicVisible":true,"sample":["/s/our-agency-11111111-1111-4111-8111-111111111111"],"tool":"publish_page","step":2}],"totals":{"recipients":0,"moneyInr":0,"publicVisible":true}},"risk":"MEDIUM","requiredRole":"marketer","summary":"Create and publish page","deferred":[],"source":"supplied","plannerMode":"supplied","fallbackReason":null}
 ```
-The example diff line is illustrative; every tool effect appears in `lines`. Source is `supplied`, `fallback` or `llm`. LOW runs auto-commit and return `{runId,status:"completed",summary,deferred,source}`; fetch run detail for stored diff. Clarification response creates no run: `{"clarification":"When should it start?","summary":"Need a date","source":"llm"}`. DEMO_MODE=1 accepts only the cached demo sentence unless a structured plan is supplied. Errors: 400,401,403,422,500.
+The example diff line is illustrative; every tool effect appears in `lines`. Source is `supplied`, `fallback` or `llm` (retained for compatibility). Every plan/clarification response also has `plannerMode`: `supplied`, `gemini`, `demo` (explicit offline mode), or `fallback` (Gemini/key/context failure); `fallbackReason` is null or a safe code (`timeout`, `invalid_json`, `invalid_plan`, `missing_key`, `unavailable`, `context_failed`). LOW runs auto-commit and return `{runId,status:"completed",summary,deferred,source,plannerMode,fallbackReason}`; fetch run detail for stored diff. Clarification response creates no run: `{"clarification":"When should it start?","summary":"Need a date","source":"llm","plannerMode":"gemini","fallbackReason":null}`. DEMO_MODE=1 returns canned results without network or planner-context reads for these prompts (case/punctuation insensitive):
+
+- The main demo sentence above.
+- `Tag the trial contacts as vip`
+- `Create a business landing page for Nexora Digital with headline Grow your local brand`
+- `Run a webinar for trial contacts` (date clarification, no run).
+- `Email everyone about our new plan` (audience/plan clarification, no run).
+
+The same canned results are used when Gemini fails or the key is missing. Unknown prompts fail clearly instead of receiving an unrelated canned plan. Gemini has a total planning deadline of 12 seconds by default (`PLANNER_TIMEOUT_MS`, clamped 100–20000 ms), including context/retry. Malformed JSON/invalid tool/reference/schema gets exactly one repair retry within that deadline; network failure/timeout is not retried. Non-canned planner failures return 422 with `error.details.plannerCode` and create no runs, audit or business rows. Model output is validated before the runner. Authorization refusals and execution/dry-run failures are separate runner outcomes with stored run IDs. Structured supplied plans remain supported. Errors: 400,401,403,422,500.
 
 ### POST /api/agent/approve — authenticated; run's required role
 
@@ -153,3 +161,11 @@ All tools use the registered pipeline. `create_page`: title (3–120), template 
 ## Running the contract test
 
 `npm run smoke:routes` starts an isolated Next HTTP server on loopback, seeds the configured real demo database, calls the routes with fetch, and stops its server. Run serially with the other smoke scripts; it resets demo data. No live email, payment or LLM is required (DEMO_MODE=1). You can instead set ROUTES_BASE_URL to an already-running loopback server; it must use the same DATABASE_URL and DEMO_MODE=1. Run the build first when using the auto-started production server.
+
+## Reset and rehearsal
+
+`npm run demo:reset` transactionally restores the synthetic seed, then verifies 50 contacts, 40 trial, 3 unsubscribed, and zero runs/outbox/pending/registrations/subscriptions/invoices. Repeating it is safe; it removes demo history.
+
+After `npm run build`, `npm run rehearse` starts its own loopback production HTTP server in DEMO_MODE=1, resets the configured demo database, and exercises plan/approve, publication through a second supplied plan, public registration, simulated attendance, close, pending draft approval, simulated checkout, tick and rewind. It advances synthetic outbox due times to avoid waiting minutes, but dispatch still calls the real worker/evaluator. After dispatch it expects honest cannot-recall notes and preserved registrations/subscriptions; a separate vip run proves exact reversible tag rewind. Any mismatch exits nonzero; the server is stopped on exit. Run reset/rehearsal/smoke tests serially; they share the demo database.
+
+`npm run check:planner` tests bounded timeout, malformed JSON repair/failure, invalid tools/arguments, missing key, unavailable provider and all canned prompts while comparing complete stored-row snapshots. `npm run check:gemini` uses the local key, temporarily disables demo mode in its process, runs all five prompts without execution, verifies unchanged snapshots, and writes sanitized outcomes to docs/GEMINI_REPORT.md. It exits nonzero if any prompt did not receive an actual Gemini response. Neither command prints credentials/raw provider errors. The verified live model is `gemini-flash-latest`; no real email or payments are used.

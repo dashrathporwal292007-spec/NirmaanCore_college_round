@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { pool, withTx } from '../db'
-import { makePlan } from '../agent/planner'
+import { makePlan, PlannerError } from '../agent/planner'
 import { PlanSchema } from '../agent/plan'
 import { propose, decide, rewind, type Actor } from '../agent/runner'
 import { can } from '../agent/types'
@@ -15,14 +15,15 @@ export const plan = endpoint(async (req: Request) => {
   const user = await actor(req)
   const input = await body(req, z.object({ instruction: z.string().trim().min(5).max(2000), plan: PlanSchema.optional() }).strict())
   let planned
-  try { planned = input.plan ? { plan: input.plan, source: 'supplied' as const } : await makePlan(input.instruction) }
-  catch (error) { throw new HttpError(422, 'PLAN_FAILED', error instanceof Error ? error.message : 'Planning failed') }
-  const { plan: proposed, source } = planned
-  if (proposed.clarification) return { clarification: proposed.clarification, summary: proposed.summary, source }
+  try { planned = input.plan ? { plan: input.plan, source: 'supplied' as const, plannerMode: 'supplied' as const, fallbackReason: null } : await makePlan(input.instruction) }
+  catch (error) { throw new HttpError(422, 'PLAN_FAILED', error instanceof PlannerError ? error.message : 'Planning failed',
+    error instanceof PlannerError ? { plannerCode: error.code } : undefined) }
+  const { plan: proposed, source, plannerMode, fallbackReason } = planned
+  if (proposed.clarification) return { clarification: proposed.clarification, summary: proposed.summary, source, plannerMode, fallbackReason }
   const result = await propose(input.instruction, proposed, user)
   if (result.status === 'refused' || result.status === 'failed') throw new HttpError(result.status === 'refused' ? 403 : 422,
     result.status === 'refused' ? 'FORBIDDEN' : 'PLAN_FAILED', 'error' in result ? String(result.error) : 'Plan failed', { runId: result.runId })
-  return { ...result, summary: proposed.summary, deferred: proposed.deferred, source }
+  return { ...result, summary: proposed.summary, deferred: proposed.deferred, source, plannerMode, fallbackReason }
 })
 
 const decisionBody = z.object({ decision: z.enum(['approved', 'rejected']), typed: z.string().max(20).optional() }).strict()
