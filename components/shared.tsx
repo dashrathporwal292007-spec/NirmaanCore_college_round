@@ -1,3 +1,4 @@
+import { RuleId } from "./rule-inspector";
 import type { CSSProperties, ReactNode } from "react";
 import type { Risk, Json } from "@/lib/api";
 export const inr = (n: number) =>
@@ -44,7 +45,7 @@ export function RuleMarker({
 }) {
   return (
     <div className="rule">
-      <code>{id}</code>
+      <RuleId id={id} />
       <p>{reason}</p>
       {evidence != null && (
         <details>
