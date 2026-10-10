@@ -23,3 +23,19 @@ The existing full-bleed trace already uses stored automatic decisions, real rule
 ### Screenshot correction
 
 The first clean-seed capture placed next-step guidance after the tall inactive trace, below the first desktop viewport. Move that real empty state directly after the heading and before the ticker/trace, and show the registration instruction only when an eligible published webinar exists. This preserves the required display hierarchy while making the exact next-step sentence visible before inactive stages. It changes no API, seed or trace data.
+
+## Final verification and limits
+
+| Item | State | Verification |
+| --- | --- | --- |
+| Additive backend reads and opt-out | Already built, reverified | Real-DB HTTP smoke assertions; unchanged wrapper/service and API fields |
+| Shared routed shell | Built, ticker completed | Real stored timeline comparison; hover/focus pause; reduced-motion static ticker; menu/worker browser flow |
+| Agent | Already built, preserved | Browser preview, 37 people/74 messages, cancelled short hold, keyboard deliberate approval and rewind |
+| /register/[slug] | Already built, preserved | Real iframe registration, duplicate response, standalone no-chrome page and invalid required fields |
+| /live | Built, guidance corrected | Real registration -> REMINDER_REQUIRES_UNREGISTERED -> Reminder cancelled; stored reason/evidence; three reached stages; 2-second polling |
+
+After each Batch A screen/audit commit, typecheck, build, smoke, smoke:adaptive and smoke:routes passed. The backend-first audit and final Live correction also passed rehearse. Existing smoke assertions and backend behavior did not change. Edited components passed ESLint. The existing browser rehearsal passed UI CHECKS ALL GREEN against the real HTTP API and database, including publication approval, registration/duplicate, rule trace, worker delivery after the actual hold window and whole-run rewind. No browser errors or external runtime requests were detected in that rehearsal. The final guidance-only layout correction was separately recaptured and checked at all three sizes, including reduced-motion empty state.
+
+Screenshots at 1440×900, 1280×720 and 390×844 are in docs/screenshots/editorial (Agent initial/preview, menu, public registration, populated Live and clean Live empty state). Compare against the saved reference using docs/screenshots/comparison.html; the honest critique is in docs/VISUAL_REVIEW.md. Clean guidance starts at 622px, 591px and 535px respectively. No horizontal overflow was found.
+
+Omitted as instructed: attendance button/route, UI Reset demo, cancellation of unapproved drafts, seed changes, and a rendered /s/[slug] page. Existing JSON route handlers remain intact. No API gap prevented Batch A; the ticker is explicitly contact-scoped because the contract provides contact timelines, not a global event stream. Not verified: native hidden-tab pause in a browser that actually reports document.hidden (this automation previously kept background tabs visible), Safari/Firefox, physical phones/projector, screen readers and exhaustive pagination/filter combinations. No branch or remote operations; local commits only.
