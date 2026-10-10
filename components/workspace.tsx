@@ -66,7 +66,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
             Nexus
           </Link>
           <nav className="nav" aria-label="Workspace">
-            {tabs.map(([tab, href], i) => (
+            {tabs.map(([tab, href]) => (
               <Link
                 key={tab}
                 href={href}
@@ -76,7 +76,6 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
                     : undefined
                 }
               >
-                <small>{i + 1} </small>
                 {tab}
               </Link>
             ))}

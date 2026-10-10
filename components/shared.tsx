@@ -25,7 +25,7 @@ export function RiskBadge({ risk }: { risk: Risk }) {
 export function StatusPill({ status }: { status: string }) {
   return (
     <span
-      className={`pill tone-${/cancel|fail|reject/.test(status) ? "blocked" : /await|pending/.test(status) ? "decision" : "added"}`}
+      className={`pill tone-${/cancel|fail|reject/.test(status) ? "blocked" : /await|pending|draft/.test(status) ? "decision" : "added"}`}
     >
       {status.replaceAll("_", " ")}
     </span>
