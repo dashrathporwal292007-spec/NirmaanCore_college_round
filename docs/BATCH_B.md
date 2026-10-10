@@ -15,3 +15,7 @@ Existing list/detail use real status/count data and preserve Close, Approve-only
 ## Runs
 
 Preserved real numbered run labels, status, actual instruction summaries and details/steps/confirmed whole-run rewind with API irreversible notes. Made each complete index row a single keyboard-accessible link instead of a focusable wrapper containing a smaller link; hover/focus summary and touch/reduced-motion readability remain. No step slider or inferred reversibility.
+
+## Outbox
+
+Preserved every stored status and each email's Simulated marker/reason. Added a Blocked by rule filter derived only from cancelled records whose stored cancel_reason.allow is false (the actual evaluator denial); manual cancel/rewind remain distinct. Uses existing cancelled list pagination, then paginates the derived view correctly. Each matching record shows both its actual cancelled status and Blocked by rule label. No fictional blocked API status or backend change. The client type now includes the already-returned optional allow field.

@@ -16,17 +16,39 @@ export function Outbox() {
     [status, setStatus] = useState(""),
     [offset, setOffset] = useState(0),
     [error, setError] = useState(""),
-    [loading, setLoading] = useState(true);
+    [loading, setLoading] = useState(true),
+    [hasNext, setHasNext] = useState(false);
   useEffect(() => {
     let active = true;
     Promise.resolve().then(() => {
       if (active) setLoading(true);
     });
-    api
-      .outbox({ status, offset, limit: 50 })
+    async function read() {
+      if (status !== "blocked") {
+        const r = await api.outbox({ status, offset, limit: 50 });
+        return { items: r.outbox, next: r.outbox.length === 50 };
+      }
+      const cancelled: Message[] = [];
+      for (let start = 0; active; start += 200) {
+        const r = await api.outbox({
+          status: "cancelled",
+          offset: start,
+          limit: 200,
+        });
+        cancelled.push(...r.outbox);
+        if (r.outbox.length < 200) break;
+      }
+      const blocked = cancelled.filter((m) => m.cancel_reason?.allow === false);
+      return {
+        items: blocked.slice(offset, offset + 50),
+        next: blocked.length > offset + 50,
+      };
+    }
+    void read()
       .then((r) => {
         if (active) {
-          setItems(r.outbox);
+          setItems(r.items);
+          setHasNext(r.next);
           setError("");
         }
       })
@@ -42,7 +64,10 @@ export function Outbox() {
   }, [status, offset, revision]);
   return (
     <>
-      <h1>What went out.<br /> What <em>stopped.</em></h1>
+      <h1>
+        What went out.
+        <br /> What <em>stopped.</em>
+      </h1>
       <p>
         <SimulatedMark /> · These emails are database records. No external mail
         is delivered.
@@ -57,6 +82,7 @@ export function Outbox() {
           }}
         >
           <option value="">All states</option>
+          <option value="blocked">Blocked by rule</option>
           {["queued", "sent", "cancelled", "failed"].map((s) => (
             <option key={s}>{s}</option>
           ))}
@@ -100,6 +126,9 @@ export function Outbox() {
             </div>
             <div>
               <StatusPill status={m.status} />
+              {m.cancel_reason?.allow === false && (
+                <p className="tone-blocked">Blocked by rule</p>
+              )}
               <p>
                 <SimulatedMark />
               </p>
@@ -115,7 +144,7 @@ export function Outbox() {
           Previous 50
         </button>
         <button
-          disabled={loading || items.length < 50}
+          disabled={loading || !hasNext}
           onClick={() => setOffset(offset + 50)}
         >
           Next 50

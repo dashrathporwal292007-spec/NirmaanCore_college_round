@@ -59,6 +59,7 @@ export interface Event {
   reason: string | null;
 }
 export interface Rule {
+  allow?: boolean;
   ruleId?: string;
   rule?: string;
   reason?: string;
