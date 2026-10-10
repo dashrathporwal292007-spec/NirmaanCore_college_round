@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { EditorialMotion } from "@/components/editorial-motion";
 const display = localFont({
   src: [
     {
@@ -53,7 +55,12 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable} ${serif.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <Suspense fallback={null}>
+          <EditorialMotion />
+        </Suspense>
+      </body>
     </html>
   );
 }
