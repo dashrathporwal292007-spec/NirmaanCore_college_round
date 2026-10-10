@@ -20,7 +20,7 @@ Restyle every input, textarea, select and button. Keyboard focus is a 2px change
 
 People reached uses totals.distinctRecipients; messages scheduled uses totals.recipients. Old receipts without the additive field say unavailable, never infer unique people from message counts. Public page counts sum actual published page effects. Money is INR. LOW plans auto-run: do not say nothing happened after completion. HIGH needs CONFIRM and another owner; backend is authoritative. Clarifying questions are conversation replies. Stale approval requires a fresh deliberate approval; duplicate approval explains that nothing ran twice.
 
-Webinar operations use an entered real webinar ID, since the API has no webinar list endpoint. Live view reads contact timelines and their stored rule/reason/evidence. No fabricated feeds, predicted metrics or invented endpoints.
+Webinars use the authorized read-only list and detail endpoints. Registration, opt-out and checkout are explicitly simulated; attendance actions, draft cancellation and UI reset are omitted. Live view reads contact timelines and their stored rule/reason/evidence. No fabricated feeds, predicted metrics or invented endpoints.
 
 ## Approval, rewind and motion
 
@@ -47,3 +47,9 @@ The command measure is capped at 76ch and the textarea expands to its content, s
 Not manually verified: Safari/Firefox, a physical projector or screen reader, and live Gemini failure rendering in the browser. Existing backend tests cover stale/duplicate decisions and HIGH typed/different-owner rules; the browser pass uses offline demo mode.
 
 To reproduce: build, run demo:reset, start the server at http://localhost:3000, then run `PLAYWRIGHT_BROWSERS_PATH=.cache/playwright node scripts/check-ui.mjs`. Install the local browser with `PLAYWRIGHT_BROWSERS_PATH=.cache/playwright npx playwright install chromium` if needed. This check changes real demo data; run serially with the smoke scripts.
+
+## Routed-screen completion
+
+All requested routes now use the shared shell and real client API. Public registration remains outside app chrome. Mobile contact fields stack so tags and consent stay visible. Rule inspector uses a verified static catalogue and trapped keyboard focus. The final rewind motion resolves to fully opaque text; reduced motion covers both pseudo-elements. Decorative navigation numbers were removed.
+
+The per-screen report and native hidden-tab verification limitation are in docs/UI_REPORT.md. Three browser rehearsals, required viewports, final build/typecheck/three smoke scripts/rehearse and clean reset passed. No attendance UI/route, unapproved-draft cancellation, UI reset or step slider was added. Production served the browser paths without runtime errors.

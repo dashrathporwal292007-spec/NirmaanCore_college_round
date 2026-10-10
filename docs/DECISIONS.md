@@ -85,3 +85,11 @@ Hardening verification: live Gemini 5/5 on gemini-flash-latest (main launch 7 st
 ## Additive distinct recipient metric
 
 Tool output carries internal resolved recipient IDs; executePlan deduplicates them, and only the count is exposed as diff.totals.distinctRecipients. No selection, effects, hash, risk or mutation changes. Existing rehearsal used exact-object equality for totals; it now asserts the original three-field projection unchanged and checks the new field separately. No previous expected value changed. Core and HTTP smoke tests also assert 37 distinct contacts and 74 messages.
+
+## Routed frontend
+
+Authorized read-only webinar list/detail endpoints and the thin opt-out wrapper were committed separately before frontend work. Attendance is omitted; unchanged services and existing adaptive smoke remain authoritative. No seed/reset changes or new backend business logic were introduced.
+
+The main demo creates a draft page, so the webinar screen offers a supplied publish_page plan followed by the existing approval screen. Public HTML is /register/[slug]; existing /s/[slug] handlers remain JSON. Rewind remains one confirmed whole-run action with server notes; there is no step slider. Run numbers are creation-order labels, not new database identifiers.
+
+The browser verifier scopes repeated messages to visible routes because Next retains hidden route content. The distinct count assertion targets the impact figure rather than other legitimate 37-count receipt lines. These are corrections to new UI selectors; existing backend smoke assertions were not changed. Native background visibility is unavailable in this Chromium automation, so polling pause is explicitly unverified rather than tested using fabricated visibility. Details and visual review are in docs/UI_REPORT.md.
