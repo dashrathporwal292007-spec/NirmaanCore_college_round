@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-background":"#0b1c30","tertiary-container":"#6c748b","on-primary-fixed-variant":"#2f2ebe","secondary-fixed":"#e9ddff","on-tertiary":"#ffffff","secondary-container":"#8455ef","on-error":"#ffffff","error":"#ba1a1a","on-secondary-fixed":"#23005c","surface-container-lowest":"#ffffff","on-tertiary-container":"#fefcff","outline-variant":"#c7c4d7","surface-container":"#e5eeff","background":"#f8f9ff","surface-tint":"#494bd6","outline":"#767586","secondary":"#6b38d4","on-surface":"#0b1c30","on-error-container":"#93000a","secondary-fixed-dim":"#d0bcff","on-primary":"#ffffff","surface-dim":"#cbdbf5","on-primary-container":"#fffbff","surface-bright":"#f8f9ff","on-primary-fixed":"#07006c","surface-container-low":"#eff4ff","tertiary-fixed":"#dae2fd","on-secondary-container":"#fffbff","surface-container-highest":"#d3e4fe","primary":"#4648d4","primary-fixed":"#e1e0ff","on-surface-variant":"#464554","inverse-surface":"#213145","on-tertiary-fixed":"#131b2e","surface":"#f8f9ff","tertiary-fixed-dim":"#bec6e0","tertiary":"#545c72","on-secondary-fixed-variant":"#5516be","surface-container-high":"#dce9ff","inverse-primary":"#c0c1ff","on-tertiary-fixed-variant":"#3f465c","inverse-on-surface":"#eaf1ff","surface-variant":"#d3e4fe","primary-container":"#6063ee","error-container":"#ffdad6","on-secondary":"#ffffff","primary-fixed-dim":"#c0c1ff"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"margin-mobile":"1rem","space-xs":"0.25rem","space-lg":"1.25rem","space-xl":"2rem","margin":"1.5rem","space-md":"0.75rem","gutter-mobile":"0.75rem","margin-desktop":"2rem","space-sm":"0.5rem","gutter":"1.25rem","gutter-desktop":"1.5rem"},fontFamily:{"headline-lg-mobile":["Inter"],"headline-md":["Inter"],"code-sm":["JetBrains Mono"],"display":["Inter"],"headline-lg":["Inter"],"headline-sm":["Inter"],"body-lg":["Inter"],"code-xs":["JetBrains Mono"],"display-mobile":["Inter"],"body-md":["Inter"],"label-sm":["Inter"],"label-md":["Inter"],"body-sm":["Inter"]},fontSize:{"headline-lg-mobile":["1.375rem",{"lineHeight":"1.75rem","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-md":["1.25rem",{"lineHeight":"1.75rem","letterSpacing":"-0.015em","fontWeight":"600"}],"code-sm":["0.75rem",{"lineHeight":"1.125rem","letterSpacing":"-0.01em","fontWeight":"500"}],"display":["2.25rem",{"lineHeight":"2.75rem","letterSpacing":"-0.03em","fontWeight":"600"}],"headline-lg":["1.75rem",{"lineHeight":"2.25rem","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-sm":["1rem",{"lineHeight":"1.5rem","letterSpacing":"-0.01em","fontWeight":"600"}],"body-lg":["1rem",{"lineHeight":"1.5rem","letterSpacing":"-0.005em","fontWeight":"400"}],"code-xs":["0.6875rem",{"lineHeight":"0.875rem","letterSpacing":"0em","fontWeight":"400"}],"display-mobile":["1.75rem",{"lineHeight":"2.25rem","letterSpacing":"-0.02em","fontWeight":"600"}],"body-md":["0.875rem",{"lineHeight":"1.375rem","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.01em","fontWeight":"500"}],"label-md":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0em","fontWeight":"500"}],"body-sm":["0.75rem",{"lineHeight":"1.125rem","letterSpacing":"0em","fontWeight":"400"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Open Navigation Menu" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-primary rounded-lg transition-colors" onclick="document.getElementById('mobile-drawer').classList.remove('-translate-x-full');document.getElementById('drawer-backdrop').classList.remove('opacity-0','pointer-events-none');" type="button"><span class="material-symbols-outlined text-[24px]">menu</span></button><div class="flex items-center gap-space-xs"><img alt="NEXUS Geometric Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WGgaOz44aWrsvH2Qleb7JLGDKgKqkwtDMlNTUKZwKqvJ1LdrdEsNfALD0gBCkknAYNw9h__0RtmpKeMx2OX8u90e-4vTK32h2fF11cVp0cI_E2I55q-7HYiDdXQp0MJK7vD_JHM8OuHoYi2CNbtgH8WPIDahW8fmfcZUZWofaiaVPJTmec8SUyYQ9sxYldC2id4Au8pPfGYRX14IGSBsqhGvGSkPbi4P1o5OpHDdVO0Y3Qt4gsawAxZseq"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-wider font-semibold">NEXUS</span></div><div class="h-4 w-px bg-outline-variant mx-space-xs"></div><button class="flex items-center gap-space-xs px-space-xs py-space-xs rounded-lg hover:bg-surface-container transition-colors text-left"><span class="font-label-sm text-label-sm text-on-surface font-medium truncate max-w-[90px]">Acme Corp</span><span class="material-symbols-outlined text-[16px] text-outline">unfold_more</span></button></div><div class="flex items-center gap-space-xs"><button aria-label="Notifications" class="w-11 h-11 relative flex items-center justify-center text-on-surface-variant hover:text-on-surface rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-primary ring-2 ring-surface"></span></button><div class="w-11 h-11 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNCeXJIztQO1NpzXlvhFEsg_YDXT8Durt2yeV30bv7mpNJhJs5Amfi1-GucD0h49wRLJ_fwbFHCoJh7xJYvTFLs7qWIvxpFMGQASR4XUbSSHZIgIdXeQRgbpbb802G8jFfFs6wDjXLrWAo2KeUXQL6tbMBbRu6_uTQcH7gark20kWcHCOuQo1HxtncGJjgVlyesxm8_jLiCfTAfZJ8i6KGZYKVvNSN2XmUFYgmKgOZbcbGc1IJKQ6_eg"/></div></div></div><div class="px-margin-mobile pb-space-xs flex items-center justify-between"><h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Ai Command Center</h1><span class="inline-flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Live OPS</span></div></header><div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" id="drawer-backdrop" onclick="document.getElementById('mobile-drawer').classList.add('-translate-x-full');this.classList.add('opacity-0','pointer-events-none');"></div><aside class="fixed top-0 bottom-0 left-0 z-50 w-72 max-w-[85vw] bg-surface-container-lowest shadow-[0_20px_25px_-5px_rgba(15,23,42,0.08)] -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between pt-safe pb-safe" id="mobile-drawer"><div class="flex flex-col h-full overflow-hidden"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-xs"><img alt="NEXUS Geometric Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WGgaOz44aWrsvH2Qleb7JLGDKgKqkwtDMlNTUKZwKqvJ1LdrdEsNfALD0gBCkknAYNw9h__0RtmpKeMx2OX8u90e-4vTK32h2fF11cVp0cI_E2I55q-7HYiDdXQp0MJK7vD_JHM8OuHoYi2CNbtgH8WPIDahW8fmfcZUZWofaiaVPJTmec8SUyYQ9sxYldC2id4Au8pPfGYRX14IGSBsqhGvGSkPbi4P1o5OpHDdVO0Y3Qt4gsawAxZseq"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-wider font-semibold">NEXUS</span></div><button aria-label="Close Drawer" class="w-11 h-11 flex items-center justify-center text-outline hover:text-on-surface" onclick="document.getElementById('mobile-drawer').classList.add('-translate-x-full');document.getElementById('drawer-backdrop').classList.add('opacity-0','pointer-events-none');"><span class="material-symbols-outlined text-[20px]">close</span></button></div><div class="flex-1 overflow-y-auto px-margin py-space-sm space-y-space-md"><div class="space-y-space-xs"><div class="font-code-xs text-code-xs text-outline uppercase tracking-wider px-space-xs font-medium">Workspace</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="overview" href="#"><span class="material-symbols-outlined text-[20px] text-outline">dashboard</span><span class="font-label-md text-label-md">Overview</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="ai-command-center" href="#"><span class="material-symbols-outlined text-[20px] text-secondary">smart_toy</span><span class="font-label-md text-label-md">AI Command Center</span></a></div><div class="space-y-space-xs"><div class="font-code-xs text-code-xs text-outline uppercase tracking-wider px-space-xs font-medium">Manage</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="crm" href="#"><span class="material-symbols-outlined text-[20px] text-outline">groups</span><span class="font-label-md text-label-md">CRM</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="websites" href="#"><span class="material-symbols-outlined text-[20px] text-outline">language</span><span class="font-label-md text-label-md">Websites</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="webinars" href="#"><span class="material-symbols-outlined text-[20px] text-outline">videocam</span><span class="font-label-md text-label-md">Webinars</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="marketing" href="#"><span class="material-symbols-outlined text-[20px] text-outline">campaign</span><span class="font-label-md text-label-md">Marketing</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="subscriptions" href="#"><span class="material-symbols-outlined text-[20px] text-outline">credit_card</span><span class="font-label-md text-label-md">Subscriptions</span></a></div><div class="space-y-space-xs"><div class="font-code-xs text-code-xs text-outline uppercase tracking-wider px-space-xs font-medium">Automation</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="workflows" href="#"><span class="material-symbols-outlined text-[20px] text-outline">account_tree</span><span class="font-label-md text-label-md">Workflows</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="approvals" href="#"><span class="material-symbols-outlined text-[20px] text-outline">verified</span><span class="font-label-md text-label-md">Approvals</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="activity-logs" href="#"><span class="material-symbols-outlined text-[20px] text-outline">receipt_long</span><span class="font-label-md text-label-md">Activity Logs</span></a></div><div class="space-y-space-xs"><div class="font-code-xs text-code-xs text-outline uppercase tracking-wider px-space-xs font-medium">Analytics</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="analytics" href="#"><span class="material-symbols-outlined text-[20px] text-outline">monitoring</span><span class="font-label-md text-label-md">Analytics</span></a></div></div><div class="p-margin bg-surface-container-low space-y-space-xs"><a class="flex items-center justify-between px-space-xs py-space-xs rounded-lg hover:bg-surface-container transition-colors" data-path="workspace-switcher" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-outline">swap_horiz</span><span class="font-label-sm text-label-sm text-on-surface font-medium">Acme Corp</span></div><span class="font-code-xs text-code-xs text-outline">Pro Plan</span></a><a class="flex items-center gap-space-xs px-space-xs py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="workspace-settings" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span class="font-label-sm text-label-sm">Workspace Settings</span></a></div></div></aside><main class="flex flex-col relative w-full px-margin-mobile pt-24 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full space-y-space-md">
+<!-- A. Header Context Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-sm relative overflow-hidden">
+<div class="absolute -right-6 -top-6 w-32 h-32 bg-primary-fixed/30 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">smart_toy</span>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">Autonomous Core</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container-low text-on-surface font-label-sm text-label-sm shadow-sm">
+<span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
+<span class="font-medium text-on-surface">Agent Ready</span>
+</div>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface tracking-tight">AI Command Center</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Describe your goal. Nexus will autonomously synthesize, plan, and coordinate multi-agent work.</p>
+</div>
+</div>
+<!-- B. Command Composer Area -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md relative">
+<div class="flex items-center justify-between">
+<label class="font-code-xs text-code-xs text-outline uppercase tracking-wider font-medium flex items-center gap-1" for="ai-prompt-input">
+<span class="material-symbols-outlined text-[14px] text-primary">auto_fix_high</span>
+        Prompt Canvas
+      </label>
+<span class="font-code-xs text-code-xs text-outline bg-surface-container-low px-2 py-0.5 rounded">v3.4 Neural Router</span>
+</div>
+<!-- Multiline Command Textarea -->
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-inner flex flex-col gap-space-sm">
+<textarea class="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none resize-none leading-relaxed" id="ai-prompt-input" placeholder="Tell Nexus what to execute..." rows="3">Create an AI webinar for 100 students, generate a registration page, prepare a promotional campaign, and track registrations in the CRM.</textarea>
+<!-- Action Toolbar -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs">
+<button class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface active:scale-95 transition-transform" title="Attach Context" type="button">
+<span class="material-symbols-outlined text-[18px]">attach_file</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container text-on-surface-variant hover:text-primary active:scale-95 transition-transform" title="Voice Input" type="button">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+</button>
+<button class="h-9 px-space-sm flex items-center gap-1 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface active:scale-95 transition-transform text-label-sm font-label-sm" onclick="regenerateMicroFeedback()" title="Regenerate Execution Graph" type="button">
+<span class="material-symbols-outlined text-[16px]">refresh</span>
+<span>Regenerate</span>
+</button>
+</div>
+<button class="h-9 px-space-md bg-gradient-to-r from-primary to-secondary text-on-primary rounded-lg font-label-md text-label-md font-medium shadow-md shadow-primary/20 hover:opacity-95 active:scale-95 transition-all flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span>Execute Plan</span>
+</button>
+</div>
+</div>
+<!-- Quick Suggestion Chips (Horizontal Scroll) -->
+<div class="flex flex-col gap-1.5">
+<span class="font-code-xs text-code-xs text-outline uppercase tracking-wider">Suggested Directives</span>
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1 no-scrollbar text-nowrap">
+<button class="px-space-sm py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors flex items-center gap-1 shadow-sm" onclick="insertPrompt('Launch a new interactive webinar on AI System Design with auto-replay')" type="button">
+<span class="material-symbols-outlined text-[14px] text-secondary">videocam</span>
+          Launch a new webinar
+        </button>
+<button class="px-space-sm py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors flex items-center gap-1 shadow-sm" onclick="insertPrompt('Capture and organize incoming enterprise leads from LinkedIn and assign priority score')" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary">groups</span>
+          Capture & organize leads
+        </button>
+<button class="px-space-sm py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors flex items-center gap-1 shadow-sm" onclick="insertPrompt('Prepare marketing campaign with 3 personalized drip touches across email and Slack')" type="button">
+<span class="material-symbols-outlined text-[14px] text-tertiary">campaign</span>
+          Prepare marketing campaign
+        </button>
+<button class="px-space-sm py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors flex items-center gap-1 shadow-sm" onclick="insertPrompt('Review quarterly business performance metrics and flag ARR pipeline variances')" type="button">
+<span class="material-symbols-outlined text-[14px] text-outline">analytics</span>
+          Review business performance
+        </button>
+</div>
+</div>
+</div>
+<!-- D. Plan Preview & Control Panel -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">account_tree</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Execution Graph</h2>
+</div>
+<span class="font-code-xs text-code-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">Pipeline #PL-9904</span>
+</div>
+<!-- Stats Strip Grid -->
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-low p-space-sm rounded-xl">
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex flex-col shadow-sm">
+<span class="font-code-xs text-code-xs text-outline uppercase tracking-wider">Target Objective</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Student Webinar Funnel</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex flex-col shadow-sm">
+<span class="font-code-xs text-code-xs text-outline uppercase tracking-wider">Topology</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">5 Steps • 4 Modules</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex flex-col shadow-sm">
+<span class="font-code-xs text-code-xs text-outline uppercase tracking-wider">Compute Latency</span>
+<span class="font-code-sm text-code-sm text-on-surface font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline">timer</span>
+          ~45s total
+        </span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex flex-col shadow-sm">
+<span class="font-code-xs text-code-xs text-outline uppercase tracking-wider">Policy Guardrails</span>
+<span class="font-label-md text-label-md text-secondary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+          1 Approval Req.
+        </span>
+</div>
+</div>
+<!-- Executive Action CTAs -->
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="h-10 px-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-medium transition-colors flex items-center justify-center gap-1.5 shadow-sm active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+        Edit Plan
+      </button>
+<button class="h-10 px-space-sm rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-medium transition-all flex items-center justify-center gap-1.5 shadow-md shadow-primary/25 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+        Execute Approved
+      </button>
+</div>
+</div>
+<!-- C. Active Workflow Execution Timeline -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-label-md text-label-md text-outline uppercase tracking-wider font-semibold">Scheduled Sequence Trace</h3>
+<span class="font-code-xs text-code-xs text-outline">Synchronous DAG</span>
+</div>
+<!-- Timeline Root Container -->
+<div class="relative flex flex-col space-y-space-md">
+<!-- STEP 1: Completed -->
+<div class="relative flex gap-space-md">
+<!-- Connecting Line to next step -->
+<div class="absolute left-4 top-8 -bottom-6 w-0.5 bg-surface-container"></div>
+<!-- Node indicator -->
+<div class="relative z-10 w-8 h-8 rounded-full bg-[#ecfdf5] text-[#065f46] flex items-center justify-center shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-1.5">
+<div class="flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-code-xs text-code-xs bg-surface-container px-1.5 py-0.5 rounded text-outline font-semibold">STEP 1</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Create Webinar</span>
+<span class="font-code-xs text-code-xs text-outline flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">videocam</span> Webinars
+              </span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-[#ecfdf5] text-[#065f46] font-code-xs text-code-xs font-semibold flex items-center gap-1 shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span> Done • 2m ago
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Configured session "AI for Modern Builders", capacity target 100 students, scheduled for June 4 with 4 curriculum milestones.</p>
+</div>
+</div>
+<!-- STEP 2: Completed with Preview Link -->
+<div class="relative flex gap-space-md">
+<div class="absolute left-4 top-8 -bottom-6 w-0.5 bg-surface-container"></div>
+<div class="relative z-10 w-8 h-8 rounded-full bg-[#ecfdf5] text-[#065f46] flex items-center justify-center shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-1.5">
+<div class="flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-code-xs text-code-xs bg-surface-container px-1.5 py-0.5 rounded text-outline font-semibold">STEP 2</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Generate Landing Page</span>
+<span class="font-code-xs text-code-xs text-outline flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">language</span> Websites
+              </span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-[#ecfdf5] text-[#065f46] font-code-xs text-code-xs font-semibold flex items-center gap-1 shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span> Completed
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Deployed registration endpoint with Modern SaaS template layout.</p>
+<div class="flex items-center justify-between bg-surface-container-lowest px-2.5 py-1.5 rounded-lg mt-0.5">
+<span class="font-code-xs text-code-xs text-primary font-medium truncate max-w-[190px]">/events/ai-students</span>
+<a class="font-label-sm text-label-sm text-primary hover:text-on-surface flex items-center gap-0.5" href="#">
+<span>Preview</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<!-- STEP 3: Pending Approval (Special highlight) -->
+<div class="relative flex gap-space-md">
+<div class="absolute left-4 top-8 -bottom-6 w-0.5 bg-surface-container"></div>
+<div class="relative z-10 w-8 h-8 rounded-full bg-[#fffbeb] text-[#92400e] flex items-center justify-center shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[18px]">lock_clock</span>
+</div>
+<div class="flex-1 bg-[#fffdf5] p-space-sm rounded-xl flex flex-col gap-2 shadow-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-code-xs text-code-xs bg-[#fef3c7] text-[#92400e] px-1.5 py-0.5 rounded font-semibold">STEP 3</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Prepare Campaign</span>
+<span class="font-code-xs text-code-xs text-outline flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">campaign</span> Marketing
+              </span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-[#fffbeb] text-[#92400e] font-code-xs text-code-xs font-semibold flex items-center gap-1 shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-ping"></span> Pending Review
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">Generate personalized promotional email copy and queue target student audience blast.</p>
+<!-- Sensitive Action Callout -->
+<div class="bg-[#fef3c7]/60 p-2 rounded-lg flex items-start gap-2">
+<span class="material-symbols-outlined text-[#b45309] text-[18px] shrink-0 mt-0.5">gavel</span>
+<div class="flex-1">
+<span class="font-label-sm text-label-sm text-[#92400e] font-semibold block">Sensitive Action Intercepted</span>
+<span class="font-body-sm text-body-sm text-[#78350f]">Human authorization is required prior to email dispatch according to Acme policy.</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-xs pt-1">
+<button class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors" type="button">
+              Review Draft
+            </button>
+<button class="px-3 py-1 rounded-lg bg-secondary text-on-secondary font-label-sm text-label-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-1 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[15px]">verified</span>
+              Authorize Step
+            </button>
+</div>
+</div>
+</div>
+<!-- STEP 4: Ready to Execute -->
+<div class="relative flex gap-space-md">
+<div class="absolute left-4 top-8 -bottom-6 w-0.5 bg-surface-container"></div>
+<div class="relative z-10 w-8 h-8 rounded-full bg-primary-fixed text-primary flex items-center justify-center shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-1.5">
+<div class="flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-code-xs text-code-xs bg-surface-container px-1.5 py-0.5 rounded text-outline font-semibold">STEP 4</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Connect CRM</span>
+<span class="font-code-xs text-code-xs text-outline flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">groups</span> CRM
+              </span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-code-xs text-code-xs font-semibold flex items-center gap-1 shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Ready to Run
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Attach incoming registrant stream to contact records and apply <span class="font-code-xs text-code-xs text-primary bg-primary-fixed/50 px-1 py-0.5 rounded">#edu-discount</span> metadata.</p>
+</div>
+</div>
+<!-- STEP 5: Waiting on Step 3 -->
+<div class="relative flex gap-space-md">
+<div class="relative z-10 w-8 h-8 rounded-full bg-surface-container text-outline flex items-center justify-center shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+</div>
+<div class="flex-1 bg-surface-container-low/70 p-space-sm rounded-xl flex flex-col gap-1.5 opacity-80">
+<div class="flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-code-xs text-code-xs bg-surface-container px-1.5 py-0.5 rounded text-outline font-semibold">STEP 5</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Prepare Follow-up</span>
+<span class="font-code-xs text-code-xs text-outline flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">campaign</span> Marketing
+              </span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-outline font-code-xs text-code-xs font-medium flex items-center gap-1 shrink-0">
+              Blocked by Step 3
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Schedule 24-hour pre-event automated reminder nudge and post-session code pack distribution.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- E. Real-Time Execution Summary & Audit Trail -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">receipt_long</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Execution Audit Trace</h3>
+</div>
+<span class="font-code-xs text-code-xs text-outline">Realtime Log</span>
+</div>
+<!-- Live Artifacts List -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[18px] text-primary shrink-0">event_available</span>
+<div class="truncate">
+<div class="font-label-sm text-label-sm text-on-surface font-semibold truncate">AI for Modern Builders</div>
+<div class="font-code-xs text-code-xs text-outline font-mono">Entity #EVT-8820 • Synced</div>
+</div>
+</div>
+<span class="font-code-xs text-code-xs bg-surface-container text-on-surface px-2 py-0.5 rounded font-mono shrink-0">Webinars</span>
+</div>
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-secondary shrink-0">web</span>
+<div class="truncate">
+<div class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Landing Page Template</div>
+<div class="font-code-xs text-code-xs text-primary font-mono truncate">Live preview compiled</div>
+</div>
+</div>
+<button class="h-7 px-space-xs rounded bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm flex items-center gap-1 shrink-0" type="button">
+<span>View</span>
+<span class="material-symbols-outlined text-[14px]">visibility</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[18px] text-[#f59e0b] shrink-0">mail</span>
+<div class="truncate">
+<div class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Email Campaign Draft</div>
+<div class="font-code-xs text-code-xs text-outline font-mono">Draft #CP-401 saved in queue</div>
+</div>
+</div>
+<span class="font-code-xs text-code-xs bg-[#fef3c7] text-[#92400e] px-2 py-0.5 rounded font-mono shrink-0">Staged</span>
+</div>
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[18px] text-primary shrink-0">sync_alt</span>
+<div class="truncate">
+<div class="font-label-sm text-label-sm text-on-surface font-semibold truncate">CRM Pipeline Rule</div>
+<div class="font-code-xs text-code-xs text-outline font-mono">Rule #R-12 active on inbound</div>
+</div>
+</div>
+<span class="font-code-xs text-code-xs bg-surface-container text-[#10b981] px-2 py-0.5 rounded font-mono font-semibold shrink-0">Active</span>
+</div>
+</div>
+<!-- Safety / Compliance Notice Banner -->
+<div class="p-space-sm rounded-xl bg-surface-container flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-outline text-[18px] shrink-0 mt-0.5">verified_user</span>
+<div class="flex-1">
+<p class="font-label-sm text-label-sm text-on-surface font-semibold">Strict Zero-Surprise Policy</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">No outbound emails will be dispatched without explicit human sign-off inside the Approvals Center.</p>
+</div>
+</div>
+<!-- Direct Navigation Buttons -->
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs">
+<a class="h-10 px-space-xs rounded-xl bg-secondary hover:bg-secondary-container text-on-secondary font-label-sm text-label-sm font-medium transition-all flex items-center justify-center gap-1 shadow-sm text-center" data-path="approvals" href="#">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Approvals Center</span>
+</a>
+<a class="h-10 px-space-xs rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-medium transition-all flex items-center justify-center gap-1 text-center shadow-sm" data-path="workflows" href="#">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+<span>Workflow Trace</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Client-side Micro-interactions -->
+<script>
+  function insertPrompt(text) {
+    const input = document.getElementById('ai-prompt-input');
+    if (input) {
+      input.value = text;
+      input.focus();
+      // subtle visual feedback pulse
+      input.classList.add('bg-primary-fixed/20');
+      setTimeout(() => input.classList.remove('bg-primary-fixed/20'), 350);
+    }
+  }
+
+  function regenerateMicroFeedback() {
+    const input = document.getElementById('ai-prompt-input');
+    if (input) {
+      const orig = input.style.opacity;
+      input.style.opacity = '0.4';
+      setTimeout(() => {
+        input.style.opacity = '1';
+      }, 400);
+    }
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[56px] h-11 text-on-surface-variant transition-colors gap-0.5" data-path="overview" href="#"><span class="material-symbols-outlined text-[22px]">space_dashboard</span><span class="font-label-sm text-[11px] leading-tight">Overview</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] h-11 transition-colors gap-0.5 text-primary font-semibold" data-path="ai-command-center" href="#"><span class="material-symbols-outlined text-[22px]">smart_toy</span><span class="font-label-sm text-[11px] leading-tight">AI Agent</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-11 text-on-surface-variant transition-colors gap-0.5" data-path="crm" href="#"><span class="material-symbols-outlined text-[22px]">groups</span><span class="font-label-sm text-[11px] leading-tight">CRM</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-11 text-on-surface-variant transition-colors gap-0.5" data-path="approvals" href="#"><span class="material-symbols-outlined text-[22px]">verified</span><span class="font-label-sm text-[11px] leading-tight">Approvals</span></a><button class="flex flex-col items-center justify-center min-w-[56px] h-11 text-on-surface-variant transition-colors gap-0.5" onclick="document.getElementById('mobile-drawer').classList.remove('-translate-x-full');document.getElementById('drawer-backdrop').classList.remove('opacity-0','pointer-events-none');" type="button"><span class="material-symbols-outlined text-[22px]">density_medium</span><span class="font-label-sm text-[11px] leading-tight">Menu</span></button></div></nav></body></html>

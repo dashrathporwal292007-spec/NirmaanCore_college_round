@@ -1,45 +1,19 @@
 {
-  "name": "nexus",
-  "version": "0.1.0",
+  "name": "nexus-platform",
   "private": true,
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev --webpack",
-    "build": "next build --webpack",
-    "start": "next start",
-    "lint": "eslint",
-    "seed": "tsx --env-file=.env.local scripts/seed.ts",
-    "smoke": "tsx --env-file=.env.local scripts/smoke.ts",
-    "typecheck": "tsc --noEmit",
-    "check:core": "tsx --env-file=.env.local scripts/check-core.ts",
-    "worker": "tsx --env-file=.env.local scripts/worker.ts",
-    "smoke:adaptive": "tsx --env-file=.env.local scripts/smoke_adaptive.ts",
-    "smoke:routes": "tsx --env-file=.env.local scripts/smoke_routes.ts",
-    "demo:reset": "tsx --env-file=.env.local scripts/demo_reset.ts",
-    "check:planner": "tsx --env-file=.env.local scripts/check_planner.ts",
-    "check:gemini": "tsx --env-file=.env.local scripts/check_gemini.ts",
-    "rehearse": "tsx --env-file=.env.local scripts/rehearse.ts"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@google/genai": "^2.28.0",
-    "next": "16.4.0",
-    "pg": "^8.23.1",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
-    "recharts": "^3.10.1",
-    "zod": "^4.6.5"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.3",
-    "@tailwindcss/turbopack": "^4",
-    "@types/node": "^20",
-    "@types/pg": "^8.23.1",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.4.0",
-    "postcss": "^8.5.29",
-    "tailwindcss": "^4",
-    "tsx": "^4.23.15",
-    "typescript": "^5"
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.14"
   }
 }

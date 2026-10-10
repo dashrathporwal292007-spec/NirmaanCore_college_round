@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-background":"#0b1c30","tertiary-container":"#6c748b","on-primary-fixed-variant":"#2f2ebe","secondary-fixed":"#e9ddff","on-tertiary":"#ffffff","secondary-container":"#8455ef","on-error":"#ffffff","error":"#ba1a1a","on-secondary-fixed":"#23005c","surface-container-lowest":"#ffffff","on-tertiary-container":"#fefcff","outline-variant":"#c7c4d7","surface-container":"#e5eeff","background":"#f8f9ff","surface-tint":"#494bd6","outline":"#767586","secondary":"#6b38d4","on-surface":"#0b1c30","on-error-container":"#93000a","secondary-fixed-dim":"#d0bcff","on-primary":"#ffffff","surface-dim":"#cbdbf5","on-primary-container":"#fffbff","surface-bright":"#f8f9ff","on-primary-fixed":"#07006c","surface-container-low":"#eff4ff","tertiary-fixed":"#dae2fd","on-secondary-container":"#fffbff","surface-container-highest":"#d3e4fe","primary":"#4648d4","primary-fixed":"#e1e0ff","on-surface-variant":"#464554","inverse-surface":"#213145","on-tertiary-fixed":"#131b2e","surface":"#f8f9ff","tertiary-fixed-dim":"#bec6e0","tertiary":"#545c72","on-secondary-fixed-variant":"#5516be","surface-container-high":"#dce9ff","inverse-primary":"#c0c1ff","on-tertiary-fixed-variant":"#3f465c","inverse-on-surface":"#eaf1ff","surface-variant":"#d3e4fe","primary-container":"#6063ee","error-container":"#ffdad6","on-secondary":"#ffffff","primary-fixed-dim":"#c0c1ff"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"margin-mobile":"1rem","space-xs":"0.25rem","space-lg":"1.25rem","space-xl":"2rem","margin":"1.5rem","space-md":"0.75rem","gutter-mobile":"0.75rem","margin-desktop":"2rem","space-sm":"0.5rem","gutter":"1.25rem","gutter-desktop":"1.5rem"},fontFamily:{"headline-lg-mobile":["Inter"],"headline-md":["Inter"],"code-sm":["JetBrains Mono"],"display":["Inter"],"headline-lg":["Inter"],"headline-sm":["Inter"],"body-lg":["Inter"],"code-xs":["JetBrains Mono"],"display-mobile":["Inter"],"body-md":["Inter"],"label-sm":["Inter"],"label-md":["Inter"],"body-sm":["Inter"]},fontSize:{"headline-lg-mobile":["1.375rem",{"lineHeight":"1.75rem","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-md":["1.25rem",{"lineHeight":"1.75rem","letterSpacing":"-0.015em","fontWeight":"600"}],"code-sm":["0.75rem",{"lineHeight":"1.125rem","letterSpacing":"-0.01em","fontWeight":"500"}],"display":["2.25rem",{"lineHeight":"2.75rem","letterSpacing":"-0.03em","fontWeight":"600"}],"headline-lg":["1.75rem",{"lineHeight":"2.25rem","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-sm":["1rem",{"lineHeight":"1.5rem","letterSpacing":"-0.01em","fontWeight":"600"}],"body-lg":["1rem",{"lineHeight":"1.5rem","letterSpacing":"-0.005em","fontWeight":"400"}],"code-xs":["0.6875rem",{"lineHeight":"0.875rem","letterSpacing":"0em","fontWeight":"400"}],"display-mobile":["1.75rem",{"lineHeight":"2.25rem","letterSpacing":"-0.02em","fontWeight":"600"}],"body-md":["0.875rem",{"lineHeight":"1.375rem","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.01em","fontWeight":"500"}],"label-md":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0em","fontWeight":"500"}],"body-sm":["0.75rem",{"lineHeight":"1.125rem","letterSpacing":"0em","fontWeight":"400"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Open Navigation Menu" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-primary rounded-lg transition-colors" onclick="document.getElementById('mobile-drawer').classList.remove('-translate-x-full');document.getElementById('drawer-backdrop').classList.remove('opacity-0','pointer-events-none');" type="button"><span class="material-symbols-outlined text-[24px]">menu</span></button><div class="flex items-center gap-space-xs"><img alt="NEXUS Geometric Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WGgaOz44aWrsvH2Qleb7JLGDKgKqkwtDMlNTUKZwKqvJ1LdrdEsNfALD0gBCkknAYNw9h__0RtmpKeMx2OX8u90e-4vTK32h2fF11cVp0cI_E2I55q-7HYiDdXQp0MJK7vD_JHM8OuHoYi2CNbtgH8WPIDahW8fmfcZUZWofaiaVPJTmec8SUyYQ9sxYldC2id4Au8pPfGYRX14IGSBsqhGvGSkPbi4P1o5OpHDdVO0Y3Qt4gsawAxZseq"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-wider font-semibold">NEXUS</span></div><div class="h-4 w-px bg-outline-variant mx-space-xs"></div><button class="flex items-center gap-space-xs px-space-xs py-space-xs rounded-lg hover:bg-surface-container transition-colors text-left"><span class="font-label-sm text-label-sm text-on-surface font-medium truncate max-w-[90px]">Acme Corp</span><span class="material-symbols-outlined text-[16px] text-outline">unfold_more</span></button></div><div class="flex items-center gap-space-xs"><button aria-label="Notifications" class="w-11 h-11 relative flex items-center justify-center text-on-surface-variant hover:text-on-surface rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-primary ring-2 ring-surface"></span></button><div class="w-11 h-11 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNCeXJIztQO1NpzXlvhFEsg_YDXT8Durt2yeV30bv7mpNJhJs5Amfi1-GucD0h49wRLJ_fwbFHCoJh7xJYvTFLs7qWIvxpFMGQASR4XUbSSHZIgIdXeQRgbpbb802G8jFfFs6wDjXLrWAo2KeUXQL6tbMBbRu6_uTQcH7gark20kWcHCOuQo1HxtncGJjgVlyesxm8_jLiCfTAfZJ8i6KGZYKVvNSN2XmUFYgmKgOZbcbGc1IJKQ6_eg"/></div></div></div><div class="px-margin-mobile pb-space-xs flex items-center justify-between"><h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Overview</h1><span class="inline-flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Live OPS</span></div></header><div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" id="drawer-backdrop" onclick="document.getElementById('mobile-drawer').classList.add('-translate-x-full');this.classList.add('opacity-0','pointer-events-none');"></div><aside class="fixed top-0 bottom-0 left-0 z-50 w-72 max-w-[85vw] bg-surface-container-lowest shadow-[0_20px_25px_-5px_rgba(15,23,42,0.08)] -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between pt-safe pb-safe" id="mobile-drawer"><div class="flex flex-col h-full overflow-hidden"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-xs"><img alt="NEXUS Geometric Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WGgaOz44aWrsvH2Qleb7JLGDKgKqkwtDMlNTUKZwKqvJ1LdrdEsNfALD0gBCkknAYNw9h__0RtmpKeMx2OX8u90e-4vTK32h2fF11cVp0cI_E2I55q-7HYiDdXQp0MJK7vD_JHM8OuHoYi2CNbtgH8WPIDahW8fmfcZUZWofaiaVPJTmec8SUyYQ9sxYldC2id4Au8pPfGYRX14IGSBsqhGvGSkPbi4P1o5OpHDdVO0Y3Qt4gsawAxZseq"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-wider font-semibold">NEXUS</span></div><button aria-label="Close Drawer" class="w-11 h-11 flex items-center justify-center text-outline hover:text-on-surface" onclick="document.getElementById('mobile-drawer').classList.add('-translate-x-full');document.getElementById('drawer-backdrop').classList.add('opacity-0','pointer-events-none');"><span class="material-symbols-outlined text-[20px]">close</span></button></div><div class="flex-1 overflow-y-auto px-margin py-space-sm space-y-space-md"><div class="space-y-space-xs"><div class="font-code-xs text-code-xs text-outline uppercase tracking-wider px-space-xs font-medium">Workspace</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="overview" href="#"><span class="material-symbols-outlined text-[20px] text-outline">dashboard</span><span class="font-label-md text-label-md">Overview</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="ai-command-center" href="#"><span class="material-symbols-outlined text-[20px] text-secondary">smart_toy</span><span class="font-label-md text-label-md">AI Command Center</span></a></div><div class="space-y-space-xs"><div class="font-code-xs text-code-xs text-outline uppercase tracking-wider px-space-xs font-medium">Manage</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="crm" href="#"><span class="material-symbols-outlined text-[20px] text-outline">groups</span><span class="font-label-md text-label-md">CRM</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="websites" href="#"><span class="material-symbols-outlined text-[20px] text-outline">language</span><span class="font-label-md text-label-md">Websites</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="webinars" href="#"><span class="material-symbols-outlined text-[20px] text-outline">videocam</span><span class="font-label-md text-label-md">Webinars</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="marketing" href="#"><span class="material-symbols-outlined text-[20px] text-outline">campaign</span><span class="font-label-md text-label-md">Marketing</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="subscriptions" href="#"><span class="material-symbols-outlined text-[20px] text-outline">credit_card</span><span class="font-label-md text-label-md">Subscriptions</span></a></div><div class="space-y-space-xs"><div class="font-code-xs text-code-xs text-outline uppercase tracking-wider px-space-xs font-medium">Automation</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="workflows" href="#"><span class="material-symbols-outlined text-[20px] text-outline">account_tree</span><span class="font-label-md text-label-md">Workflows</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="approvals" href="#"><span class="material-symbols-outlined text-[20px] text-outline">verified</span><span class="font-label-md text-label-md">Approvals</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="activity-logs" href="#"><span class="material-symbols-outlined text-[20px] text-outline">receipt_long</span><span class="font-label-md text-label-md">Activity Logs</span></a></div><div class="space-y-space-xs"><div class="font-code-xs text-code-xs text-outline uppercase tracking-wider px-space-xs font-medium">Analytics</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface hover:bg-surface-container transition-colors" data-path="analytics" href="#"><span class="material-symbols-outlined text-[20px] text-outline">monitoring</span><span class="font-label-md text-label-md">Analytics</span></a></div></div><div class="p-margin bg-surface-container-low space-y-space-xs"><a class="flex items-center justify-between px-space-xs py-space-xs rounded-lg hover:bg-surface-container transition-colors" data-path="workspace-switcher" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-outline">swap_horiz</span><span class="font-label-sm text-label-sm text-on-surface font-medium">Acme Corp</span></div><span class="font-code-xs text-code-xs text-outline">Pro Plan</span></a><a class="flex items-center gap-space-xs px-space-xs py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="workspace-settings" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span class="font-label-sm text-label-sm">Workspace Settings</span></a></div></div></aside><main class="flex flex-col relative w-full px-margin-mobile pt-24 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full space-y-space-md">
+<!-- Welcome Banner & Primary AI Trigger -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-start justify-between">
+<div class="space-y-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Good morning, Alex</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-code-xs text-code-xs uppercase tracking-wide">Demo Data</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Here's what's happening across your business today.</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</div>
+<!-- AI Core Action Button -->
+<button class="w-full h-12 rounded-xl bg-gradient-to-r from-primary to-secondary text-on-primary font-label-md text-label-md shadow-md flex items-center justify-center gap-space-sm active:scale-[0.985] transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span>Launch AI Agent</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</section>
+<!-- KPI Grid (2x2) -->
+<section class="grid grid-cols-2 gap-space-sm">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Total Contacts</span>
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">groups</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">2,840</div>
+<div class="flex items-center gap-1 text-[#065F46] font-code-xs text-code-xs mt-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+14.2%</span>
+<span class="text-on-surface-variant">vs mo</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Webinar Signups</span>
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[16px]">videocam</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">684</div>
+<div class="flex items-center gap-1 text-[#065F46] font-code-xs text-code-xs mt-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+32.8%</span>
+<span class="text-on-surface-variant">vs mo</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Active Campaigns</span>
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[16px]">campaign</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">12</div>
+<div class="flex items-center gap-1 text-[#92400E] font-code-xs text-code-xs mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
+<span>3 pending review</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Workflow Rate</span>
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">96.8%</div>
+<div class="flex items-center gap-1 text-[#065F46] font-code-xs text-code-xs mt-0.5">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+<span>+2.4%</span>
+<span class="text-on-surface-variant">vs mo</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Business Performance Interactive Chart Card -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Business Performance</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">+128 leads recorded this week</p>
+</div>
+<!-- Metric Segment Switcher -->
+<div class="flex items-center bg-surface-container p-0.5 rounded-lg text-label-sm font-label-sm">
+<button class="px-space-xs py-1 rounded-[6px] bg-surface-container-lowest text-primary shadow-xs font-medium transition-all" id="tab-reg" onclick="switchPerformanceTab('reg')" type="button">Registrations</button>
+<button class="px-space-xs py-1 rounded-[6px] text-on-surface-variant transition-all" id="tab-leads" onclick="switchPerformanceTab('leads')" type="button">Leads</button>
+</div>
+</div>
+<!-- Inline Dynamic SVG Graph -->
+<div class="w-full h-36 relative flex flex-col justify-end pt-2">
+<svg class="w-full h-28 overflow-visible" preserveaspectratio="none" viewbox="0 0 320 100">
+<defs>
+<lineargradient id="gradient-area" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#4648d4" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#4648d4" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Background grid guides -->
+<line stroke="#E2E8F0" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="320" y1="15" y2="15"></line>
+<line stroke="#E2E8F0" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="320" y1="50" y2="50"></line>
+<line stroke="#E2E8F0" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="320" y1="85" y2="85"></line>
+<!-- Shaded gradient under curve -->
+<polygon fill="url(#gradient-area)" id="graph-area" points="0,85 10,75 75,60 145,68 220,38 310,18 310,100 0,100"></polygon>
+<!-- Metric Curve -->
+<polyline fill="none" id="graph-line" points="10,75 75,60 145,68 220,38 310,18" stroke="#4648d4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></polyline>
+<!-- Glowing interactive milestone points -->
+<circle cx="75" cy="60" fill="#4648d4" r="3.5" stroke="#ffffff" stroke-width="1.5"></circle>
+<circle cx="220" cy="38" fill="#4648d4" r="3.5" stroke="#ffffff" stroke-width="1.5"></circle>
+<circle cx="310" cy="18" fill="#6b38d4" id="live-point" r="4.5" stroke="#ffffff" stroke-width="2"></circle>
+</svg>
+<!-- Month Labels -->
+<div class="flex justify-between font-code-xs text-code-xs text-outline pt-2 px-1">
+<span>JAN</span>
+<span>FEB</span>
+<span>MAR</span>
+<span>APR</span>
+<span class="text-primary font-medium">MAY</span>
+</div>
+</div>
+</section>
+<!-- Pending Approvals Module -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-[#F59E0B]">pending_actions</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Pending Approvals</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-[#FFFBEB] text-[#92400E] font-code-xs text-code-xs font-medium">1 Action Required</span>
+</div>
+<!-- Approval Action Card -->
+<div class="bg-surface-container-low rounded-xl p-space-md space-y-space-md transition-all" id="approval-item">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="space-y-1">
+<p class="font-label-md text-label-md text-on-surface font-semibold leading-snug">Send promotional email to 684 registrants</p>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-code-xs text-code-xs">
+<span class="material-symbols-outlined text-[14px] text-secondary">smart_toy</span>
+<span>Requested by AI Business Agent</span>
+<span>•</span>
+<span>24m ago</span>
+</div>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-[#F59E0B] shrink-0 mt-1 animate-pulse"></span>
+</div>
+<div class="flex items-center gap-space-sm pt-1">
+<button class="flex-1 h-9 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+          Review
+        </button>
+<button class="flex-1 h-9 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm shadow-xs active:scale-[0.98] transition-transform flex items-center justify-center gap-1" onclick="handleApprove(this)" type="button">
+<span class="material-symbols-outlined text-[16px]">check</span>
+          Approve
+        </button>
+</div>
+</div>
+</section>
+<!-- Upcoming Webinars -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Upcoming Webinars</h2>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#ECFDF5] text-[#065F46] font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping"></span>
+        Registration Open
+      </span>
+</div>
+<!-- Visual Webinar Capsule Card -->
+<div class="space-y-space-sm">
+<div class="relative rounded-lg overflow-hidden h-28 bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="A modern enterprise tech masterclass presentation stage with vibrant indigo lighting, sleek podium, abstract digital network holographic displays on high resolution LED screens, clean professional business conference aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5GhW0FanBeVbVvvwJ--PDyBIHncb6lfs0LEUvksWyN5n9i2FAGLsMeGaDXEokdSvcBNRWCJyna3ENoUfrrtTLvNhTU9Z0naZ6Np1E8w47wEsH68WMYfz10evZv9FXzp6rgWkM3JQwhzedJi7vKpQWys_zg-qSxQ50KsNM1WEMEQp4a6xWeUnt-TmD8JFeUZXDArmye0Fsu_XtfhqtnTHSA5-u77LAUkG463b9XzL5LXC1Kl09mJ-iWw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/80 via-transparent to-transparent flex items-end p-space-md">
+<span class="font-label-sm text-label-sm text-on-primary font-semibold">May 28 • 2:00 PM EST</span>
+</div>
+</div>
+<div class="space-y-space-xs">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold">AI-Powered Growth Masterclass</h3>
+<!-- Capacity Bar & Counts -->
+<div class="space-y-1">
+<div class="flex justify-between font-code-xs text-code-xs text-on-surface-variant">
+<span>684 / 800 seats claimed</span>
+<span class="font-medium text-primary">85% full</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full" style="width: 85%;"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Autonomous Workflows -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">account_tree</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Recent AI Workflows</h2>
+</div>
+<button class="font-label-sm text-label-sm text-primary hover:underline" type="button">View all</button>
+</div>
+<div class="space-y-space-sm">
+<!-- Workflow 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col space-y-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="min-w-0">
+<h4 class="font-label-md text-label-md text-on-surface font-medium truncate">AI Webinar Launch & Follow-up</h4>
+<p class="font-code-xs text-code-xs text-on-surface-variant">Trigger: Natural language command • 2h ago</p>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#ECFDF5] text-[#065F46] font-code-xs text-code-xs font-medium shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
+            Completed
+          </span>
+</div>
+<div class="flex items-center justify-between pt-1 font-code-xs text-code-xs text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-[#10B981]">check_circle</span>
+            5/5 steps finished
+          </span>
+<span class="text-primary font-medium">100%</span>
+</div>
+</div>
+<!-- Workflow 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col space-y-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="min-w-0">
+<h4 class="font-label-md text-label-md text-on-surface font-medium truncate">Product Hunt Q2 Campaign Prep</h4>
+<p class="font-code-xs text-code-xs text-on-surface-variant">Trigger: Scheduled trigger • 14m ago</p>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#FFFBEB] text-[#92400E] font-code-xs text-code-xs font-medium shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
+            Pending Approval
+          </span>
+</div>
+<div class="flex items-center justify-between pt-1 font-code-xs text-code-xs text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-[#F59E0B]">schedule</span>
+            3/4 steps finished
+          </span>
+<span class="text-on-surface-variant font-medium">75%</span>
+</div>
+</div>
+<!-- Workflow 3 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col space-y-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="min-w-0">
+<h4 class="font-label-md text-label-md text-on-surface font-medium truncate">Enterprise Lead Enrichment</h4>
+<p class="font-code-xs text-code-xs text-on-surface-variant">Trigger: Webhook • 1h ago</p>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-code-xs text-code-xs font-medium shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            Running
+          </span>
+</div>
+<div class="flex items-center justify-between pt-1 font-code-xs text-code-xs text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary animate-spin">sync</span>
+            Enriching clearbit profile records...
+          </span>
+<span class="text-primary font-medium">In flight</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Live Activity Stream -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Live Activity</h2>
+<span class="font-code-xs text-code-xs text-outline">Real-time sync</span>
+</div>
+<div class="relative space-y-space-md">
+<!-- Activity Item 1 -->
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">sync_alt</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-md text-on-surface">CRM synced <span class="font-semibold text-primary">42 new attendees</span></p>
+<span class="font-code-xs text-code-xs text-on-surface-variant">3m ago • HubSpot Connector</span>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-secondary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">public</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-md text-on-surface">Landing page published</p>
+<span class="font-code-xs text-code-xs text-primary truncate block">nexus.app/ai-masterclass</span>
+<span class="font-code-xs text-code-xs text-on-surface-variant">18m ago • Web Builder Engine</span>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-tertiary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-md text-on-surface">Campaign draft generated</p>
+<span class="font-code-xs text-code-xs text-on-surface-variant">42m ago • Generative Copy Agent</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  function switchPerformanceTab(type) {
+    const tabReg = document.getElementById('tab-reg');
+    const tabLeads = document.getElementById('tab-leads');
+    const polyline = document.getElementById('graph-line');
+    const area = document.getElementById('graph-area');
+    const livePoint = document.getElementById('live-point');
+
+    if (!tabReg || !tabLeads || !polyline || !area || !livePoint) return;
+
+    if (type === 'leads') {
+      tabLeads.className = "px-space-xs py-1 rounded-[6px] bg-surface-container-lowest text-primary shadow-xs font-medium transition-all";
+      tabReg.className = "px-space-xs py-1 rounded-[6px] text-on-surface-variant transition-all";
+      polyline.setAttribute('points', '10,80 75,45 145,55 220,25 310,12');
+      area.setAttribute('points', '0,85 10,80 75,45 145,55 220,25 310,12 310,100 0,100');
+      livePoint.setAttribute('cy', '12');
+    } else {
+      tabReg.className = "px-space-xs py-1 rounded-[6px] bg-surface-container-lowest text-primary shadow-xs font-medium transition-all";
+      tabLeads.className = "px-space-xs py-1 rounded-[6px] text-on-surface-variant transition-all";
+      polyline.setAttribute('points', '10,75 75,60 145,68 220,38 310,18');
+      area.setAttribute('points', '0,85 10,75 75,60 145,68 220,38 310,18 310,100 0,100');
+      livePoint.setAttribute('cy', '18');
+    }
+  }
+
+  function handleApprove(btn) {
+    const card = document.getElementById('approval-item');
+    if (!card || !btn) return;
+    btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">done_all</span> Approved';
+    btn.disabled = true;
+    card.classList.add('opacity-60');
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] h-11 transition-colors gap-0.5 text-primary font-semibold" data-path="overview" href="#"><span class="material-symbols-outlined text-[22px]">space_dashboard</span><span class="font-label-sm text-[11px] leading-tight">Overview</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-11 text-on-surface-variant transition-colors gap-0.5" data-path="ai-command-center" href="#"><span class="material-symbols-outlined text-[22px]">smart_toy</span><span class="font-label-sm text-[11px] leading-tight">AI Agent</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-11 text-on-surface-variant transition-colors gap-0.5" data-path="crm" href="#"><span class="material-symbols-outlined text-[22px]">groups</span><span class="font-label-sm text-[11px] leading-tight">CRM</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-11 text-on-surface-variant transition-colors gap-0.5" data-path="approvals" href="#"><span class="material-symbols-outlined text-[22px]">verified</span><span class="font-label-sm text-[11px] leading-tight">Approvals</span></a><button class="flex flex-col items-center justify-center min-w-[56px] h-11 text-on-surface-variant transition-colors gap-0.5" onclick="document.getElementById('mobile-drawer').classList.remove('-translate-x-full');document.getElementById('drawer-backdrop').classList.remove('opacity-0','pointer-events-none');" type="button"><span class="material-symbols-outlined text-[22px]">density_medium</span><span class="font-label-sm text-[11px] leading-tight">Menu</span></button></div></nav></body></html>
