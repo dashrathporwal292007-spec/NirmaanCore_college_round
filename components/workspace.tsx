@@ -163,9 +163,6 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
                       : "Plan a request to see its source")}
             </span>
           </span>
-          <span className="simulation-note">
-            Email, payments and webinar hosting are simulated.
-          </span>
         </div>
       </header>
       <dialog
