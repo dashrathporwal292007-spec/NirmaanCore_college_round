@@ -2,7 +2,9 @@
 
 A Bit n Build prototype: the agent proposes a business workflow, a person approves it, and deterministic rules keep pending actions appropriate. Next.js App Router, TypeScript and PostgreSQL 16.
 
-## Setup
+## Run it locally
+
+**Before you build or run:** copy `.env.example` to `.env.local`, set `DATABASE_URL` explicitly, start Postgres, then run `npm run demo:reset` after applying the schemas to a fresh database. This repo has no `db:up` or `setup` script; use the Docker commands below. A build can run without database settings, but database requests require them.
 
 Use Node 24 and a disposable demo database. In a fresh checkout:
 
