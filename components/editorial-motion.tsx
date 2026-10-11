@@ -68,6 +68,16 @@ export function EditorialMotion() {
       mutations.observe(document.body, { childList: true, subtree: true });
       const update = () => {
         frame = 0;
+        document.querySelectorAll<HTMLElement>(".zoom-scene").forEach((el) => {
+          const box = el.getBoundingClientRect();
+          const progress = Math.max(0, Math.min(1, -box.top / Math.max(1, box.height - innerHeight)));
+          el.style.setProperty("--scene-progress", String(progress));
+          el.querySelectorAll<HTMLElement>(".zoom-line").forEach((line, index) => {
+            const reveal = Math.max(0, Math.min(1, (progress - .12 - index * .16) / .18));
+            line.style.opacity = String(reveal);
+            line.style.transform = `translateY(${(1 - reveal) * 48}px)`;
+          });
+        });
         document.querySelectorAll<HTMLElement>("main h1, main .scroll-territory").forEach((el) => {
           const box = el.getBoundingClientRect();
           const progress = Math.max(0, Math.min(1, (innerHeight - box.top) / (innerHeight + box.height)));
@@ -97,6 +107,13 @@ export function EditorialMotion() {
         window.removeEventListener("resize", onScroll);
         document.querySelectorAll<HTMLElement>("main h1, main .scroll-territory").forEach((el) => {
           ["--scene-scale", "--art-scale", "--art-shift"].forEach((name) => el.style.removeProperty(name));
+        });
+        document.querySelectorAll<HTMLElement>(".zoom-scene").forEach((el) => {
+          el.style.removeProperty("--scene-progress");
+          el.querySelectorAll<HTMLElement>(".zoom-line").forEach((line) => {
+            line.style.removeProperty("opacity");
+            line.style.removeProperty("transform");
+          });
         });
         elements.forEach((el) =>
           el.classList.remove("scroll-reveal", "scroll-visible"),

@@ -287,6 +287,20 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
       <main className="workspace" id="main" key={path}>
         {error && <ErrorState message={error} />}
         {children}
+        <section className="zoom-scene" aria-label="How Nexus works">
+          <div className="zoom-stage">
+            <div className="zoom-frame">
+              {/* Original bundled artwork; no external media requests. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/menu/agent.svg" alt="Abstract illustration of connected business actions" width={800} height={1000} />
+              <div className="zoom-copy">
+                <p className="zoom-line">One instruction.</p>
+                <p className="zoom-line"><em>A clear plan.</em></p>
+                <p className="zoom-line">You decide what happens.</p>
+              </div>
+            </div>
+          </div>
+        </section>
         <section id="features" className="section scroll-territories" aria-label="Explore the workspace">
           <h2>One business.<br /><em>Every moving part.</em></h2>
           <nav aria-label="Explore screens">
