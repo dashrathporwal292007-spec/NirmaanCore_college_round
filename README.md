@@ -39,3 +39,5 @@ Real: database records, registrations, permissions, dry-run previews, approvals,
 Simulated: email delivery, payments/invoices, subscription checkout and webinar hosting. No attendance control, UI reset or unapproved-draft cancellation. Sent messages and active subscriptions cannot be recalled by rewind. Fonts and original menu artwork are bundled locally; offline demo mode needs no external runtime requests.
 
 Contracts: docs/API.md. Design/reference: docs/DESIGN.md and docs/REFERENCE_NOTES.md. Verification: docs/BATCH_A.md and docs/BATCH_B.md.
+
+`npm run demo:showcase` adds fictional judging activity through existing HTTP workflows: a webinar plan, approved invitations, published registration page, up to ten registrations and follow-up drafts awaiting approval. It preserves the existing seed and data, creates no attendance fixtures, and sends no external email. Re-running adds another story.

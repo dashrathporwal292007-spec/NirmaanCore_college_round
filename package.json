@@ -17,7 +17,8 @@
     "demo:reset": "tsx --env-file=.env.local scripts/demo_reset.ts",
     "check:planner": "tsx --env-file=.env.local scripts/check_planner.ts",
     "check:gemini": "tsx --env-file=.env.local scripts/check_gemini.ts",
-    "rehearse": "tsx --env-file=.env.local scripts/rehearse.ts"
+    "rehearse": "tsx --env-file=.env.local scripts/rehearse.ts",
+    "demo:showcase": "tsx --env-file=.env.local scripts/demo_showcase.ts"
   },
   "dependencies": {
     "@google/genai": "^2.28.0",
