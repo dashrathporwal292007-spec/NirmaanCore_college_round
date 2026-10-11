@@ -1509,3 +1509,12 @@ main h1 { animation: display-unveil 850ms cubic-bezier(.16,1,.3,1) both; }
 .scroll-territory:hover .territory-name em, .scroll-territory:focus-visible .territory-name em { opacity: 1; color: var(--ink); }
 .scroll-territory:hover img, .scroll-territory:focus-visible img { opacity: .6; transform: scale(1) rotate(0); }
 @media (prefers-reduced-motion: reduce) { .scroll-territory, .territory-name, .territory-name em, .scroll-territory img { transition: none; } }
+
+/* Keep labels readable throughout the type change, with room for serif strokes. */
+.territory-name { white-space: nowrap; padding-block: .12em; }
+.territory-name em { display: none; }
+.scroll-territory:hover .territory-name, .scroll-territory:focus-visible .territory-name { color: var(--ink); font-family: var(--font-serif); font-weight: 400; }
+.panel-title > span + span { display: none; }
+.panel-menu nav a:hover .panel-title > span:first-child, .panel-menu nav a:focus-visible .panel-title > span:first-child { transform: none; font-family: var(--font-serif); font-weight: 400; }
+.panel-menu nav a > .panel-title { overflow: visible; line-height: 1.3; }
+@media (max-width:1000px) { .panel-menu nav { grid-template-rows: repeat(3,minmax(0,1fr)); } }

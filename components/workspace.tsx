@@ -17,6 +17,7 @@ const tabs = [
   ["Analytics", "/analytics"],
   ["Rules", "/rules"],
 ];
+const menuTabs = [["Home", "/"], ["About", "/about"], ["Features", "/#features"], ["Workspace", "/live"], ["Contact us", "/contact"]];
 const WorkspaceContext = createContext({
   role: "owner" as "owner" | "viewer",
   onMode: (m: Mode) => {
@@ -206,7 +207,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
           </button>
         </div>
         <nav aria-label="Workspace">
-          {tabs.map(([tab, href], index) => (
+          {menuTabs.map(([tab, href], index) => (
             <Link
               key={href}
               href={href}
@@ -229,7 +230,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className="panel-art"
-                src={`/menu/${href === "/" ? "agent" : href.slice(1)}.svg`}
+                src={`/menu/${href === "/" ? "agent" : href === "/about" ? "rules" : href === "/contact" ? "contacts" : href === "/#features" ? "analytics" : "live"}.svg`}
                 alt=""
                 width={800}
                 height={1000}
@@ -245,7 +246,11 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
                 {
                   (
                     {
-                      Agent: "Propose first. Approve second.",
+                      Home: "Propose first. Approve second.",
+                      About: "A business that stays in your control.",
+                      Features: "Explore every moving part.",
+                      Workspace: "Watch the business correct itself.",
+                      "Contact us": "Talk to the Nexus team.",
                       "Live view": "Watch the business correct itself.",
                       Contacts: "Every customer, every decision.",
                       Webinars: "Bring people together.",
@@ -282,7 +287,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
       <main className="workspace" id="main" key={path}>
         {error && <ErrorState message={error} />}
         {children}
-        <section className="section scroll-territories" aria-label="Explore the workspace">
+        <section id="features" className="section scroll-territories" aria-label="Explore the workspace">
           <h2>One business.<br /><em>Every moving part.</em></h2>
           <nav aria-label="Explore screens">
             {tabs.map(([tab, href], index) => (
