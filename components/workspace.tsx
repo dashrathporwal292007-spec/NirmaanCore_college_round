@@ -20,6 +20,11 @@ export const useWorkspace = () => useContext(WorkspaceContext);
 export function WorkspaceShell({ children }: { children: ReactNode }) {
   const path = usePathname();
   const router = useRouter();
+  const finishNavigation = useRef<(() => void) | null>(null);
+  useEffect(() => {
+    finishNavigation.current?.();
+    finishNavigation.current = null;
+  }, [path]);
   const [closing, setClosing] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -300,7 +305,15 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
               {[["Agent", "/#agent-command", "Propose first. Approve second."], ["Live view", "/live", "Watch the business correct itself."], ["Contacts", "/contacts", "Every customer, every decision."], ["Webinars", "/webinars", "Bring people together."], ["Runs", "/runs", "Every action leaves a receipt."], ["Outbox", "/outbox", "See what was sent. See what stopped."], ["Rules", "/rules", "Five rules. One promise."], ["Analytics", "/analytics", "Count what actually happened."]].map(([name, href, description], i) => (
                 <Link className="scroll-territory home-screen-link" key={href} href={href} onClick={(e) => {
                   if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
-                  if (href !== "/#agent-command") return;
+                  if (href !== "/#agent-command") {
+                    if (!document.startViewTransition || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                    e.preventDefault();
+                    document.startViewTransition(() => new Promise<void>((resolve) => {
+                      finishNavigation.current = resolve;
+                      router.push(href);
+                    }));
+                    return;
+                  }
                   e.preventDefault();
                   history.replaceState(null, "", "#agent-command");
                   document.getElementById("prompt")?.focus({ preventScroll: true });
