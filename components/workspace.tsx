@@ -298,7 +298,13 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
             <h2>One business.<br /><em>Every moving part.</em></h2>
             <nav aria-label="Home screen links">
               {[["Agent", "/#agent-command", "Propose first. Approve second."], ["Live view", "/live", "Watch the business correct itself."], ["Contacts", "/contacts", "Every customer, every decision."], ["Webinars", "/webinars", "Bring people together."], ["Runs", "/runs", "Every action leaves a receipt."], ["Outbox", "/outbox", "See what was sent. See what stopped."], ["Rules", "/rules", "Five rules. One promise."], ["Analytics", "/analytics", "Count what actually happened."]].map(([name, href, description], i) => (
-                <Link className="scroll-territory home-screen-link" key={href} href={href}>
+                <Link className="scroll-territory home-screen-link" key={href} href={href} onClick={(e) => {
+                  if (href !== "/#agent-command" || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                  e.preventDefault();
+                  history.replaceState(null, "", "#agent-command");
+                  document.getElementById("prompt")?.focus({ preventScroll: true });
+                  document.getElementById("agent-command")?.scrollIntoView({ block: "start" });
+                }}>
                   <span className="territory-number">{String(i + 1).padStart(2, "0")}</span>
                   <span className="territory-name">{name}</span>
                   {/* Original artwork, bundled locally. */}
