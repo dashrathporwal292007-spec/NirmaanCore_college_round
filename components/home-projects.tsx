@@ -34,7 +34,7 @@ export function HomeProjects() {
     <div className="project-pin">
     <h2>The work.<br /><em>In motion.</em></h2>
     <div className="project-window">
-      <div className="project-track" style={{ transform: `translateX(-${active * 100}%)` }}>
+      <div className="project-track" style={{ transform: `translateY(-${active * 100}%)` }}>
         {items.map((item, i) => <article className="project-slide" key={item.slug} inert={!reduced && i !== active} aria-hidden={!reduced && i !== active}>
           {/* Original local illustration; no reference brand assets. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
