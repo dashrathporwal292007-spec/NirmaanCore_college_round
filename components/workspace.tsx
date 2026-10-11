@@ -21,6 +21,10 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
   const path = usePathname();
   const router = useRouter();
   const [closing, setClosing] = useState(false);
+  const [destination, setDestination] = useState<{name: string; artwork: string} | null>(null);
+  const transitionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (transitionTimer.current) clearTimeout(transitionTimer.current); }, []);
+  useEffect(() => { setDestination(null); }, [path]);
   const [menuOpen, setMenuOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closeMenu = (href?: string) => {
@@ -76,6 +80,11 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
         refresh: () => setRefresh((n) => n + 1),
       }}
     >
+      {destination && <div className="destination-wipe" role="status" aria-live="polite">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={`/menu/${destination.artwork}.svg`} alt="" width={800} height={1000} />
+        <span>Opening</span><strong>{destination.name}</strong>
+      </div>}
       <a className="skip" href="#main">
         Skip to workspace
       </a>
@@ -299,7 +308,16 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
             <nav aria-label="Home screen links">
               {[["Agent", "/#agent-command", "Propose first. Approve second."], ["Live view", "/live", "Watch the business correct itself."], ["Contacts", "/contacts", "Every customer, every decision."], ["Webinars", "/webinars", "Bring people together."], ["Runs", "/runs", "Every action leaves a receipt."], ["Outbox", "/outbox", "See what was sent. See what stopped."], ["Rules", "/rules", "Five rules. One promise."], ["Analytics", "/analytics", "Count what actually happened."]].map(([name, href, description], i) => (
                 <Link className="scroll-territory home-screen-link" key={href} href={href} onClick={(e) => {
-                  if (href !== "/#agent-command" || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                  if (href !== "/#agent-command") {
+                    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                    e.preventDefault();
+                    if (transitionTimer.current) clearTimeout(transitionTimer.current);
+                    setDestination({ name, artwork: href.slice(1) });
+                    router.prefetch(href);
+                    transitionTimer.current = setTimeout(() => { router.push(href); setDestination(null); }, 550);
+                    return;
+                  }
                   e.preventDefault();
                   history.replaceState(null, "", "#agent-command");
                   document.getElementById("prompt")?.focus({ preventScroll: true });
