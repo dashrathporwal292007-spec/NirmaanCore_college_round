@@ -1567,3 +1567,17 @@ main h1 { animation: display-unveil 850ms cubic-bezier(.16,1,.3,1) both; }
 .home-territories .home-screen-link:hover .territory-description, .home-territories .home-screen-link:focus-visible .territory-description { opacity: 1; translate: none; }
 @media(max-width:850px) { .home-territories .home-screen-link { min-height: 160px; padding-inline: 0; gap: 16px; } .home-territories .territory-name { font-size: clamp(44px,12vw,64px); } .home-territories .territory-description { opacity: 1; translate: none; left: 40px; right: 0; max-width: 25ch; font-size: 14px; } }
 @media(prefers-reduced-motion:reduce) { .home-territories .territory-description { opacity: 1; translate: none; transition: none; } }
+
+/* Home narrative: a framed scene becomes the canvas for the next chapter. */
+.home-story { margin-top: 144px; height: 280vh; }
+.home-story .zoom-frame { rotate: var(--scene-rotation,-5deg); border-radius: calc((1 - var(--scene-progress)) * 32px); }
+.home-story .zoom-frame > img { opacity: .6; object-position: center; }
+.home-story .zoom-copy { justify-content: center; }
+.home-story .zoom-line { font-size: clamp(52px,8.5vw,144px); max-width: 15ch; letter-spacing: -.025em; }
+.scene-caption { position: absolute; bottom: 36px; left: 6vw; z-index: 2; font-size: 16px; }
+.home-story + .home-territories { margin-top: 0; padding-top: 96px; position: relative; background: var(--background); }
+.home-territories .home-screen-link { transition: min-height 650ms var(--ease-editorial), padding 650ms var(--ease-editorial), background 650ms var(--ease-editorial); }
+.home-territories .home-screen-link:hover, .home-territories .home-screen-link:focus-visible { min-height: 300px; }
+.home-territories .home-screen-link img { right: 0; width: 55%; object-fit: cover; }
+@media(max-width:850px) { .home-story .zoom-line { font-size: clamp(48px,13vw,76px); } .scene-caption { left: 24px; bottom: 24px; font-size: 14px; } .home-territories .home-screen-link:hover, .home-territories .home-screen-link:focus-visible { min-height: 220px; } }
+@media(prefers-reduced-motion:reduce) { .home-story { height: auto; } .home-story .zoom-frame { rotate: none; border-radius: 0; } .home-territories .home-screen-link { transition: none; } }

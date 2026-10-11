@@ -279,6 +279,21 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
         {error && <ErrorState message={error} />}
         {children}
         {path === "/" && (
+          <>
+          <section className="zoom-scene home-story" aria-label="A plan stays in your control">
+            <div className="zoom-stage">
+              <div className="zoom-frame">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/menu/agent.svg" alt="Abstract connected business workflow" width={800} height={1000} />
+                <div className="zoom-copy">
+                  <p className="zoom-line">One instruction.</p>
+                  <p className="zoom-line"><em>Every consequence.</em></p>
+                  <p className="zoom-line">Your decision.</p>
+                </div>
+                <span className="scene-caption">Propose · Preview · Approve</span>
+              </div>
+            </div>
+          </section>
           <section className="section home-territories" aria-label="Explore the workspace">
             <h2>One business.<br /><em>Every moving part.</em></h2>
             <nav aria-label="Home screen links">
@@ -294,6 +309,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
               ))}
             </nav>
           </section>
+          </>
         )}
       </main>
     </WorkspaceContext.Provider>

@@ -72,6 +72,7 @@ export function EditorialMotion() {
           const box = el.getBoundingClientRect();
           const progress = Math.max(0, Math.min(1, -box.top / Math.max(1, box.height - innerHeight)));
           el.style.setProperty("--scene-progress", String(progress));
+          el.style.setProperty("--scene-rotation", `${(1 - progress) * -5}deg`);
           el.querySelectorAll<HTMLElement>(".zoom-line").forEach((line, index) => {
             const reveal = Math.max(0, Math.min(1, (progress - .12 - index * .16) / .18));
             line.style.opacity = String(reveal);
@@ -112,6 +113,7 @@ export function EditorialMotion() {
         });
         document.querySelectorAll<HTMLElement>(".zoom-scene").forEach((el) => {
           el.style.removeProperty("--scene-progress");
+          el.style.removeProperty("--scene-rotation");
           el.querySelectorAll<HTMLElement>(".zoom-line").forEach((line) => {
             line.style.removeProperty("opacity");
             line.style.removeProperty("transform");
