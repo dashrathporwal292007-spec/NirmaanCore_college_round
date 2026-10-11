@@ -21,7 +21,7 @@ npm run start
 
 Apply schemas once to a new database. For an existing container, use `docker start nexus-db`; do not blindly reapply schemas. Without Docker, explicitly configure DATABASE_URL in the ignored .env.local. Keep DEMO_MODE=1 for the offline demo; no API key is required. Optional live planning uses GEMINI_API_KEY and GEMINI_MODEL (default gemini-flash-latest). Never commit .env.local.
 
-Open http://localhost:3000. Public registration is /register/[slug]. Publish its draft through the normal approval pipeline before registering.
+
 
 ## Scripts
 
