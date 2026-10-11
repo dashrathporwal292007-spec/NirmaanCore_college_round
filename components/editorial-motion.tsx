@@ -68,6 +68,13 @@ export function EditorialMotion() {
       mutations.observe(document.body, { childList: true, subtree: true });
       const update = () => {
         frame = 0;
+        document.querySelectorAll<HTMLElement>("main h1, main .scroll-territory").forEach((el) => {
+          const box = el.getBoundingClientRect();
+          const progress = Math.max(0, Math.min(1, (innerHeight - box.top) / (innerHeight + box.height)));
+          el.style.setProperty("--scene-scale", String(1.08 - progress * 0.12));
+          el.style.setProperty("--art-scale", String(1.22 - progress * 0.22));
+          el.style.setProperty("--art-shift", `${(progress - .5) * 48}px`);
+        });
         document
           .querySelector<HTMLElement>("main h1")
           ?.style.setProperty(
@@ -79,12 +86,18 @@ export function EditorialMotion() {
         if (!frame) frame = requestAnimationFrame(update);
       };
       window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      update();
       stop = () => {
         observer.disconnect();
         mutations.disconnect();
         cancelAnimationFrame(frame);
         cancelAnimationFrame(scanFrame);
         window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("resize", onScroll);
+        document.querySelectorAll<HTMLElement>("main h1, main .scroll-territory").forEach((el) => {
+          ["--scene-scale", "--art-scale", "--art-shift"].forEach((name) => el.style.removeProperty(name));
+        });
         elements.forEach((el) =>
           el.classList.remove("scroll-reveal", "scroll-visible"),
         );

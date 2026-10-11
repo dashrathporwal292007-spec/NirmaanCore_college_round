@@ -1518,3 +1518,17 @@ main h1 { animation: display-unveil 850ms cubic-bezier(.16,1,.3,1) both; }
 .panel-menu nav a:hover .panel-title > span:first-child, .panel-menu nav a:focus-visible .panel-title > span:first-child { transform: none; font-family: var(--font-serif); font-weight: 400; }
 .panel-menu nav a > .panel-title { overflow: visible; line-height: 1.3; }
 @media (max-width:1000px) { .panel-menu nav { grid-template-rows: repeat(3,minmax(0,1fr)); } }
+
+/* Scroll-linked scenes: local artwork moves behind readable navigation. */
+.scroll-territory img { opacity: .24; transform: translateY(var(--art-shift,0px)) scale(var(--art-scale,1.1)); right: 2%; width: 48%; }
+.scroll-territory::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,#0a0a0b 0%,rgba(10,10,11,.85) 35%,transparent 85%); pointer-events: none; }
+.scroll-territory .territory-name, .scroll-territory .territory-number { z-index: 2; }
+.scroll-territory:hover img, .scroll-territory:focus-visible img { opacity: .5; transform: translateY(var(--art-shift,0px)) scale(var(--art-scale,1.1)); }
+@media (prefers-reduced-motion: no-preference) {
+  main h1 { scale: var(--scene-scale,1); transform-origin: left center; }
+  .scroll-territory .territory-name { scale: var(--scene-scale,1); transform-origin: left center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  main h1, .scroll-territory .territory-name { scale: none; }
+  .scroll-territory img { transform: none; }
+}
