@@ -51,7 +51,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
   );
   const [role, updateRole] = useState<"owner" | "viewer">("owner");
   const [mode, setMode] = useState<Mode | null>(null);
-  const [last, setLast] = useState("No tick run this session");
+  const [last, setLast] = useState("No actions processed yet");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
@@ -108,7 +108,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
                 }
               }}
             >
-              {busy ? "Running tick…" : "Run worker tick"}
+              {busy ? "Processing…" : "Process scheduled actions"}
             </button>
             <span role="status">{last}</span>
           </div>
@@ -130,7 +130,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
             </i>
           </button>
         </div>
-        <div className="utility">
+        {mode && <div className="utility">
           <span className="mode-wrap">
             <button
               className="mode"
@@ -141,15 +141,15 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
                   ? "Offline demo plans"
                   : "Plan a request to see its source")
               }
-              aria-label={`Planner mode: ${mode?.plannerMode ?? "not used"}. ${mode?.fallbackReason ?? ""}`}
+              aria-label={`Plan source: ${mode?.plannerMode ?? "not used"}. ${mode?.fallbackReason ?? ""}`}
             >
-              Planner:{" "}
+              Plan source:{" "}
               {mode
                 ? mode.plannerMode === "gemini"
                   ? "live"
                   : mode.plannerMode === "supplied"
-                    ? "supplied"
-                    : "fallback"
+                    ? "provided"
+                    : "offline"
                 : "not used"}
             </button>
             <span role="tooltip" id="planner-reason">
@@ -159,11 +159,11 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
                   : mode?.plannerMode === "gemini"
                     ? "Live Gemini plan"
                     : mode?.plannerMode === "supplied"
-                      ? "Explicit supplied plan"
+                      ? "Plan provided by you"
                       : "Plan a request to see its source")}
             </span>
           </span>
-        </div>
+        </div>}
       </header>
       <dialog
         ref={menu}

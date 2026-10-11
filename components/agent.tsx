@@ -321,7 +321,7 @@ export function Agent({
                 </p>
               ))}
               {!diff && (
-                <p>No successful dry-run receipt exists for this run.</p>
+                <p>No preview is available for this run.</p>
               )}
               {run.error && <ErrorState message={run.error} />}
             </>
