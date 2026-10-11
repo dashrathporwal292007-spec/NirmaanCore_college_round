@@ -279,13 +279,17 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
         {error && <ErrorState message={error} />}
         {children}
         {path === "/" && (
-          <section className="section" aria-label="Explore the workspace">
-            <h2>Explore the workspace</h2>
+          <section className="section home-territories" aria-label="Explore the workspace">
+            <h2>One business.<br /><em>Every moving part.</em></h2>
             <nav aria-label="Home screen links">
               {[["Agent", "/", "Propose first. Approve second."], ["Live view", "/live", "Watch the business correct itself."], ["Contacts", "/contacts", "Every customer, every decision."], ["Webinars", "/webinars", "Bring people together."], ["Runs", "/runs", "Every action leaves a receipt."], ["Outbox", "/outbox", "See what was sent. See what stopped."], ["Rules", "/rules", "Five rules. One promise."], ["Analytics", "/analytics", "Count what actually happened."]].map(([name, href, description], i) => (
-                <Link className="list-row home-screen-link" key={href} href={href}>
-                  <span>{String(i + 1).padStart(2, "0")} · {name}</span>
-                  <p>{description}</p>
+                <Link className="scroll-territory home-screen-link" key={href} href={href}>
+                  <span className="territory-number">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="territory-name">{name}</span>
+                  {/* Original artwork, bundled locally. */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`/menu/${href === "/" ? "agent" : href.slice(1)}.svg`} alt="" width={800} height={1000} />
+                  <p className="territory-description">{description}</p>
                 </Link>
               ))}
             </nav>

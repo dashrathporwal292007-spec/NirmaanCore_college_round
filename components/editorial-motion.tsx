@@ -53,7 +53,7 @@ export function EditorialMotion() {
           .forEach((el) => {
             if (elements.has(el)) return;
             // Avoid stacking reveals on a parent and its children.
-            if (el.classList.contains("scroll-territories")) return;
+            if (el.classList.contains("scroll-territories") || el.classList.contains("home-territories")) return;
             if (el.parentElement?.closest(".scroll-reveal")) return;
             elements.add(el);
             el.classList.add("scroll-reveal");
