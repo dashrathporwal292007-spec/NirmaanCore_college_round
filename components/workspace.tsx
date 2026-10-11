@@ -278,6 +278,19 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
         style={{ "--screen-art": `url(/menu/${["live", "contacts", "webinars", "runs", "outbox", "analytics", "rules"].includes(path.split("/")[1]) ? path.split("/")[1] : "agent"}.svg)` } as React.CSSProperties}>
         {error && <ErrorState message={error} />}
         {children}
+        {path === "/" && (
+          <section className="section" aria-label="Explore the workspace">
+            <h2>Explore the workspace</h2>
+            <nav aria-label="Home screen links">
+              {[["Agent", "/", "Propose first. Approve second."], ["Live view", "/live", "Watch the business correct itself."], ["Contacts", "/contacts", "Every customer, every decision."], ["Webinars", "/webinars", "Bring people together."], ["Runs", "/runs", "Every action leaves a receipt."], ["Outbox", "/outbox", "See what was sent. See what stopped."], ["Rules", "/rules", "Five rules. One promise."], ["Analytics", "/analytics", "Count what actually happened."]].map(([name, href, description], i) => (
+                <Link className="list-row home-screen-link" key={href} href={href}>
+                  <span>{String(i + 1).padStart(2, "0")} · {name}</span>
+                  <p>{description}</p>
+                </Link>
+              ))}
+            </nav>
+          </section>
+        )}
       </main>
     </WorkspaceContext.Provider>
   );
