@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, useContext, type ReactNode } from "react";
 
-import { HomeProjects } from "@/components/home-projects";
 import { ShellTicker } from "@/components/shell-ticker";
 import { ErrorState } from "@/components/shared";
 const menuTabs = [["Home", "/"], ["About", "/about"], ["Features", "/features"], ["Workspace", "/live"], ["Contact us", "/contact"]];
@@ -295,17 +294,16 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
               </div>
             </div>
           </section>
-          <HomeProjects />
           <section className="section home-territories" aria-label="Explore the workspace">
             <h2>One business.<br /><em>Every moving part.</em></h2>
             <nav aria-label="Home screen links">
-              {[["Agent", "/", "Propose first. Approve second."], ["Live view", "/live", "Watch the business correct itself."], ["Contacts", "/contacts", "Every customer, every decision."], ["Webinars", "/webinars", "Bring people together."], ["Runs", "/runs", "Every action leaves a receipt."], ["Outbox", "/outbox", "See what was sent. See what stopped."], ["Rules", "/rules", "Five rules. One promise."], ["Analytics", "/analytics", "Count what actually happened."]].map(([name, href, description], i) => (
+              {[["Agent", "/#agent-command", "Propose first. Approve second."], ["Live view", "/live", "Watch the business correct itself."], ["Contacts", "/contacts", "Every customer, every decision."], ["Webinars", "/webinars", "Bring people together."], ["Runs", "/runs", "Every action leaves a receipt."], ["Outbox", "/outbox", "See what was sent. See what stopped."], ["Rules", "/rules", "Five rules. One promise."], ["Analytics", "/analytics", "Count what actually happened."]].map(([name, href, description], i) => (
                 <Link className="scroll-territory home-screen-link" key={href} href={href}>
                   <span className="territory-number">{String(i + 1).padStart(2, "0")}</span>
                   <span className="territory-name">{name}</span>
                   {/* Original artwork, bundled locally. */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/menu/${href === "/" ? "agent" : href.slice(1)}.svg`} alt="" width={800} height={1000} />
+                  <img src={`/menu/${href.startsWith("/#") ? "agent" : href === "/" ? "agent" : href.slice(1)}.svg`} alt="" width={800} height={1000} />
                   <p className="territory-description">{description}</p>
                 </Link>
               ))}

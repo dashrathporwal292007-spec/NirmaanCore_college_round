@@ -201,7 +201,7 @@ export function Agent({
       </h1>
       {detailTitle && <p>{run?.instruction ?? "Reading the run…"}</p>}
       {!detailTitle && (
-        <section className="command">
+        <section className="command" id="agent-command">
           <form
             onSubmit={(e) => {
               e.preventDefault();
