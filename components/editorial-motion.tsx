@@ -19,7 +19,7 @@ export function EditorialMotion() {
     });
     sync();
     return () => observer.disconnect();
-  }, []);
+  }, [path]);
   const dot = useRef<HTMLSpanElement>(null);
   const ring = useRef<HTMLSpanElement>(null);
 
@@ -182,15 +182,22 @@ export function EditorialMotion() {
           ring.current.style.transform = `translate3d(${rx}px,${ry}px,0) rotate(${Math.atan2(dy, dx)}rad) scale(${1 + stretch},${1 - stretch * 0.5})`;
         frame = requestAnimationFrame(draw);
       };
-      window.addEventListener("pointermove", move, { passive: true });
+      window.addEventListener("pointermove", move, { passive: true, capture: true });
       document.addEventListener("pointerleave", hide);
       window.addEventListener("blur", hide);
       window.addEventListener("keydown", hide);
-      frame = requestAnimationFrame(draw);
-      stop = () => {
+      const restore = () => {
         cancelAnimationFrame(frame);
         hide();
-        window.removeEventListener("pointermove", move);
+        frame = requestAnimationFrame(draw);
+      };
+      window.addEventListener("pageshow", restore);
+      frame = requestAnimationFrame(draw);
+      stop = () => {
+        window.removeEventListener("pageshow", restore);
+        cancelAnimationFrame(frame);
+        hide();
+        window.removeEventListener("pointermove", move, true);
         document.removeEventListener("pointerleave", hide);
         window.removeEventListener("blur", hide);
         window.removeEventListener("keydown", hide);
@@ -202,7 +209,7 @@ export function EditorialMotion() {
       stop();
       allowed.removeEventListener("change", start);
     };
-  }, []);
+  }, [path, cursorHost]);
   const cursor = (
     <>
       <span ref={dot} className="pointer-dot" aria-hidden="true" />
