@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, useContext, type ReactNode } from "react";
 
+import { HomeProjects } from "@/components/home-projects";
 import { ShellTicker } from "@/components/shell-ticker";
 import { ErrorState } from "@/components/shared";
 const menuTabs = [["Home", "/"], ["About", "/about"], ["Features", "/features"], ["Workspace", "/live"], ["Contact us", "/contact"]];
@@ -294,6 +295,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
               </div>
             </div>
           </section>
+          <HomeProjects />
           <section className="section home-territories" aria-label="Explore the workspace">
             <h2>One business.<br /><em>Every moving part.</em></h2>
             <nav aria-label="Home screen links">
