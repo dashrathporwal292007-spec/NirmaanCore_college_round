@@ -82,6 +82,8 @@ export function EditorialMotion() {
           const box = el.getBoundingClientRect();
           const progress = Math.max(0, Math.min(1, (innerHeight - box.top) / (innerHeight + box.height)));
           el.style.setProperty("--scene-scale", String(1.08 - progress * 0.12));
+          el.style.setProperty("--title-progress", String(progress));
+          el.style.setProperty("--title-art-scale", String(1.16 - progress * .16));
           el.style.setProperty("--art-scale", String(1.22 - progress * 0.22));
           el.style.setProperty("--art-shift", `${(progress - .5) * 48}px`);
         });
@@ -106,7 +108,7 @@ export function EditorialMotion() {
         window.removeEventListener("scroll", onScroll);
         window.removeEventListener("resize", onScroll);
         document.querySelectorAll<HTMLElement>("main h1, main .scroll-territory").forEach((el) => {
-          ["--scene-scale", "--art-scale", "--art-shift"].forEach((name) => el.style.removeProperty(name));
+          ["--scene-scale", "--art-scale", "--art-shift", "--title-progress", "--title-art-scale"].forEach((name) => el.style.removeProperty(name));
         });
         document.querySelectorAll<HTMLElement>(".zoom-scene").forEach((el) => {
           el.style.removeProperty("--scene-progress");

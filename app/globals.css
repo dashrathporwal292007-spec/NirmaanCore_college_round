@@ -1544,3 +1544,8 @@ main h1 { animation: display-unveil 850ms cubic-bezier(.16,1,.3,1) both; }
 .zoom-line em { font-family: var(--font-serif); font-weight: 400; }
 @media(max-width:850px) { .zoom-scene { margin-left: -24px; margin-right: -24px; } .zoom-copy { padding: 24px; } }
 @media(prefers-reduced-motion:reduce) { .zoom-scene { height: auto; } .zoom-stage { position: relative; height: min(900px,100svh); } .zoom-frame { clip-path: none; } .zoom-frame > img { transform: none; } .zoom-line { opacity: 1; transform: none; } }
+
+/* Each screen owns its animated title scene; no repeated footer screens. */
+.workspace h1 { position: relative; isolation: isolate; }
+.workspace h1::before { content: ""; position: absolute; inset: -40px 0; z-index: -1; background-image: var(--screen-art); background-repeat: no-repeat; background-position: right center; background-size: auto 100%; opacity: .18; pointer-events: none; clip-path: inset(0 calc((1 - var(--title-progress,0)) * 35%) 0 0); transform: scale(var(--title-art-scale,1.1)); transform-origin: right center; }
+@media(prefers-reduced-motion:reduce) { .workspace h1::before { clip-path: none; transform: none; } }

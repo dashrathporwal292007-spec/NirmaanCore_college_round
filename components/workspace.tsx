@@ -7,17 +7,7 @@ import { createContext, useContext, type ReactNode } from "react";
 
 import { ShellTicker } from "@/components/shell-ticker";
 import { ErrorState } from "@/components/shared";
-const tabs = [
-  ["Agent", "/"],
-  ["Live view", "/live"],
-  ["Contacts", "/contacts"],
-  ["Webinars", "/webinars"],
-  ["Outbox", "/outbox"],
-  ["Runs", "/runs"],
-  ["Analytics", "/analytics"],
-  ["Rules", "/rules"],
-];
-const menuTabs = [["Home", "/"], ["About", "/about"], ["Features", "/#features"], ["Workspace", "/live"], ["Contact us", "/contact"]];
+const menuTabs = [["Home", "/"], ["About", "/about"], ["Features", "/features"], ["Workspace", "/live"], ["Contact us", "/contact"]];
 const WorkspaceContext = createContext({
   role: "owner" as "owner" | "viewer",
   onMode: (m: Mode) => {
@@ -230,7 +220,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className="panel-art"
-                src={`/menu/${href === "/" ? "agent" : href === "/about" ? "rules" : href === "/contact" ? "contacts" : href === "/#features" ? "analytics" : "live"}.svg`}
+                src={`/menu/${href === "/" ? "agent" : href === "/about" ? "rules" : href === "/contact" ? "contacts" : href === "/features" ? "analytics" : "live"}.svg`}
                 alt=""
                 width={800}
                 height={1000}
@@ -284,36 +274,10 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
         </div>
       </dialog>
       {path !== "/live" && <ShellTicker revision={refresh} />}
-      <main className="workspace" id="main" key={path}>
+      <main className="workspace" id="main" key={path}
+        style={{ "--screen-art": `url(/menu/${["live", "contacts", "webinars", "runs", "outbox", "analytics", "rules"].includes(path.split("/")[1]) ? path.split("/")[1] : "agent"}.svg)` } as React.CSSProperties}>
         {error && <ErrorState message={error} />}
         {children}
-        <section className="zoom-scene" aria-label="How Nexus works">
-          <div className="zoom-stage">
-            <div className="zoom-frame">
-              {/* Original bundled artwork; no external media requests. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/menu/agent.svg" alt="Abstract illustration of connected business actions" width={800} height={1000} />
-              <div className="zoom-copy">
-                <p className="zoom-line">One instruction.</p>
-                <p className="zoom-line"><em>A clear plan.</em></p>
-                <p className="zoom-line">You decide what happens.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section id="features" className="section scroll-territories" aria-label="Explore the workspace">
-          <h2>One business.<br /><em>Every moving part.</em></h2>
-          <nav aria-label="Explore screens">
-            {tabs.map(([tab, href], index) => (
-              <Link key={href} href={href} className="scroll-territory">
-                <span className="territory-number">{String(index + 1).padStart(2, "0")}</span>
-                <span className="territory-name">{tab}<em aria-hidden="true">{tab}</em></span>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/menu/${href === "/" ? "agent" : href.slice(1)}.svg`} alt="" width={800} height={1000} />
-              </Link>
-            ))}
-          </nav>
-        </section>
       </main>
     </WorkspaceContext.Provider>
   );
